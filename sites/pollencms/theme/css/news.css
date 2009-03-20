@@ -1,0 +1,7 @@
+@charset "UTF-8";
+@import url(site.css);
+
+.news{clear:both;margin-bottom:10px;}
+.news img {margin:0px 10px 0px 0px}
+.news h2 {color:#000;font-size:14px;}
+.news a.readmore{color:green;margin-top:10px;display:block;text-align:right;}
