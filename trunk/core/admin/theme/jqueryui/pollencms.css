@@ -1,0 +1,13 @@
+@import "pollencmsdialog.css";
+
+.msgboxError .icon {
+	background:url(./img/dialog-error.png) no-repeat;
+	height:32px;
+	width:32px;
+	float:left;
+	margin:0px 12px;
+}
+.msgboxError .content {
+	margin-left:60px;
+	font-size:12px;
+}

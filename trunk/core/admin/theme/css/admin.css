@@ -1,0 +1,274 @@
+@charset "UTF-8";
+@import url(filemanager.css);
+@import url(progressbar.css);
+@import url(../jqueryui/pollencms.css);
+
+body{
+	background: #f5f5f5;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	padding:10px 20px;
+	font-size:11px;
+	margin:0;	
+}
+.reset{
+	height: 1px;
+	font-size: 1px;
+	clear: both;
+}
+
+#menu_admin,#menu_admin_top{display:none;}
+h1{font-size:18px;color:#000;}
+h2, h2 A{
+	font-size: 12px;
+	color: #819713;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	text-decoration: none;
+}
+
+A{color:#000;}
+A:HOVER{color:#819713;}
+img{ border: none;}
+
+
+label.param{font-weight: bold;display:block;width:200px;float:left;text-align:right;padding:6px 20px 0px 0px;border:0px solid red;margin-top:6px;height:20px;}
+input.paramvalueText{width:400px;border:1px solid #CCC;float:left;margin-top:6px;height: 20px;}
+.paramvalue{float:left;margin-top:8px;}
+
+#btnToutAfficher{
+	display:block;
+	width:132px;
+	height: 32px;
+	border:0px solid red;
+}
+.btnToutAfficherEnableMouseDown{
+	background: url(../images/admin/afficher-off.gif) no-repeat;
+}
+
+.btnToutAfficherDisable{
+	background: url(../images/admin/afficher-disabled.gif) no-repeat;
+}
+.btnToutAfficherEnable{
+	background: url(../images/admin/afficher-on.gif) no-repeat;
+}
+
+#btnDeconnecter{
+	display:block;
+	width:132px;
+	height: 32px;
+	float:right;
+	
+}
+.btnDeconnecterEnable{
+	background: url(../images/admin/logout.gif) no-repeat;
+}
+.btnDeconnecterMouseDown{
+	background: url(../images/admin/logout-down.gif) no-repeat;
+}
+
+.btnNav{
+	display:block;
+	width:27px;
+	height:22px;
+	border:0px solid red;
+	cursor: hand;
+	margin-top:4px;
+}
+.btnBackOff{
+	background: url(../images/admin/btnBack-off.png) no-repeat;
+}
+.btnBackOn{
+	background: url(../images/admin/btnBack.png) no-repeat;
+}
+
+.btnForwOff{
+	background: url(../images/admin/btnForward-off.png) no-repeat;
+}
+.btnForwOn{
+	background: url(../images/admin/btnForward.png) no-repeat;
+}
+#btnFow{margin-right:10px;}
+
+
+li{
+  margin: 15px 0px;
+}
+#content{
+	padding: 20px ;
+	background-image:none;
+	border:0px solid red;
+/*	background-color:#FFF;bug ie*/
+}
+
+#admin_top_menu A{
+	display:block;
+	width:80px;
+	float:left;
+	margin: 2px 20px;
+	padding:35px 0px 0px 0px;
+	text-align:center;
+	text-decoration:none;
+}
+/**** tiroir *****/
+.fckEditor {
+	float:left;
+	position:relative;
+	width:100%;
+	text-align: left;
+	background: #FFF;
+}
+
+.panelHistory {
+	position:absolute;
+	top:0px;
+	right:-216px;
+	width:200px;
+	height:100%;
+	background: #FFF;
+	border-left:1px solid #696969;
+	border-bottom:1px solid #696969;
+	overflow: auto;
+	display:none;
+}
+.panelHistory h4{
+	margin: 0;
+	padding:4px 0px;
+	text-align: center;
+	color: #cccccc;
+	background: #272626;
+	text-transform: uppercase;
+	font-size: 1.1em;
+}
+ul.historylist{
+	border:none;
+	padding:0;
+	margin-left:20px;
+}
+ul.historylist li{
+	margin:2px 0px;
+	list-style: none;
+}
+ul.historylist a{
+	text-decoration: none;
+}
+
+ul.historylist a.selected{
+	color:#FF9C08;
+}
+
+.openTabs {
+	position:absolute;
+	top:0px;
+	right:-15px;
+	width:15px;
+	height:100%;
+	background: #FCFCFC url(../images/admin/sidebar.gif) left no-repeat;
+}
+
+.textTabs{
+	padding-left:20px;
+}
+/*********/
+
+form{margin:6px 0px;}
+input .button{border-color:#819713;}
+input.button{
+	background:#FFFFFF;
+	color:#819713;;
+	border:1px solid #819713;;
+}
+input.button:HOVER{
+	background:#819713;
+	color:#FFF;
+}
+
+fieldset{
+	width: 500px;
+	margin-bottom: 5px;	
+	float: left;
+}
+.help{
+	width: 35px;
+	float: left;
+	padding-top: 20px;
+}
+fieldset legend{
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+.help{
+	width: 35px;
+	float: left;
+	height:20px;
+	border:0px solid red;
+	background:url(../images/admin/help.gif) no-repeat 0px 20px;
+}
+
+.input-text{
+	background: url(../images/admin/input-text.gif) no-repeat top left;
+	height: 23px;
+	border: none;
+	padding-left: 10px;
+	padding-top: 5px;
+	width:200px;
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+#formConnect label{width:100px;text-align:right;margin-top:4px;margin-right:10px;font-weight: bold;display:block;float:left;}
+#formConnect fieldset{width: 360px;}
+#formConnect legend{color:#000;/*by default ie use a bleu color*/}
+#formConnect {width: 380px;margin:0 auto;}
+
+
+.infobulles span{
+	display:none;
+}
+#panel-links{
+	text-align: center;
+	margin:100px 10px 40px 10px;
+	border:0px solid red;
+}
+#panel-links A{
+	padding-top:100px;
+	margin-right: 20px;
+	text-decoration: none;
+}
+#panel-links A span{
+	display:none;
+}
+#tooltip{
+	background: url(../images/admin/tooltip.gif) no-repeat top left;
+	width: 204px;
+	height: 103px;
+	color: White;
+	text-align: center;
+	padding: 15px 4px 0px 4px;
+	font-size: 10px;
+	position:absolute;top:0px;left:0px;
+	display:none;
+}
+#tooltip h3{
+	font-size: 10px;
+	color: #f6ffc8;
+	margin: 0;
+}
+/*
+../images/admin/icon-pages.jpg
+#pages{background: url(../images/admin/icon-pages.jpg);}
+*/
+
+#imgHome{background:url(../images/admin/go-home.jpg) no-repeat;float:left;margin-right:8px;height:16px;width:18px;border:0px solid red;}
+
+#btnNewFile{background:url(../images/admin/create-file.jpg) no-repeat;}
+#btnNewFolder{background:url(../images/admin/create-folder.jpg) no-repeat;}
+#btnUploadFile{background:url(../images/admin/upload-file.jpg) no-repeat;}
+.newObj{display:block;float:left;width:128px;height: 115px;border:0px solid red;}
+
+#btnNewFileSmall{background:url(../images/admin/create-file-small.jpg) no-repeat;}
+#btnNewFolderSmall{background:url(../images/admin/create-folder-small.jpg) no-repeat;}
+#btnUploadFileSmall{background:url(../images/admin/upload-file-small.jpg) no-repeat;}
+.btnNewSmall{display:block;float:left;width:32px;height:32px;border:0px solid red;text-indent: -9999px;cursor: hand;margin-left:2px;}
+
+.inputSend{border:1px solid red;opacity:1;display: none;}

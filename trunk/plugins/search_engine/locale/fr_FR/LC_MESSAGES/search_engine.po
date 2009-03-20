@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PollenCMS Plugin Search Engine\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-18 00:21+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Vilaplana Mathieu <mvilaplana@dfc-e.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-SearchPath-0: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine\n"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:12
+msgid "ACTIVATE"
+msgstr "Activer"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:13
+msgid "HOST"
+msgstr "Serveur"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:14
+msgid "LOGIN"
+msgstr "Identifiant"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:15
+msgid "PASSWD"
+msgstr "Mot de passe"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:16
+msgid "BASE"
+msgstr "Nom de la base"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:17
+msgid "PREFIX"
+msgstr "Préfixe"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:41
+msgid "Populate Data Base"
+msgstr "Indexer le contenu du site"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/se_events.php:46
+msgid "Search Engine"
+msgstr "Moteur de recherche"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/ajax_action.php:40
+msgid "Data base has been populated successfully"
+msgstr "La base de donnée à été correctement remplie"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:48
+#, php-format
+msgid "can not connect to data base on server %s"
+msgstr "Impossible de se connecter au serveur %s"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:51
+#, php-format
+msgid "can not connect to data base %s"
+msgstr "Impossible de se connecter à la base de données %s"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:117
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:140
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:164
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:183
+#, php-format
+msgid "Mysql Error occured : %s"
+msgstr "Une erreure sql s'est produite: %s"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:199
+msgid "can not list database tables"
+msgstr "Impossible de lister les tables de la base de données"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:211
+#, php-format
+msgid "can not delete table %s"
+msgstr "Impossible de supprimer la table %s"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:216
+msgid "can not load the sql template file"
+msgstr "Impossible de charger le fichier sql"
+
+#: /Users/mathieuvilaplana/Sites/pollencms/plugins/search_engine/include/lib.searchengine.php:220
+#, php-format
+msgid "can not create table %s"
+msgstr "Impossible de créer la table %s"
+
