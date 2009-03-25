@@ -159,6 +159,7 @@ function savefile(){
 	if(!isset($_REQUEST["file"]) || $_REQUEST["file"]=="" || eregi("\.\.",$_REQUEST["file"])) {
 		return setError(_("You should specified a file to save"));
 	}
+
 	$pfile = &getFileObject(SITE_PATH.urljsdecode($_REQUEST["file"]));
 	if(!$pfile)
 		return setError('Internal Error, can not save file, file not found.');

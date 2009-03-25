@@ -128,10 +128,10 @@ div.contextMenu{display:none;}
 #form_editor{
 	text-align:center;
 }
-textarea{
+/*textarea{
 	width:800px;
 	height:500px;
-}
+}*/
 
 form.inputrename{border:0;margin:0;padding:0;display:inline;}
 form.inputrename input{

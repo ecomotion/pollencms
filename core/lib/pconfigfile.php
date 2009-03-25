@@ -89,9 +89,16 @@ class PConfigFile extends PTextFile {
 		
 		if( !($tabValues = parse_ini_file($this->path,true)) )
 			return false;
-		
+
 		$this->tabParams = array_merge($this->tabParams,$tabValues);
 		foreach($this->tabParams as $k=>$v){
+			if(!is_array($v)){
+				$this->tabParams[$k]=str_replace(array('\n',htmlentities('"')),array("\n",'"'),$v);
+			}else{
+				foreach($v as $kk => $vv){
+					$this->tabParams[$k][$kk]=str_replace(array('\n',htmlentities('"')),array("\n",'"'),$vv);
+				}
+			}
 			if(strstr($k,'VAR_') && is_array($v)){//param descr
 				$this->tabParamsDescr[$k]=$v;
 			}
@@ -103,29 +110,66 @@ class PConfigFile extends PTextFile {
 	//Delete the menu cache if file has been modified
 	function Save($strText=false){
 		if($strText === false){
-			if(!$this->parse())
+			$strText = $this->toString();
+			if($strText === false)
 				return false;
-			$strText = '';
-			foreach($this->tabParams as $k => $v){
-				if(is_array($v)){//section case
-					$strText .= "\n".'['.$k.']'."\n";
-					foreach($v as $kk => $vv){
-						$strText .= $kk.'="'.$vv.'"'."\n";
-					}
-				}else {//not a section, param="value"
-					$strText .= $k.'="'.$v.'"'."\n";				
-				}
-			}
+		}else{
+			//replace break lines by \\n for textarea var
+			$tabResult = $this->parseIniFromString(stripslashes($strText));
+			$strText = $this->toString($tabResult);
 		}
+		
 		if(!$this->_Modified($strText))
 			return true;
 			
 		if(!deleteMenuCache())
 			return false;
-			
-		return parent::Save($strText);
+		
+		//save without stripslashes
+		return parent::Save($strText,false);
 	}
+ 
+ 
+  function parseIniFromString($str){
+    $aResult  =
+    $aMatches = array();
+ 
+    $a = &$aResult;
+    $s = '\s*([[:alnum:];_\- \*]+?)\s*';
+ 
+    preg_match_all('#^\s*((\['.$s.'\])|(("?)'.$s.'\\5\s*=\s*("?)(.*?)\\7))\s*(;[^\n]*?)?$#ms', $str, $aMatches, PREG_SET_ORDER);
+    foreach ($aMatches as $aMatch)
+      {
+      if (empty($aMatch[2]))
+              $a [$aMatch[6]] = $aMatch[8];
+        else  $a = &$aResult [$aMatch[3]];
+      }
+ 
+    return $aResult;
+    }
 	
+    
+	function toString($tabParams=false){
+		$strText = '';
+		if($tabParams === false){
+			if( !$this->parse() )
+				return false;
+			$tabParams = &$this->tabParams;
+		}
+		foreach($tabParams as $k => $v){
+			if(is_array($v)){//section case
+				$strText .= "\n".'['.$k.']'."\n";
+				foreach($v as $kk => $vv){
+					$vv = str_replace(array("\n",'"'),array('\n',htmlentities('"')),$vv);
+					$strText .= $kk.'="'.$vv.'"'."\n";
+				}
+			}else {//not a section, param="value"
+				$v = str_replace(array("\n",'"'),array('\n',htmlentities('"')),$v);
+				$strText .= $k.'="'.$v.'"'."\n";				
+			}
+		}
+		return ";\n".$strText;
+	}
 	/**
 	 * Return a table of parameters, if file has not been parsed parse before send the table
 	 */
@@ -223,7 +267,7 @@ class PConfigFile extends PTextFile {
 		';
 		foreach($this->tabParams as $strParam=>$strValue){
 			if(!is_array($strValue))
-				$strReturn .= $this->__getEditorFormItem($strParam, $strValue);
+				$strReturn .= $this->__getEditorFormItem($strParam, $strValue, $idForm);
 			else if($strSection){//edition d'une section
 				$strTpl = '<FIELDSET>
 					<LEGEND>'.$strParam.'</LEGEND>
@@ -232,7 +276,7 @@ class PConfigFile extends PTextFile {
 				';
 				$items='';
 				foreach($strValue as $strParamSec=>$strValueSec){
-					$items .= $this->__getEditorFormItem($strParamSec, $strValueSec);
+					$items .= $this->__getEditorFormItem($strParamSec, $strValueSec,$idForm);
 				}
 				$strReturn .= str_replace('{ITEMS}',$items,$strTpl);
 			}
@@ -253,7 +297,7 @@ class PConfigFile extends PTextFile {
 		return $strReturn;
 	}
 	
-	function __getEditorFormItem($strParam, $strValue){
+	function __getEditorFormItem($strParam, $strValue, $idForm){
 		$strType=$this->getParamDescr($strParam,"TYPE","text");
 		$bEditable=($this->getParamDescr($strParam,"EDITABLE","true")=="false")?false:true;
 		$strEditable=(($bEditable)?"":" style=\"display:none;\" ");
@@ -263,13 +307,13 @@ class PConfigFile extends PTextFile {
 		switch($strType){
 			case 'boolean':
 				$strChecked = (($strValue=="true")?'checked':'');
-				$strTpl = '<input class="paramvalue" {STYLE} type="checkbox" name="{PARAM_NAME}" id="field_{PARAM_NAME}" value="{PARAM_VALUE}" {CHECKED} onClick="javascript:if(this.checked){this.value=true;}else{this.value=false;} reloadFileConfigTextArea(\'form_editor_config\'); "/><br />
+				$strTpl = '<input class="paramvalue" {STYLE} type="checkbox" name="{PARAM_NAME}" id="field_{PARAM_NAME}" value="{PARAM_VALUE}" {CHECKED} onClick="javascript:if(this.checked){this.value=true;}else{this.value=false;} reloadFileConfigTextArea(\'{ID_FORM}\'); "/><br />
 				<div class="reset"></div>
 				';
-			$strReturn .= str_replace(array('{CHECKED}','{STYLE}','{PARAM_NAME}','{PARAM_VALUE}'),array($strChecked,$strEditable,$strParam,$strValue),$strTpl);				
+			$strReturn .= str_replace(array('{CHECKED}','{STYLE}','{PARAM_NAME}','{PARAM_VALUE}','{ID_FORM}'),array($strChecked,$strEditable,$strParam,$strValue,$idForm),$strTpl);				
 			break;
 			case 'list':
-				$strTpl = '<select name="{PARAM_NAME}" class="paramvalue" {STYLE} id="field_{PARAM_NAME}" onChange="reloadFileConfigTextArea(\'form_editor_config\');">
+				$strTpl = '<select name="{PARAM_NAME}" class="paramvalue" {STYLE} id="field_{PARAM_NAME}" onChange="reloadFileConfigTextArea(\'{ID_FORM}\');">
 				 {LIST_ITEMS}
 				 </select>
 				 <br /><div class="reset"></div>
@@ -312,13 +356,25 @@ class PConfigFile extends PTextFile {
 					}
 				}
 				
-				$strReturn .= str_replace(array('{LIST_ITEMS}','{STYLE}','{PARAM_NAME}','{PARAM_VALUE}'),array($strList, $strEditable,$strParam,$strValue),$strTpl);
+				$strReturn .= str_replace(array('{LIST_ITEMS}','{STYLE}','{PARAM_NAME}','{PARAM_VALUE}','{ID_FORM}'),array($strList, $strEditable,$strParam,$strValue,$idForm),$strTpl);
+			break;
+			case 'password':
+				$strTpl = '<input class="paramvalueText paramvalue" {STYLE} onChange="reloadFileConfigTextArea(\'{ID_FORM}\');" type="password" name="{PARAM_NAME}" id="field_{PARAM_NAME}" value="{PARAM_VALUE}" /><br />
+				<div class="reset"></div>
+				';
+			$strReturn .= str_replace(array('{STYLE}','{PARAM_NAME}','{PARAM_VALUE}','{ID_FORM}'),array($strEditable,$strParam,$strValue,$idForm),$strTpl);
+			break;
+			case 'textarea':
+			$strTpl = '<textarea name="{PARAM_NAME}" id="field_{PARAM_NAME}" class="paramvalue paramvalueTextArea" wrap="off"   onChange="reloadFileConfigTextArea(\'{ID_FORM}\');" >{PARAM_VALUE}</textarea>
+			<br /><div class="reset"></div>
+			';
+			$strReturn .= str_replace(array('{STYLE}','{PARAM_NAME}','{PARAM_VALUE}','{ID_FORM}'),array($strEditable,$strParam,$strValue,$idForm),$strTpl);
 			break;
 			case 'text':
-			$strTpl = '<input class="paramvalueText paramvalue" {STYLE} onChange="reloadFileConfigTextArea(\'form_editor_config\');" type="text" name="{PARAM_NAME}" id="field_{PARAM_NAME}" value="{PARAM_VALUE}" /><br />
+			$strTpl = '<input class="paramvalueText paramvalue" {STYLE} onChange="reloadFileConfigTextArea(\'{ID_FORM}\');" type="text" name="{PARAM_NAME}" id="field_{PARAM_NAME}" value="{PARAM_VALUE}" /><br />
 			<div class="reset"></div>
 			';
-			$strReturn .= str_replace(array('{STYLE}','{PARAM_NAME}','{PARAM_VALUE}'),array($strEditable,$strParam,$strValue),$strTpl);
+			$strReturn .= str_replace(array('{STYLE}','{PARAM_NAME}','{PARAM_VALUE}','{ID_FORM}'),array($strEditable,$strParam,$strValue,$idForm),$strTpl);
 			break;
 		}//end switch
 		return $strReturn."\n</div>\n";

@@ -33,6 +33,7 @@ img{ border: none;}
 
 label.param{font-weight: bold;display:block;width:200px;float:left;text-align:right;padding:6px 20px 0px 0px;border:0px solid red;margin-top:6px;height:20px;}
 input.paramvalueText{width:400px;border:1px solid #CCC;float:left;margin-top:6px;height: 20px;}
+textarea.paramvalueTextArea{width:400px;border:1px solid #CCC;float:left;margin-top:6px;height: 120px;}
 .paramvalue{float:left;margin-top:8px;}
 
 #btnToutAfficher{
