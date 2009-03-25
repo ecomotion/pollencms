@@ -80,11 +80,11 @@ function reloadFileConfigTextArea(formId){
 		strValue+=self.attr("name")+'="'+strVal+'"';
 		strValue+="\n";
 	});
-	$("textarea", oForm).attr("value",strValue);
+	$("textarea#srcParams", oForm).attr("value",strValue);
 }
 
 function toggleShowConfigEditor(myForm){
-	oTextArea = $('textarea',myForm);
+	oTextArea = $('textarea#srcParams',myForm);
 	oListParams = $('#listParams',myForm);
 	
 	if(!oTextArea.is(':visible')){
@@ -93,12 +93,6 @@ function toggleShowConfigEditor(myForm){
 		oListParams.slideUp('fast');
 	}
 	else{
-/*		currValue = oTextArea.attr('value');
-		reloadFileConfigTextArea($(myForm).attr('id'));
-		oldValue = oTextArea.attr('value');
-		if(currValue != oldValue){
-			actionClickOnSave($(myForm).attr('id'));
-		}*/
 		oListParams.slideDown('fast');
 		oTextArea.slideUp('fast');
 	}
@@ -106,10 +100,10 @@ function toggleShowConfigEditor(myForm){
 function actionClickOnSaveConfig(formId, strFile){
 	
 	var oForm=$("#"+formId);
-	if(!$('textarea', oForm).is(':visible'))
+	if(!$('textarea#srcParams', oForm).is(':visible'))
 		reloadFileConfigTextArea(formId);
 	
-	var strTextValue = $('textarea', oForm).attr("value");
+	var strTextValue = $('textarea#srcParams', oForm).attr("value");
 	ajaxAction('savefile',{file:strFile,text:strTextValue},null,function(data){
 		notify(data);
 	});

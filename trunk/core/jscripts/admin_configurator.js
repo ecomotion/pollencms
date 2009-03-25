@@ -24,7 +24,7 @@ function actionClickOnSaveSiteConfig(strFormId,strFile){
 	if(!$('textarea', oForm).is(':visible'))
 		reloadFileConfigTextArea(strFormId);
 	
-	var strTextValue = $('textarea', oForm).attr("value");
+	var strTextValue = $('textarea#srcParams', oForm).attr("value");
 	ajaxAction('savesiteconfig',{text:strTextValue},null,function(data){
 		notify(data);
 	});
@@ -37,7 +37,8 @@ function actionClickOnSaveTxt(strFormId, strFile){
 		msgBoxError('Can not find the form');
 		return;
 	}
-	var txt = $("textarea",oForm).attr("value");
+	var txt = $("textarea#srcParams",oForm).attr("value");
+	alert(txt);
 	ajaxAction('savefile',{file:strFile,text:txt},null,function(data){
 		notify(data);
 	});
