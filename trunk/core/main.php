@@ -18,7 +18,6 @@ require 'lib/pollencms.php';
 require 'lib/ppage.php';
 require 'lib/plink.php';
 
-
 if(is_file(SITE_PATH.'checkinstall.php'))
 	header('location:checkinstall.php');
 
