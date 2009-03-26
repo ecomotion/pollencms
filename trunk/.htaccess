@@ -1,0 +1,27 @@
+######################################################################
+#
+# File .htaccess
+# This file must be renamed to .htaccess to allow url rewriting.
+#
+####################################################################
+
+##################### URL REWRITING ###############
+RewriteEngine on
+# please set the subdirectory of your installation
+# if in production site leave /
+RewriteBase   /pollen%20cms/
+####################################################
+
+########## INI FILES PROTECTION ##################
+<FilesMatch "\.ini$">
+	Order Deny,Allow
+	Deny from All
+</FilesMatch>
+###################################################
+
+##############################################################
+# Rules, All file that not exist is redirec to the index page
+##############################################################
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
