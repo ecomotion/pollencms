@@ -137,7 +137,7 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 	if(bFadeEffect)	$("#contentAdmin").css({opacity:0.6});//hide();//css({display:"none"});
 	if(bFadeEffect && window.top!=window) window.top.oDialogAdmin.dialog("title","Chargement en cours ....");
 	
-	msgStatus('loading ....');
+	msgStatus(_('Loading ...'));
 	$("#contentAdmin").load(strUrl+" #contentAdmin",function(){
 		if(bAddHistory) tabMyBack[tabMyBack.length] = new myUrl(strUrl,strTitle,bFadeEffect);
 		

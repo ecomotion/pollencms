@@ -3,7 +3,6 @@ var oWinSelector;
 var swfu = false; //the swfu object
 var firstLaunchDone = false;//solve the bug of the swupload_loaded_handler
 
-
 function clickSWFUpload (php_sessid,strCurrDir){
 	var onLoadSwf = function(){
 		swfu.addPostParam("PHPSESSID", php_sessid);//for the cookie bug
@@ -28,7 +27,7 @@ function clickSWFUpload (php_sessid,strCurrDir){
 			button_width: "200",
 			button_height: "16",
 			button_window_mode: "transparent",
-			button_text : 'Select Files',
+			button_text : _('Select Files'),
 			button_text_top_padding: 0,
 			button_text_left_padding: 18,
 
@@ -49,7 +48,7 @@ function clickSWFUpload (php_sessid,strCurrDir){
    Event Handlers
    These are my custom event handlers to make my
    web application behave the way I went when SWFUpload
-   completes different tasks.  These aren't part of the SWFUpload
+   completes different tasks.  These arent part of the SWFUpload
    package.  They are part of my application.  Without these none
    of the actions SWFUpload makes will show up in my application.
    ********************** */
@@ -97,13 +96,8 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 
 function uploadStart(file) {
 	try {
-		/* 
-		I don't want to do any file validation or anything,  I'll just update the UI and
-		return true to indicate that the upload should start.
-		It's important to update the UI here because in Linux no uploadProgress events are called. The best
-		we can do is say we are uploading.
-		 */
-		 oWinUpload.setComment("Uploading file: "+file.name);
+		//It is important to update UI becaus in Linux no uploadProgress events are called. The best we can do is say we are uploading
+		oWinUpload.setComment(_("Uploading file: ")+file.name);
 	}
 	catch (ex) {}	
 	return true;
@@ -128,6 +122,7 @@ function uploadSuccess(file, serverData) {
 		this.debug(ex);
 	}
 }
+
 function uploadError(file, errorCode, message) {
 	try {
 		switch (errorCode) {
@@ -139,6 +134,7 @@ function uploadError(file, errorCode, message) {
         this.debug(ex);
     }
 }
+
 function uploadComplete(file) {
 	if (this.getStats().files_queued > 0) {
 		this.startUpload();
@@ -152,12 +148,12 @@ function winSelector(){
 	var self=this;
 	var oDivWrapper = $('<div style="padding:10px"></div>')
 		.append('<a href="#" id="btnSelector">Selector</a>')
-		.append('<p>Click on the select button to upload files. You can choose futher files.</p>');
+		.append('<p>'+_('Click on the select button to upload files. You can choose futher files.')+'</p>');
 	
 	this.DlgSelector= $('<div></div>')
 		.append(oDivWrapper)
 		.dialog({
-		title:'upload selector',
+		title:_('upload selector'),
 		modal:true,
 		width:400,
 		height:160,
@@ -168,14 +164,14 @@ function winSelector(){
         	background: "black" 
     	},
     	buttons:{
-    		Annuler:function(){self.DlgSelector.dialog('destroy');}
+    		Cancel:function(){self.DlgSelector.dialog('destroy');}
     	}
 	});
 }
+
 winSelector.prototype.Close = function(){
 	this.DlgSelector.dialog('destroy');
 };
-
 
 function winUpload(text,oSWFUpload){
 	var self=this;
@@ -185,7 +181,7 @@ function winUpload(text,oSWFUpload){
 	
 	oUploadContent.append('<div id="uploadProgress" class="progressbar"></div>').appendTo(oMsgWindow);
 	oMsgWindow.dialog({
-		title:'upload progress',
+		title:_('upload progress'),
 		modal:true,
 		width:400,
 		height:160,
