@@ -2,7 +2,7 @@ var oDialogAdmin=null;
 var iDialogWidth=800;
 var strFileEditorUrl=false;
 
-//script à  charger lors d'un ctrl+a
+//script à charger lors du ctrl+a
 var	$tabScriptsToLoadDialog = new Array(
 		SITE_URL+'vendors/jscripts/jqueryui/jquery-ui-pollencms-1.5.3.min.js',
 		SITE_URL+'core/jscripts/ui.dialog.extra.js',
@@ -99,8 +99,7 @@ function initDialog(strFileEditorUrl){
 		window.focus();	
 	})
 	.bind('dialogopen',function(){
-		//a cause d'un bug dans ui dialog qui fait un appendTo a chaque ouverture on doit
-		//passer par une autre fonction
+		//due to a ui dialog bug that do an appendTo to each open, we must use an other function
 	});
 	
 	$('embed, object').css('visibility','hidden');			

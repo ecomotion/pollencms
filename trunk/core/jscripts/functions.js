@@ -6,7 +6,7 @@ $(function() {
 
 function doAjaxAction(strUrl,strActionName, params, callback){
 	oData = $.extend({},{'action':strActionName},params);
-	msgStatus('loading ....');
+	msgStatus(_('Loading ...'));
 	$.ajax({
 		url:strUrl,
 		type:'POST',
@@ -80,7 +80,6 @@ function notify(strMessage){
 	$.jGrowl(strMessage,{life:1000});
 }
 
-var msgStatusTimer;
 function msgStatus(strMessage){
 	var oMsgStatus = $('#msgStatus');
 	//hide message status
@@ -124,12 +123,12 @@ function initError(){
 	}
 }
 
+//Stock the translations in an array, if not exists, ajax request to get the translation in php
 var tabTranslation = Array();
-tabTranslation['loading ....']='chargement ...';
+tabTranslation[USER_LANGUAGE]= Array();
 function _(strText){
-	if(tabTranslation[strText])
-		return tabTranslation[strText];
-	return strText;
+	if(tabTranslation[USER_LANGUAGE][strText])
+		return tabTranslation[USER_LANGUAGE][strText];
 	strTranslated ='not yet';
 	$.ajax({
 		async:false,
@@ -140,5 +139,6 @@ function _(strText){
 	     strTranslated=msg;
 	    }
 	});
+	tabTranslation[USER_LANGUAGE][strText]=strTranslated;
 	return strTranslated;
 }
