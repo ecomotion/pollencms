@@ -124,7 +124,11 @@ function initError(){
 	}
 }
 
+var tabTranslation = Array();
+tabTranslation['loading ....']='chargement ...';
 function _(strText){
+	if(tabTranslation[strText])
+		return tabTranslation[strText];
 	return strText;
 	strTranslated ='not yet';
 	$.ajax({

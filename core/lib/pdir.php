@@ -29,10 +29,8 @@ class PDir extends POFile {
 	}
 
 	function listDir($options=0,$fullpath=true,$filter=".*",$filterFalse=false,$nofilter=false,$iTypeOrder=0){
-		if(!is_dir($this->path)){
-			echo "Fatal Error in lisDir: $this->path is not a directory !!";
-			return false;
-		}
+		if(!is_dir($this->path))
+			return setError("Fatal Error in lisDir: $this->path is not a directory !!");
 		
 		$strDefaultFilter="^Thum*|~$|DS_Store|\.ini$|\.svn$".(($filterFalse!=false)?"|".$filterFalse:"");
 		$d = dir($this->path);

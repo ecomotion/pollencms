@@ -416,8 +416,8 @@ class PFile extends POFile {
 				break;
 		}
 		$strSimplePath =  basename($strPath);
-		$tabFile = $objParentDir->listDir($filter, true, $strSimplePath.(($filter==$objParentDir->ONLY_DIR)?'$':''));
-
+		if( !($tabFile = $objParentDir->listDir($filter, true, $strSimplePath.(($filter==$objParentDir->ONLY_DIR)?'$':''))) )
+			return false;
 		foreach($tabFile as $strPathFileFiltered){
 			$strFileName = basename($strPathFileFiltered);
 			if($strFileName == $strSimplePath){
