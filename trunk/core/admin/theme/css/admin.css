@@ -16,6 +16,18 @@ body{
 	clear: both;
 }
 
+#msgStatus{
+	position:absolute;
+	top:0px;
+	left:200px;
+	background:red;
+	color:#FFF;
+	display:'inline';
+	visibility:hidden;
+	text-align:center;
+	padding:2px;
+}
+
 #menu_admin,#menu_admin_top{display:none;}
 h1{font-size:18px;color:#000;}
 h2, h2 A{
