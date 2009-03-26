@@ -136,6 +136,8 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 	if(!bFadeEffect) bFadeEffect=(new RegExp("\admin\.php$", "gi").test(tabMyBack[tabMyBack.length-1].strUrl))?true:false;
 	if(bFadeEffect)	$("#contentAdmin").css({opacity:0.6});//hide();//css({display:"none"});
 	if(bFadeEffect && window.top!=window) window.top.oDialogAdmin.dialog("title","Chargement en cours ....");
+	
+	msgStatus('loading ....');
 	$("#contentAdmin").load(strUrl+" #contentAdmin",function(){
 		if(bAddHistory) tabMyBack[tabMyBack.length] = new myUrl(strUrl,strTitle,bFadeEffect);
 		
@@ -157,6 +159,7 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 		if(window.top != window && strTitle) window.top.oDialogAdmin.dialog("title",strTitle);
 		
 		callback && callback.call(this);
+		msgStatus();
 	});
 	return false;
 }

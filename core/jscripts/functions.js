@@ -6,6 +6,7 @@ $(function() {
 
 function doAjaxAction(strUrl,strActionName, params, callback){
 	oData = $.extend({},{'action':strActionName},params);
+	msgStatus('loading ....');
 	$.ajax({
 		url:strUrl,
 		type:'POST',
@@ -13,7 +14,8 @@ function doAjaxAction(strUrl,strActionName, params, callback){
 		success:function(data, textStatus){
 			callback && callback.call(this,data);
 		},
-		error:function(HTTPRequest, textStatus, errorThrown){msgBoxError($(HTTPRequest.responseText).html());}
+		error:function(HTTPRequest, textStatus, errorThrown){msgBoxError($(HTTPRequest.responseText).html());},
+		complete:function(){msgStatus();}
 	});
 }
 
@@ -76,6 +78,29 @@ function PopupCentrer(page,largeur,hauteur,options) {
 
 function notify(strMessage){
 	$.jGrowl(strMessage,{life:1000});
+}
+
+var msgStatusTimer;
+function msgStatus(strMessage){
+	var oMsgStatus = $('#msgStatus');
+	//hide message status
+	if(!strMessage){
+		if(oMsgStatus.length > 0){
+			oMsgStatus.css('visibility','hidden');
+		}
+		return;
+	}
+	if(oMsgStatus.length > 0){
+		$('span',oMsgStatus).html(strMessage);
+	}else{
+		oMsgStatus = $('<div id="msgStatus">&nbsp;&nbsp;&nbsp;&nbsp;<span>'+strMessage+'</span>&nbsp;&nbsp;&nbsp;&nbsp;</div>');
+		oMsgStatus.prependTo('body');
+	}
+	//calculate position
+	var iWidth = oMsgStatus.width();
+	var iPageWidth = $(document).width();
+	var iLeft = (iPageWidth - iWidth)/2;
+	oMsgStatus.css({'left':iLeft,'visibility':'visible'});	
 }
 
 function msgBoxError(strMessage,iTop){
