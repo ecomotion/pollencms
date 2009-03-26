@@ -1,7 +1,3 @@
 ###### POLLEN INSTALLATION #######################################
 # Please, launche the checkinstall.php to check your installation
 ##################################################################
-
-
-
-tutu
