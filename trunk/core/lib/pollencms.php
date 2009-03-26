@@ -309,7 +309,10 @@ class PPollenCMS extends Smarty {
 
 		if(!is_dir($dirSearch))
 			return false;
-		$oDirParent = &getFileObject($dirSearch,'dir');
+
+		$oDirParent = &getFileObjectAndFind($dirSearch,'dir');
+		if(!$oDirParent)
+			return false;
 		if( !($adminMode || $oDirParent->isPublished()) )
 			return false;
 
