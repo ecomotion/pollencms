@@ -13,10 +13,9 @@ function initFileBrowser(){
 	initSortable();
 	initError();
 	initFancyZoom();
-	initJEditable();
+	initRenameCursor();
 
 }
-
 
 function initFancyZoom(){
 	if(!$.fn.fancyzoom)
@@ -26,33 +25,24 @@ function initFancyZoom(){
 }
 
 //This is the rename fonction
-function initJEditable(){
+function initRenameCursor(){
 	elBrowser=$("#browser");
 	if(elBrowser.size()>0 /*&& elBrowser.is('.sortable')*/){//only apply sortable in file management not in file browser
 		
 		elBrowser.find("dl[id^='filename']").find('dd').each(function(){
 			var strOriginalName = $(this).html();
 			var self=$(this);
-			self.editable('admin_ajax.php',{
+			self.editable(function(value,settings){
+				ajaxAction('renamefile',$.extend({'value':value},settings.submitdata));
+			},{
 				indicator: _('Loading ...'),
 				cssclass:'inputrename',
-    			submitdata:{action:'rename',filename:$(this).parent().attr('id').replace(/^filename=/,'')},
+    			submitdata:{filename:$(this).parent().attr('id').replace(/^filename=/,'')},
     			select:false,
     			data:function(self){return $(self).text();},
     			onblur:'cancel',
     			height:'none',
-    			width:80,
-				callback : function(value, settings) {
-					var oValue = $(value);
-					if(oValue.hasClass("error")){
-						$(this).html(strOriginalName);
-						msgBoxError(oValue.html());
-					}else {
-						//reload the page to take effect of the changed name has the right click menu and so on
-						$(this).html(value);
-						myRelodPage();
-					}
-				}    			
+    			width:80
 			});
 		});
 	}
@@ -60,12 +50,12 @@ function initJEditable(){
 
 
 function initSortable(){
-	var el=$("#browser");
+	var el = $("#browser");
 	//only apply sortable in file management not in file browser
 	if(el.length > 0 && el.is('.sortable')){
 		el.sortable({items:'dl',revert: true,containment: el, update: function(e,ui) { 
 			var strSort = $(this).sortable('serialize',{attribute:'id',expression:'(.+)[=](.+)'});
-			$.get('admin_ajax.php?action=sort&'+strSort,function(data){
+			$.get('admin_ajax.php?action=sortpages&'+strSort,function(data){
 				if(data){
 					var strMsg = data;
 					if($(data).is('.error')){strMsg = $(data).html();}
@@ -152,25 +142,6 @@ function createLink(strCurrPage){
 }
 
 
-function rename(url,filename) {
-	inputBox({
-		value: filename,
-		label: _('New name :'),
-		title: _('Rename'),
-		buttons: {
-			'Ok': function(){
-				var value = $('#inputValue',$(this)).val();
-				if( (msg= checkName(value))!==true) {
-					msgBoxError(msg);
-				}
-				else {
-					$(this).dialog('close').dialog('destroy');
-					myRelodPage(url+"&newname="+encodeURIComponent(value),false,false,false);
-				}
-			}
-		}
-	});
-}
 
 function fileRenameAjax(idBlockFile){
 	$("dl[id='"+idBlockFile+"']").find('dd').trigger('click');

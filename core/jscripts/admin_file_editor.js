@@ -129,12 +129,10 @@ function actionClickOnSaveHtml(o, strUrl, strFile){
 function loadHistoryPage(strPage, myLink) {
 	var oLink = $(myLink);
 	var oFCK = FCKeditorAPI.GetInstance('text');
-	var oTimer = setTimeout(function(){$("#divInfoSaveHTML").html('loading ...').show();},200);
+
 	ajaxAction('loadhistorypage', {'strPage':strPage}, null, function(data){
 			var strResultCode =  data.replace(/:.*$/,'').replace(/\n/g,'');
 			var strResult =  data.replace(/^.*:/,'');
-			clearTimeout(oTimer);
-			$("#divInfoSaveHTML").html('').hide();
 			if( strResultCode == "error" ){
 				msgBoxError(strResult);
 				return ;

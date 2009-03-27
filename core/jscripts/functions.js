@@ -134,7 +134,7 @@ function _(strText){
 		async:false,
 		type: "POST",
 		url:SITE_URL+'core/admin/admin_ajax.php',
-		data:{'action':'gettext','text':strText},
+		data:{'action':'ajaxgettext','text':strText},
 		success: function(msg){
 	     strTranslated=msg;
 	    }

@@ -19,89 +19,22 @@ if( isConnected() ){
 		require SITE_PATH.'core/lib/pimage.php';
 		
 		$action = (isset($_GET['action'])?$_GET['action']:$_POST['action']);
-		
 		switch($action){
-
-			case 'sort':
-				if(!sortfiles($_REQUEST['filename']))
-					printError();
-				break;
-
-			case 'rename':
-				if(!renamefile(urldecode($_POST['filename']), stripslashes($_POST['value'])))
-					printError();
-				break;
-
-			case 'gettext':
-				ajaxGetText($_POST['text']);
-				break;
-			case 'savepage':
-				if(!savepage())
-					printFatalHtmlError();
-				break;
-			case 'savefile':
-				if(!savefile())
-					printFatalHtmlError();
-				break;
-			case 'savesiteconfig':
-				if(!savesiteconfig())
-					printFatalHtmlError();
-				break;
-			case 'loadhistorypage':
-				loadHistoryPage($_REQUEST['strPage']);
-				break;
-				
-			case 'clearcache':
-				clearCache((isset($_POST['type'])?$_POST['type']:''));
-				break;
-			case 'upload':
-				if(!upload())
-					printError();
-				break;
-			case 'createdir':
-				if(!createdir()){
-					printFatalHtmlError();
-				}
-				break;
-			case 'createfile':
-				if(!createfile()){
-					printFatalHtmlError();
-				}
-			break;
-			case 'createlink':
-				if(!createlink()){
-					printFatalHtmlError();
-				}
-			break;
-			case 'deletefile':
-				if(!deletefile())
-					printFatalHtmlError();
-			break;
-			case 'copyfile':
-				if(!copyfile())
-					printFatalHtmlError();
-			break;
-			case 'movefile':
-				if(!movefile())
-					printFatalHtmlError();
-			break;
-			case 'setpageconfigvar':
-				if(!SetPageConfigVar())
-					printFatalHtmlError();
-			break;
-			case 'resizeimage':
-				if(!resizeimage())
-					printFatalHtmlError();
-				break;
-			case 'toggleactivateplugin':
-				if(!toggleactivateplugin())
-					printFatalHtmlError();
-				break;
 			default:
-				printFatalHtmlError('Action Unknown');
+				/**
+				 * savefile,resizeimage, createlink, deletefile, createfile, copyfile,movefile, setpageconfigvar, savepage,
+				 * savesiteconfig, toggleactivateplugin, sortfiles, ajaxgettext,renamefile, loadhistorypage, upload, createdir, clearcache
+				 */
+				if(function_exists($action)){
+					if(!call_user_func($action))
+						printFatalHtmlError();
+				}else{
+					printFatalHtmlError('Action Unknown');			
+				}
 			break;
-
-		}
+		}			
+	}else{
+		printFatalHtmlError('Internal error, action must me defined');
 	}
 
 }//must be connected;
@@ -195,6 +128,11 @@ function savesiteconfig(){
 }
 
 function upload(){
+	if(!wrapupload())
+		printError();
+	return true;
+}
+function wrapupload(){
 	if( !isset($_POST['CURRENT_DIR']) )
 		return setError('Internal error, CURRENT_DIR is not set');
 	$strCurrDir = urldecode($_POST['CURRENT_DIR']);
@@ -294,17 +232,24 @@ function copyfile(){
 	 return true;
 }
 
-function renamefile($strFilePath, $strNewName){
+function renamefile(){
+	if(!isset($_POST['filename']) || !isset($_POST['value']))
+		return setError('Internal error in rename file');
+
+	$strFilePath = urldecode($_POST['filename']);
+	$strNewName = stripslashes($_POST['value']);
+	
 	if( !($pFile = &getFileObjectAndFind(SITE_PATH.$strFilePath)) ){
 		return setError(sprintf(_('Internal error, file object %s not exists.'),$strFilePath)); 
 	}
+	
 	if(!$pFile->Rename($strNewName))
 		return false;
-	echo $strNewName;
+
 	return true;
 }
 
-function SetPageConfigVar(){
+function setpageconfigvar(){
 	if( !isset($_POST['FILE_RELATIVE_PATH']) )
 		return setError('Internal error in Set Page Config Var, FILE_RELATIVE_PATH is not set');
 	if( !isset($_POST['VAR_NAME']) )
@@ -371,6 +316,17 @@ function resizeimage(){
 }
 
 /**
+ * wrapper, because sort do not pas by doajaxaction, todo
+ *
+ * @return unknown
+ */
+function sortpages(){
+	if(!sortfiles())
+		printError();
+	return true;
+}
+
+/**
  * Function sortfiles
  * This fonction is call by the sortfile javascript plugins.
  * It renames the files. The file begin with a number are ordered.
@@ -379,9 +335,13 @@ function resizeimage(){
  * 
  * @return: true if suceed, else return false.
  */
-function sortfiles($tabFilesNew){
+function sortfiles(){
+	if(!isset($_REQUEST['filename']))
+		return setError('Internal error in sortfiles, filename not defined');
+
+	$tabFilesNew = $_REQUEST['filename'];
 	//if less than two files no need to sort
-	if(sizeof($tabFilesNew) < 2) return;
+	if(sizeof($tabFilesNew) < 2) return true;
 	
 	//get the dir to order, take the second element because in some cas the first element is ../
 	$pTemp = new PFile(SITE_PATH.urljsdecode($tabFilesNew[1]));
@@ -411,24 +371,27 @@ function sortfiles($tabFilesNew){
 	return true;
 }
 
-function ajaxGetText($strText){
-	echo _($strText);
+function ajaxgettext(){
+	if(isset($_POST['text']))
+		echo _($_POST['text']);
+	return true;
 }
 
-function loadHistoryPage($strPath) {
+function loadhistorypage() {
+	if(!isset($_REQUEST['strPage']))
+		return setError('Internal error in loadhistorypage');
+
 	// recup content html
-	$oPpage = new PPage($strPath);
+	$oPpage = new PPage($_REQUEST['strPage']);
 	$fckContent = $oPpage->getEditorFileContent();
 	echo $fckContent;
+	return true;
 }
 
-function clearCache($strType='site'){
-
-	$return = pcms_clearcache($strType);
-	if(!$return){
-		printError();
+function clearcache(){
+	$strType=(isset($_POST['type'])?$_POST['type']:'');
+	if(!pcms_clearcache($strType))
 		return false;
-	}
 	echo _('cache is now empty');
 	return true;
 }

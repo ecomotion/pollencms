@@ -116,8 +116,9 @@ function deleteMenuCache(){
 				$cacheDir = new PDir(SMARTY_CACHE_DIR);
 				break;		
 		}
+		
 		if(is_dir($cacheDir->path) && !$cacheDir->Delete())
-			return setError(_('Error deleting cache.'));
+			return false;setError(_('Error deleting cache.'));
 
 		return true;
 	}
