@@ -1,6 +1,6 @@
 <?php
 	$tabMultiSites = array(
-		'127.0.0.1'=>array('SITENAME'=>'pollencms'),
-		'localhost'=>array('SITENAME'=>'pollencms')
+		'127.0.0.1'=>array('SITENAME'=>'simple'),
+		'localhost'=>array('SITENAME'=>'simple')
 	);
 ?>
