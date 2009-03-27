@@ -101,38 +101,27 @@ if(eregi(TEXTEDIT_WYSWYG,$pfile->getname())){
 	if($strBarName) $oFCKeditor->ToolbarSet = $strBarName;
 	
 
-	echo '
-	<div id="tabContainer">
+	$strTabsTpl ='
+	<div id="tabPageEditor">
 		<ul>
 			<li class="ui-tabs-nav-item"><a href="#fragEditor"><span>Edition</span></a></li>
 			<li class="ui-tabs-nav-item"><a href="#fragOptions"><span>Options</span></a></li>
 		</ul>
-	<div id="fragEditor" style="display:none;margin:0px;padding:10px 20px 10px 4px;">
-		<form action="'.$_SERVER["REQUEST_URI"].'" method="POST" id="form_editor" onSubmit="return actionClickOnSaveHtml(this,\''.$pfile->getUrl().'\',\''.urljsencode($_GET['file']).'\');" style="text-align:right">
-	<div class="fckEditor">
-		';
-		echo $oFCKeditor->Create();
-	echo '
+		
+		<div id="fragEditor">{TAB_EDITOR}</div>
+		<div id="fragOptions">{TAB_OPTIONS}</div>
+	</div>';
 	
-		<div class="panelHistory" style="">
-			<h4>'._('History').'</h4>
-		';
-			$tabHistory = &$pfile->getHistoryList();
-			$strHtmlListTpl = '<ul class="historylist">{LIST}</ul>';
-			$strHtmlList = '';
-			if(count($tabHistory)==0)
-				echo _('History empty !');
-			else{
-				$i=0;
-				foreach($tabHistory as $elemHistory){
-					$strHtmlList.='<li><a class="itemHistory '.(($i==0)?'selected':'').'" href="#" onclick="loadHistoryPage(\''.$elemHistory['PATH'].'\',this);return false;">'.$elemHistory['PRINTNAME'].'</a></li>';
-					$i++;
-				}				
-				echo str_replace('{LIST}',$strHtmlList,$strHtmlListTpl);
-			}
-			echo '
-		</div><!--end history block -->
-	</div><!-- end fckblock -->
+	$strFragEditorContent = '
+		<form action="'.$_SERVER["REQUEST_URI"].'" method="POST" id="form_editor" onSubmit="return actionClickOnSaveHtml(this,\''.$pfile->getUrl().'\',\''.urljsencode($_GET['file']).'\');" style="text-align:right">
+			<div class="fckEditor">
+				'.$oFCKeditor->CreateHtml().'
+			<div class="panelHistory">
+				<h4>'._('History').'</h4>
+				{HISTORY_CONTENT}
+			</div><!-- end history -->
+			</div><!-- end fckblock -->
+			<!-- buttons -->
 			<div style="text-align:right;clear:both;">
 				<div id="divInfoSaveHTML" style="float:left;display:none;">&nbsp;</div>
 				<input type="button" class="pcmButton" onClick="MyCancel();return false;" value="'._('cancel').'" />
@@ -142,16 +131,28 @@ if(eregi(TEXTEDIT_WYSWYG,$pfile->getname())){
 			</div>
 			<input type="hidden" value="false" name="view" />
 			<input type="hidden" name="todo" value="save" />
-	</form>
-</div> <!-- end fragEditor -->
-		<div id="fragOptions" style="display:none">
+		</form>
 	';
-		echo $pfile->oPConfigFile->DisplayEditor();
-		echo '
-		<br />
-		</div><!-- end frag option -->
-	</div><!-- end tab container -->
-	';
+	/**
+	 * GESTION DE L'HISTORIQUE
+	 */
+	$strHistoryContent='<ul class="historylist">{LIST_HISTORY}</ul>';
+	$strHtmlListHistory='';
+	$tabHistory = &$pfile->getHistoryList();
+	if(sizeof($tabHistory) == 0)
+		$strHistoryContent = _('History empty !');
+	else {
+		$i=0;
+		foreach($tabHistory as $elemHistory){
+			$strHtmlListHistory.='<li><a class="itemHistory '.(($i==0)?'selected':'').'" href="#" onclick="loadHistoryPage(\''.$elemHistory['PATH'].'\',this);return false;">'.$elemHistory['PRINTNAME'].'</a></li>';
+			$i++;
+		}				
+		$strHistoryContent = str_replace('{LIST_HISTORY}',$strHtmlListHistory,$strHistoryContent);
+	}
+	$strFragEditorContent = str_replace('{HISTORY_CONTENT}',$strHistoryContent,$strFragEditorContent);
+
+	$strFragOptionsContent = $pfile->oPConfigFile->DisplayEditor();
+	echo str_replace(array('{TAB_EDITOR}','{TAB_OPTIONS}'),array($strFragEditorContent,$strFragOptionsContent),$strTabsTpl);
 
 } else{//if not html page
 	echo $pfile->DisplayEditor();
