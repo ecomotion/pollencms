@@ -1,7 +1,7 @@
 var tabMyBack=new Array();
 var tabMyFow = new Array();
 var tabInitCallBack = new Array();
-			
+var bBeingSort = false;			
 $(function(){
 	tabMyBack[tabMyBack.length]=new myUrl(window.location.href,"Panneau d'administration",true);
 	//On désactive le btn tout afficher si on est sur la page admin
@@ -109,23 +109,27 @@ function resetLinks(){
 */
 	if(bLoadAjax){
 		$("a").each(function(iIndex){
-			var myUrl=$(this).attr("href");
-			if(/\.php.*|\.html/i.test(myUrl) && !/javascript:/i.test(myUrl) && !/#/i.test(myUrl)){
-				var myTitle=$(this).find("h3").html();
-				$(this)
-					.unbind("click").click(function(){
-						myRelodPage(myUrl, myTitle);
-						$(this).blur();
-						return false;
-					})
-					.attr("href","#")
-				;
-			}
+//			if($(this).parents('.sortable').length==0){
+				var myUrl=$(this).attr("href");
+				if(/\.php.*|\.html/i.test(myUrl) && !/javascript:/i.test(myUrl) && !/#/i.test(myUrl)){
+					var myTitle=$(this).find("h3").html();
+					$(this)
+						.unbind("click").bind('click',function(){
+							myRelodPage(myUrl, myTitle);
+							return false;
+						})
+						.attr("href","#")
+					;
+				}
+//			}
 		});
 	}
 }
 
 function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
+	if(bBeingSort)
+		return false;
+	
 	if(bAddHistory !== false) bAddHistory = true;
 	if(!strUrl){
 		strUrl = (tabMyBack && tabMyBack.length > 0)?tabMyBack[tabMyBack.length-1].strUrl:window.location;
@@ -135,7 +139,8 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 	stopInfoBulles();
 	if(!bFadeEffect) bFadeEffect=(new RegExp("\admin\.php$", "gi").test(tabMyBack[tabMyBack.length-1].strUrl))?true:false;
 	if(bFadeEffect)	$("#contentAdmin").css({opacity:0.6});//hide();//css({display:"none"});
-	if(bFadeEffect && window.top!=window) window.top.oDialogAdmin.dialog("title","Chargement en cours ....");
+	
+	if(bFadeEffect && window.top!=window) window.top.oDialogAdmin.dialog("option","title","Chargement en cours ....");
 	
 	msgStatus(_('Loading ...'));
 	$("#contentAdmin").load(strUrl+" #contentAdmin",function(){
@@ -156,7 +161,7 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 			}
 			window.top.oDialogAdmin.dialog('resizeAuto');
 		}
-		if(window.top != window && strTitle) window.top.oDialogAdmin.dialog("title",strTitle);
+		if(window.top != window && strTitle) window.top.oDialogAdmin.dialog('option',"title",strTitle);
 		
 		callback && callback.call(this);
 		msgStatus();

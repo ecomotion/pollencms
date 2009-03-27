@@ -7,12 +7,12 @@ function initConfigurator(){
 }
 
 function initTabConfigurator(){
-	$("ul:first","div.tabConfigurator").tabs({
+	$("div.tabConfigurator").tabs({
 		show:function(ui){
 			window.top.oDialogAdmin && window.top.oDialogAdmin.dialog('resizeAuto',false);
 		}
 	});
-	$('ul:first',"div.tabConfiguratorLevel2").tabs({
+	$("div.tabConfiguratorLevel2").tabs({
 		show:function(ui){
 			window.top.oDialogAdmin && window.top.oDialogAdmin.dialog('resizeAuto', false);
 		}
@@ -21,10 +21,14 @@ function initTabConfigurator(){
 
 function actionClickOnSaveSiteConfig(strFormId,strFile){
 	var oForm=$("#"+strFormId);
-	if(!$('textarea', oForm).is(':visible'))
+	if(!$('textarea#srcParams', oForm).is(':visible'))
 		reloadFileConfigTextArea(strFormId);
 	
 	var strTextValue = $('textarea#srcParams', oForm).attr("value");
+	if(!strTextValue){
+		msgBoxError('Can not find the text value');
+		return false;
+	}
 	ajaxAction('savesiteconfig',{text:strTextValue},null,function(data){
 		notify(data);
 	});
@@ -33,12 +37,13 @@ function actionClickOnSaveSiteConfig(strFormId,strFile){
 
 function actionClickOnSaveTxt(strFormId, strFile){
 	var oForm = $('#'+strFormId);
-	if(oForm.length==0){
-		msgBoxError('Can not find the form');
+	var txt = $("textarea:last",$('#'+strFormId)).attr('value');
+
+	if(!txt){
+		msgBoxError('Can not find the text value');
 		return;
 	}
-	var txt = $("textarea#srcParams",oForm).attr("value");
-	alert(txt);
+	
 	ajaxAction('savefile',{file:strFile,text:txt},null,function(data){
 		notify(data);
 	});

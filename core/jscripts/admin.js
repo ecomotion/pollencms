@@ -4,7 +4,7 @@ var strFileEditorUrl=false;
 
 //script à charger lors du ctrl+a
 var	$tabScriptsToLoadDialog = new Array(
-		SITE_URL+'vendors/jscripts/jqueryui/jquery-ui-pollencms-1.5.3.min.js',
+		SITE_URL+'vendors/jscripts/jqueryui/jquery-ui-1.7.1.js',
 		SITE_URL+'core/jscripts/ui.dialog.extra.js',
 		SITE_URL+'vendors/jscripts/jqueryplugins/jquery.metadata.js'
 	);
@@ -83,7 +83,7 @@ function initDialog(strFileEditorUrl){
 	if(!strFileEditorUrl)
 		strFileEditorUrl=SITE_URL+'core/admin/admin.php';
 	//Iframe that contains the admin page
-	var oIFrame = $('<iframe frameborder="0" hspace="0" class="frameContent"></iframe>')
+	var oIFrame = $('<iframe frameborder="0" hspace="0" class="frameContent" style="width:100%"></iframe>')
 		.attr({'src':strFileEditorUrl, 'frameborder':'0', 'hspace':'0'});
 
 	//The adming window object

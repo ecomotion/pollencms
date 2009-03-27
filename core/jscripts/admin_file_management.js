@@ -53,16 +53,28 @@ function initSortable(){
 	var el = $("#browser");
 	//only apply sortable in file management not in file browser
 	if(el.length > 0 && el.is('.sortable')){
-		el.sortable({items:'dl',revert: true,containment: el, update: function(e,ui) { 
-			var strSort = $(this).sortable('serialize',{attribute:'id',expression:'(.+)[=](.+)'});
-			$.get('admin_ajax.php?action=sortpages&'+strSort,function(data){
-				if(data){
-					var strMsg = data;
-					if($(data).is('.error')){strMsg = $(data).html();}
-					msgBoxError(strMsg);
-				}
-			});
-		}});
+		el.sortable({
+			items:'dl',
+			containment: el,
+			revert: true,
+			placeholder: 'ui-state-highlight',
+			start:function(event, ui){
+				bBeingSort=true;
+			},
+			stop:function(event,ui){
+				bBeingSort=false;
+			},
+			update: function(e,ui){
+				var strSort = $(this).sortable('serialize',{attribute:'id',expression:'(.+)[=](.+)'});
+				msgStatus('Loading ....');
+				$.ajax({
+					url:'admin_ajax.php?action=sortpages&'+strSort,
+					type:'GET',
+					error:function(HTTPRequest, textStatus, errorThrown){msgBoxError($(HTTPRequest.responseText).html());},
+					complete:function(){msgStatus();}
+				});
+			}
+		});
 	}
 }
 
@@ -188,13 +200,13 @@ function resizeimage(strFilePath){
 }
 
 function deleteFile(strFileRelativePath, strFileName, type){
-	$('<div><div style="padding:0px 10px">Voulez vous vraiment supprimer '+type+' '+strFileName+' ?</div></div>').dialog({
+	$('<div><div style="padding:0px 10px"><span class="ui-icon ui-icon-info" style="margin: 0pt 7px 50px 0pt; float: left;"/>Voulez vous vraiment supprimer '+type+' '+strFileName+' ?</div></div>').dialog({
 		title: _('Confirm message'),
 		buttons: {
-			Non: function() {$(this).dialog('destroy');},
-			Oui: function() { ajaxAction('deletefile',{'FILE_RELATIVE_PATH':encodeURIComponent(strFileRelativePath)},$(this));}
+			Oui: function() { ajaxAction('deletefile',{'FILE_RELATIVE_PATH':encodeURIComponent(strFileRelativePath)},$(this));},
+			Non: function() {$(this).dialog('destroy');}
 		},
-		resizable:false,modal:true, height: 140
+		resizable:true,modal:true, height: 140
 	});
 }
 
