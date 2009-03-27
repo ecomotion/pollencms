@@ -218,22 +218,27 @@ class PPage extends PTextFile {
 		$pageNewName = $newname;
 		$pageCurrName = $this->getVirtualName();
 		$fileCurrName = $this->getName();
-		
-		if(strlen($fileNewName)==0) return setError(_("Can not rename with empty name"));
-		if($fileNewName == $fileCurrName && $pageCurrName == $fileCurrName && $destDir === false) return true;
+
+		if(strlen($fileNewName)==0) return setError(_('Can not rename with empty name'));
 		
 		//manage extensions
-
 		$oFile = new PFile($fileNewName);
 		if($oFile->getExtension()=='')
 			$fileNewName .= '.'.$this->getExtension();
+		else{
+			$oFile = new PFile($pageNewName);
+			$pageNewName = $oFile->getNameWithoutExt();
+		}
+		if($fileNewName == $fileCurrName && $pageCurrName == $pageNewName && $destDir === false) return true;
+		
 		
 		//check the name is valid, not a php file or a cgi one for example
 		if(!$this->checkname($pageNewName)) return false;
+
 		//set the menu name in the ini file if has been renamed !! not moved
 		if( !$destDir && !$this->setVirtualName($pageNewName) )
 			return false;
-		
+
 		if( $fileCurrName != $fileNewName || $destDir !== false ){
 			//if history dir exists, rename it
 			$oDirHistoryCache = new PDir(CACHE_HIST_DIR.SLASH.$this->getId());
@@ -249,19 +254,18 @@ class PPage extends PTextFile {
 						return false;
 			}
 			
+			if(!doEventAction('renamepage',array(&$this,(($destDir)?$destDir:$this->getParentPath()).SLASH.$fileNewName)))
+				return false;
+				
+			//on supprime le cache du menu
+			if(!deleteMenuCache()) return false;
+			
 			//rename the config file if exists
 			if(is_file($this->oPConfigFile->path)){
 				$oFileTmp=new PFile($fileNewName);
 				if(!$this->oPConfigFile->Rename($oFileTmp->getNameWithoutExt().".ini",$destDir))
 					return false;
 			}
-		
-			if(!doEventAction('renamepage',array(&$this,(($destDir)?$destDir:$this->getParentPath()).SLASH.$fileNewName)))
-				return false;
-
-			//on supprime le cache du menu
-			if(!deleteMenuCache()) return false;
-			
 			if(!parent::Rename($fileNewName, $destDir))
 				return false;
 		}

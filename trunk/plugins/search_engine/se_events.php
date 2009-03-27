@@ -69,6 +69,7 @@ function se_on_rename_page(&$oPage, $strNewFileName) {
 	//change the local path for search engine translation
 	seChangeLocale();
 
+	$oCurrentFile = new PFile(__FILE__);
 	require_once($oCurrentFile->getParentPath().SLASH.'include'.SLASH.'lib.searchengine.php');
 
 	if(!se_get_config('ACTIVATE', $bActivate))
