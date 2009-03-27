@@ -62,7 +62,7 @@ if(!defined("CONFIG")){
 	define("USE_URLREWRITING",$configFile->getDirectParam("USE_URLREWRITING"));
 	
 	if(!defined("DEBUG"))
-		define ("DEBUG",1);
+		define ("DEBUG",0);
 
 	/*FILE MANAGER, IMAGE VIEWER*/
 	define ('USE_GD',($configFile->getDirectParam('USE_GD')=="true")?1:0);//if use gd put 1 else 0
