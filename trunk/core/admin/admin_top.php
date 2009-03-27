@@ -51,7 +51,7 @@ if(!isset($_GET["ajax"])){
 
 <script language="JavaScript" src="<?php echo SITE_URL;?>vendors/jscripts/jquery.js" ></script>
 
-<script type="text/javascript" src="<?php echo SITE_URL;?>vendors/jscripts/jqueryui/jquery-ui-pollencms-1.5.3.min.js"></script> 
+<script type="text/javascript" src="<?php echo SITE_URL;?>vendors/jscripts/jqueryui/jquery-ui-1.7.1.js"></script> 
 
 <script language="JavaScript" src="<?php echo SITE_URL;?>vendors/jscripts/swfupload/swfupload.js" ></script>
 <script language="JavaScript" src="<?php echo SITE_URL;?>core/jscripts/admin_swfupload_handlers.js" ></script>
@@ -81,9 +81,10 @@ if(!isset($_GET["ajax"])){
 
 
 <link rel="stylesheet" href="<?php echo SITE_URL;?>core/admin/theme/css/admin.css" />
+<link rel="stylesheet" href="<?php echo SITE_URL;?>vendors/jscripts/jqueryui/themes/smoothness/jquery-ui-1.7.1.css" />
 <script language="JavaScript">
 	window.onload = function(){if(window.parent && window.parent.oDialogAdmin){
-		window.parent.oDialogAdmin.dialog("title","Panneau d'Administration");
+		window.parent.oDialogAdmin.dialog("option","title","Panneau d'Administration");
 	}};
 </script>
 </head>

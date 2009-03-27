@@ -320,14 +320,14 @@ function resizeimage(){
  *
  * @return unknown
  */
-function sortpages(){
+function soortpages(){
 	if(!sortfiles())
 		printError();
 	return true;
 }
 
 /**
- * Function sortfiles
+ * Function sortpages
  * This fonction is call by the sortfile javascript plugins.
  * It renames the files. The file begin with a number are ordered.
  * 
@@ -335,11 +335,12 @@ function sortpages(){
  * 
  * @return: true if suceed, else return false.
  */
-function sortfiles(){
+function sortpages(){
 	if(!isset($_REQUEST['filename']))
 		return setError('Internal error in sortfiles, filename not defined');
 
 	$tabFilesNew = $_REQUEST['filename'];
+
 	//if less than two files no need to sort
 	if(sizeof($tabFilesNew) < 2) return true;
 	
