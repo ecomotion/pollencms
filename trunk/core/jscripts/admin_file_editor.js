@@ -18,7 +18,7 @@ function initEditorHeight(){
 }
 
 function initTabs() {
-	$("ul:first",$("#tabContainer")).tabs({
+	$("#tabPageEditor").tabs({
 		show:function(ui){
 			window.top.oDialogAdmin && !window.top.oDialogAdmin.dialog('isFullScreen') && window.top.oDialogAdmin.dialog('resizeAuto',false);
 		}

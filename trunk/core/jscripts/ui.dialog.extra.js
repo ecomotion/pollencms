@@ -27,20 +27,17 @@
 				$.extend(this.options,{/*width: (uiDialog.css('width')+'').replace(/px$/,''),height: (uiDialog.css('height')+'').replace(/px$/,''),*/top:uiDialog.css('top'),left:uiDialog.css('left')});
 				var target={width:wWidth,left:0,top:$(document).scrollTop()};
 				uiDialog.animate(target,'fast');
-				this.setData('fullscreenmode',true);
+				this._setData('fullscreenmode',true);
 				
 			}else{
 				var target={width:this.options.width,height:this.options.height,left:this.options.left,top:this.options.top};
-				this.setData('width',target.width);
-				this.setData('position',Array('center',20));
-				this.setData('fullscreenmode',false);
+				this._setData('width',target.width);
+				this._setData('position',Array('center',20));
+				this._setData('fullscreenmode',false);
 			}
     	},
     	isFullScreen: function(){
-    		return this.getData('fullscreenmode');
-    	},
-    	title: function(strTitle){
-            this.setData('title',strTitle);
+    		return this._getData('fullscreenmode');
     	},
     	
     	resizeAuto: function(bForceReload){
@@ -56,35 +53,21 @@
 					setTimeout(function(){self.resizeAuto(false);},200);
 					return;
 			}
-				
+							
 			objIframe.height(frameHeight);
-			//30 = height of the title
-			this.uiDialog.animate({height:(frameHeight+45)}, 'fast',null,function(){
+			var uiDialogContent = $('.ui-dialog-content',this.uiDialog);
+			uiDialogContent.animate({height:(frameHeight)}, 'fast',null,function(){
 				//due to a bug force resize after loading
 				if(bForceReload !== false){
 					setTimeout(function(){self.resizeAuto(false);},200);
 				}
 			});
+			self.uiDialog.animate({height:(frameHeight+50)}, 'fast');
     	},
     	openAdmin: function(){
-			this.title('Chargement en cours ....');
-			var bfullscreen = this.getData('fullscreenmode');
-			if(!bfullscreen){
-				this.setData('position',Array('center',20));
-				this.setData('width',iDialogWidth);
-			}else{
-				this.setData('position',Array('center',0));
-			}
-			this.open();
-			
-			this.element.css('overflow','hidden');
-			
+			this.uiDialog.css('display','block');
 			$('iframe',this.element).focus();//get the focus on the iframe
-			
-			$('embed, object').css('visibility','hidden');			
-
-			this.title('Panneau d\'administration');
-
+			this.resizeAuto();
     	}
 
 	});

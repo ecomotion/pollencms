@@ -104,7 +104,7 @@ function msgStatus(strMessage){
 
 function msgBoxError(strMessage,iTop){
 	if(!iTop) iTop = 'center';
-	var winError = $('<div class="msgboxError" ><div class="content">'+strMessage.replace(/\n/,"<br />")+'</div></div>')
+	var winError = $('<div class="msgboxError" ><div class="content ui-state-error"><span class="ui-icon ui-icon-alert" style="margin: 0pt 7px 50px 0pt; float: left;"/>'+strMessage.replace(/\n/,"<br />")+'</div></div>')
 		.prepend('<div class="icon"></div>')
 		.dialog({
 			title: _('Erreur'),
