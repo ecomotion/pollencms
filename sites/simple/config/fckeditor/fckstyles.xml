@@ -1,0 +1,35 @@
+<!-- 
+SOME STYLES EXAMPLES, YOU CAN CREATE YOUR OWN !!
+    <Style name="My Image" element="img">
+      <Attribute name="style" value="padding: 5px" ></Attribute>
+      <Attribute name="border" value="2" ></Attribute>
+    </Style >
+  <Style name="Italic" element="em" ></Style>
+  <Style name="Title" element="span">
+    <Attribute name="class" value="Title" ></Attribute>
+  </Style >
+  <Style name="fancyzoom" element="div">
+      <Attribute name="class" value="fancyzoom" ></Attribute>
+  </Style>
+    *  IMG
+    * TABLE
+    * TR
+    * TD
+    * INPUT
+    * SELECT
+    * TEXTAREA
+    * HR
+    * OBJECT  
+-->
+
+<Styles >
+
+    <Style name="My Image" element="img">
+      <Attribute name="style" value="padding: 5px" ></Attribute>
+      <Attribute name="border" value="2" ></Attribute>
+    </Style >
+    <Style name="Floatant à gauche" element="img">
+      <Attribute name="style" value="float: left;margin-right:4px;" ></Attribute>
+    </Style >
+
+</Styles>
