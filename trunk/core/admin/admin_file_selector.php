@@ -53,7 +53,10 @@ $rootpathdir = $proot_dir->getRelativePath();
 <meta name="robots" content="noindex, nofollow" />
 
 <link rel="stylesheet" href="<?php echo SITE_URL;?>core/admin/theme/css/admin.css" />
-<link rel="stylesheet" href="<?php echo SITE_URL;?>vendors/jscripts/jqueryui/themes/smoothness/jquery-ui-1.7.1.css" />
+<?php
+	$strUiTheme = $configFile->getDirectParam('UI_THEME');
+	echo '<link rel="stylesheet" href="'.SITE_URL.'vendors/jscripts/jqueryui/themes/'.$strUiTheme.'/jquery-ui-1.7.1.css" />';
+?>
 <style>
 </style>
 

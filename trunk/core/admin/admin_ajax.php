@@ -152,7 +152,7 @@ function wrapupload(){
 	}
 	if($oFileUploaded && !doEventAction('uploadfile',array(&$oFileUploaded)))
 		return false;
-	
+	sleep(4);
 	echo 'OK';
 	return true;
 }
