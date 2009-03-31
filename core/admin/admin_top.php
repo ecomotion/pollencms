@@ -78,9 +78,14 @@ if(!isset($_GET["ajax"])){
 	
 ?>
 
+<?php
+	$strUiTheme = $configFile->getDirectParam('UI_THEME');
+	echo '<link rel="stylesheet" href="'.SITE_URL.'vendors/jscripts/jqueryui/themes/'.$strUiTheme.'/jquery-ui-1.7.1.css" />';
+?>
 
 <link rel="stylesheet" href="<?php echo SITE_URL;?>core/admin/theme/css/admin.css" />
-<link rel="stylesheet" href="<?php echo SITE_URL;?>vendors/jscripts/jqueryui/themes/smoothness/jquery-ui-1.7.1.css" />
+
+
 <script language="JavaScript">
 	window.onload = function(){if(window.parent && window.parent.oDialogAdmin){
 		window.parent.oDialogAdmin.dialog("option","title","Panneau d'Administration");
