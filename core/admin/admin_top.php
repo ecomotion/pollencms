@@ -56,7 +56,6 @@ if(!isset($_GET["ajax"])){
 <script language="JavaScript" src="<?php echo SITE_URL;?>vendors/jscripts/swfupload/swfupload.js" ></script>
 <script language="JavaScript" src="<?php echo SITE_URL;?>core/jscripts/admin_swfupload_handlers.js" ></script>
 
-<script type="text/javascript" src="<?php echo SITE_URL;?>vendors/jscripts/jqueryplugins/jquery.progression.js"></script>
 <script language="JavaScript" src="<?php echo SITE_URL;?>vendors/jscripts/jqueryplugins/jquery.contextmenu.js" ></script>
 <script type="text/javascript" src="<?php echo SITE_URL;?>vendors/jscripts/jqueryplugins/jquery.hotkeys.js" ></script>
 <script type="text/javascript" src="<?php echo SITE_URL;?>vendors/jscripts/jqueryplugins/jquery.ifixpng.js" ></script>
@@ -125,8 +124,8 @@ if(isConnected() ){
 		<input type="hidden" name="todo" value="connect" /><br />
 	</fieldset>
 	<div style="text-align:right">
-		<input type="button" class="pcmButton" onClick="if(window.top.oDialogAdmin) window.top.oDialogAdmin.dialog('close');return false;" value="<?php echo _('cancel');?>" /> 
-		<input type="submit" value="<?php echo _('connection');?>" class="pcmButton"/>
+		<button class="ui-state-default ui-corner-all" type="button" onClick="window.top.oDialogAdmin && window.top.oDialogAdmin.dialog('close');"><?php echo _('Cancel');?></button>
+		<button class="ui-state-default ui-corner-all" type="submit"><?php echo _('Connection'); ?></button>
 	</div>
 </form>
 <div class="reset"></div>

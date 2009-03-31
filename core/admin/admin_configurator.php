@@ -16,9 +16,9 @@ $tabMainTabs[]=	array(
 			'TAB_NAME'=>_('Cache Management'),
 			'TAB_CONTENT'=>'
 					<div style="padding-top:60px">
-						<a href="javascript:clickOnClearCache(this,\''._('Clearing cache ....').'\',\'site\');" class="pcmButton">'._('clear site cache').'</a>
-						<a href="javascript:clickOnClearCache(this,\''._('Clearing cache ....').'\',\'thumbs\');" class="pcmButton">'._('clear thumbs cache').'</a>
-						<a href="javascript:clickOnClearCache(this,\''._('Clearing cache ....').'\',\'history\');" class="pcmButton">'._('clear history cache').'</a>
+						<button onClick="clickOnClearCache(this,\''._('Clearing cache ....').'\',\'site\');" class="ui-state-default ui-corner-all" type="button">'._('clear site cache').'</button>
+						<button onClick="clickOnClearCache(this,\''._('Clearing cache ....').'\',\'thumbs\');" class="ui-state-default ui-corner-all" type="button">'._('clear thumbs cache').'</button>
+						<button onClick="clickOnClearCache(this,\''._('Clearing cache ....').'\',\'history\');" class="ui-state-default ui-corner-all" type="button">'._('clear history cache').'</button>
 					</div>
 				'
 		),array(
