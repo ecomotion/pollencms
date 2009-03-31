@@ -80,6 +80,56 @@ function notify(strMessage){
 	$.jGrowl(strMessage,{life:1000});
 }
 
+
+function confirmDlg(strMessage,fctYes,fctNo){
+	var dlg = $('<div style="text-align:center">'+strMessage+'</div>').dialog({
+		title: _('Confirm message'),
+		buttons: {
+			'Yes': fctYes ,
+			'No': function() {$(this).dialog('destroy'); fctNo && fctNo.call(this);}
+		},
+		resizable:false,modal:true, height: 140,position:'top'
+	});
+	var btnNo = dlg.parents('.ui-dialog:first').find('button:last');
+	btnNo.text(_('No'));
+	var btnYes = dlg.parents('.ui-dialog:first').find('button:first');
+	btnYes.text(_('Yes')).focus();
+	return false;
+	
+}
+
+function inputDlg(strTitle,strLabel,fctOk,fctCancel,value){
+	//options.buttons = $.extend(options.buttons,{'Cancel': function() { $(this).dialog('destroy');}});
+	//options = $.extend({label:'valeur :',inputsize:'', value:'',position:'top', resizable:false,modal:true, height: 140}, options);
+	if(!value) value="";
+	var obj=$('<div><div style="padding:0px 10px">'+strLabel+' <input type="text" value="'+value+'" id="inputValue" size="'+20+'"/></div></div>')
+		.dialog({
+			title:strTitle,
+			label: strLabel,
+			buttons: {
+				'Ok': function() {
+					fctOk && fctOk.call(this,$('input',this).val(),$(this));
+					//$(this).dialog('destroy');
+				},
+				'Cancel':function(){
+					fctCancel && fctCancel.call(this);
+					$(this).dialog('destroy');
+				}
+			}
+		});
+	var objDlg = obj.parents('.ui-dialog:first');
+	var btnOk = $('button:first',objDlg).text(_('Ok'));
+	var btnCancel = $('button:last',objDlg).text(_('Cancel'));
+	$('input',objDlg).focus().keypress(function (e) {
+			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			//if user click on enter
+			if(key == 13) {
+				btnOk.trigger('click');
+			}
+		});
+	return false;
+}
+
 function msgStatus(strMessage){
 	var oMsgStatus = $('#msgStatus');
 	//hide message status
