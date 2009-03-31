@@ -179,7 +179,7 @@ function winUpload(text,oSWFUpload){
 	var oUploadContent = $('<div id="uploadContent"></div>').css({'text-align':'left','padding':'10px 40px'});
 	var oMsgWindow=$('<div></div>');
 	
-	oUploadContent.append('<div id="uploadProgress"</div>').appendTo(oMsgWindow);
+	oUploadContent.append('<div id="uploadProgress"></div>').appendTo(oMsgWindow);
 	oMsgWindow.dialog({
 		title:_('upload progress'),
 		modal:true,

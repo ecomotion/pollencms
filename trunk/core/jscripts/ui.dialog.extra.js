@@ -62,7 +62,9 @@
 					setTimeout(function(){self.resizeAuto(false);},200);
 				}
 			});
-			self.uiDialog.animate({height:(frameHeight+50)}, 'fast');
+			self.uiDialog.animate({height:(frameHeight+28)}, 'fast',function(){
+				$(this).dialog('option','height',frameHeight+28);
+			});
     	},
     	openAdmin: function(){
 			this.uiDialog.css('display','block');
