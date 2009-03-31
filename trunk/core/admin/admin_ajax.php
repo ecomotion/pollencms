@@ -28,7 +28,7 @@ if( isConnected() ){
 				if(function_exists($action)){
 					if(!call_user_func($action))
 						printFatalHtmlError();
-				}else{
+				}else{					
 					printFatalHtmlError('Action Unknown');			
 				}
 			break;

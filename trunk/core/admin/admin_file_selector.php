@@ -52,7 +52,8 @@ $rootpathdir = $proot_dir->getRelativePath();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="robots" content="noindex, nofollow" />
 
-<link rel="stylesheet" href="theme/css/admin.css" />
+<link rel="stylesheet" href="<?php echo SITE_URL;?>core/admin/theme/css/admin.css" />
+<link rel="stylesheet" href="<?php echo SITE_URL;?>vendors/jscripts/jqueryui/themes/smoothness/jquery-ui-1.7.1.css" />
 <style>
 </style>
 
@@ -60,7 +61,7 @@ $rootpathdir = $proot_dir->getRelativePath();
 <script type="text/javascript" src="<?=SITE_URL?>config.js"></script>
 
 <script language="JavaScript" src="../jscripts/functions.js"></script>
-<script type="text/javascript" src="<?=SITE_URL?>vendors/jscripts/jqueryui/jquery-ui-pollencms-1.5.2.min.js"></script> 
+<script type="text/javascript" src="<?=SITE_URL?>vendors/jscripts/jqueryui/jquery-ui-1.7.1.js"></script> 
 <script language="JavaScript" src="<?=SITE_URL?>vendors/jscripts/swfupload/swfupload.js" ></script>
 <script language="JavaScript" src="<?=SITE_URL?>core/jscripts/admin_swfupload_handlers.js" ></script>
 <script type="text/javascript" src="<?=SITE_URL?>vendors/jscripts/jqueryplugins/jquery.progression.js"></script>
@@ -192,8 +193,8 @@ foreach($listFiles as $file){
 	<input type="text" id="path_selected" value="<?=preg_replace('/[0-9]*_/','',$pcurrent_dir->getRelativePath($rootpath));?>" />
 	<input type="hidden" id="real_path_selected" value="<?=$pcurrent_dir->getRelativePath($rootpath);?>" />
 
-	<input value="<?php echo _('Select');?>" type="submit" class="pcmButton" style="margin:0px;" />
-	<input value="<?php echo _('Cancel');?>" type="button" class="pcmButton" style="margin:0px;" onClick="cancel();return false;" />
+	<button type="submit" class="ui-state-default ui-corner-all"><?php echo _('Select'); ?></button>
+	<button type="button" class="ui-state-default ui-corner-all" onClick="cancel();return false;"><?php echo _('Cancel'); ?></button>
 
 </form>
 
