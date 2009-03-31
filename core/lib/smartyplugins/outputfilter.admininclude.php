@@ -18,7 +18,7 @@ function smarty_outputfilter_admininclude($source, &$smarty)
 		<script src="'.SITE_URL.'vendors/jscripts/jqueryplugins/jquery.hotkeys.js"></script>
 		<script src="'.SITE_URL.'core/jscripts/admin.js"></script>
 		<link rel="stylesheet" href="'.SITE_URL.'core/admin/theme/css/admin_mode.css" type="text/css" media="all" />
-		<link rel="stylesheet" href="'.SITE_URL.'core/admin/theme/jqueryui/pollencmsdialog.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="'.SITE_URL.'vendors/jscripts/jqueryui/themes/smoothness/jquery-ui-1.7.1.css" />
 	';	
 
 	$strNewHead .= '
