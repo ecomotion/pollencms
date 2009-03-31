@@ -101,52 +101,23 @@ function checkName($strName){
 }
 
 
-function inputBox(options){
-	options.buttons = $.extend({'Annuler': function() { $(this).dialog('close');}},options.buttons);
-	options = $.extend({label:'valeur :',inputsize:'', value:'',position:'top', resizable:false,modal:true, height: 140}, options);
-	var obj=$('<div><div style="padding:0px 10px">'+options.label+' <input type="text" value="'+options.value+'" id="inputValue" size="'+options.inputsize+'"/></div></div>')
-		.dialog(options);
-	var objDialog = obj.parents('.ui-dialog').css('top','160px');
-	$('#inputValue',obj).focus()
-		.keypress(function (e) {
-			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
-			//if user click on enter
-			if(key == 13) {
-				$('button:last',objDialog).trigger('click');
-			}
-		});
-	return false;
-}
-
-
-
 
 function createFile(strCurrDir){
-	inputBox({
-		label: _('Page name:'),
-		title: _('Create a page'),
-		buttons: {
-			'Ok': function() {
-				var value = $('#inputValue',$(this)).val();
-				if( (msg= checkName(value))!==true) {msgBoxError(msg);}
-				else {ajaxAction('createfile',{'CURRENT_DIR':strCurrDir,'NEW_FILE':value},$(this));}
-			}
+	inputDlg(_('Create a page'),_('Page name:'),function(value,dlg){
+		if( (msg= checkName(value))!==true) {msgBoxError(msg);}
+		else {
+			ajaxAction('createfile',{'CURRENT_DIR':strCurrDir,'NEW_FILE':value},dlg);
 		}
 	});
 }
 
 function createDir(strCurrDir){
-	inputBox({
-		label: _('Directory name:'),
-		title: _('Create a directory'),
-		buttons: {
-			'Ok': function(){
-				var value = $('#inputValue',$(this)).val();
-				if( (msg= checkName(value))!==true) {msgBoxError(msg);}
-				else {ajaxAction('createdir',{'CURRENT_DIR':strCurrDir,'NEW_DIR':value},$(this));}
-			}
+	inputDlg(_('Create a directory'),_('Directory name:'),function(value,dlg){
+		if( (msg= checkName(value))!==true) {msgBoxError(msg);}
+		else {
+			ajaxAction('createdir',{'CURRENT_DIR':strCurrDir,'NEW_DIR':value},dlg);
 		}
-	}); 
+	});
 }
 
 function createLink(strCurrPage){
@@ -160,18 +131,12 @@ function fileRenameAjax(idBlockFile){
 }
 
 function copy(strFileRelativePath,strFileName) {
-	inputBox({
-		value: "(copie) "+strFileName,
-		label: _('Copy name :'),
-		title: _('Copy'),
-		buttons: {
-			'Ok': function(){
-				var value = $('#inputValue',$(this)).val();
-				if( (msg= checkName(value))!==true) {msgBoxError(msg);}
-				else {ajaxAction('copyfile',{'FILE_RELATIVE_PATH':encodeURIComponent(strFileRelativePath),'COPY_NAME':encodeURIComponent(value)},$(this));}				
-			}
-		}
-	});
+	inputDlg(_('Copy'),_('Copy name :'),function(value, dlg){
+			if( (msg= checkName(value))!==true) {msgBoxError(msg);}
+			else {ajaxAction('copyfile',{'FILE_RELATIVE_PATH':encodeURIComponent(strFileRelativePath),'COPY_NAME':encodeURIComponent(value)},dlg);}				
+			
+		},
+		null,_('copy')+' '+strFileName);
 }
 
 function move(strCurrFile, current_dir, rootpath) {
@@ -184,29 +149,16 @@ function SetUrl(dest){
 }
 
 function resizeimage(strFilePath){
-	inputBox({
-		value: "800",
-		label: _('New Size (in px):'),
-		title: _('Image Resize'),
-		inputsize:'3',
-		buttons: {
-			'Ok': function(){
-				var value = $('#inputValue',$(this)).val();
-				if( (msg= checkName(value))!==true) {msgBoxError(msg);}
-				else {ajaxAction('resizeimage',{'FILE_RELATIVE_PATH':encodeURIComponent(strFilePath),'NEW_SIZE':value},$(this));}
-			}
+	inputDlg(_('Image Resize'),_('New Size (in px):'),function(value, dlg){
+			if( (msg= checkName(value))!==true) {msgBoxError(msg);}
+			else {ajaxAction('resizeimage',{'FILE_RELATIVE_PATH':encodeURIComponent(strFilePath),'NEW_SIZE':value},dlg);}		
 		}
-	}); 
+		,null,"800");
 }
 
 function deleteFile(strFileRelativePath, strFileName, type){
-	$('<div><div style="padding:0px 10px"><span class="ui-icon ui-icon-info" style="margin: 0pt 7px 50px 0pt; float: left;"/>Voulez vous vraiment supprimer '+type+' '+strFileName+' ?</div></div>').dialog({
-		title: _('Confirm message'),
-		buttons: {
-			Oui: function() { ajaxAction('deletefile',{'FILE_RELATIVE_PATH':encodeURIComponent(strFileRelativePath)},$(this));},
-			Non: function() {$(this).dialog('destroy');}
-		},
-		resizable:true,modal:true, height: 140
+	confirmDlg(_('Do you really want to delete ')+type+' '+strFileName+' ?',function() { 
+		ajaxAction('deletefile',{'FILE_RELATIVE_PATH':encodeURIComponent(strFileRelativePath)},$(this));
 	});
 }
 

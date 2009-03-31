@@ -179,7 +179,7 @@ function winUpload(text,oSWFUpload){
 	var oUploadContent = $('<div id="uploadContent"></div>').css({'text-align':'left','padding':'10px 40px'});
 	var oMsgWindow=$('<div></div>');
 	
-	oUploadContent.append('<div id="uploadProgress" class="progressbar"></div>').appendTo(oMsgWindow);
+	oUploadContent.append('<div id="uploadProgress"</div>').appendTo(oMsgWindow);
 	oMsgWindow.dialog({
 		title:_('upload progress'),
 		modal:true,
@@ -198,12 +198,7 @@ function winUpload(text,oSWFUpload){
     });
     
    	$(oUploadContent).prepend('<div id="uploadComment" style="margin-bottom:10px">'+text+'</div>');
-
-	this.oProgressBar = $("#uploadProgress", oUploadContent).progression({
-		Current:0,
-		aBackground:"#9CBFEE",
-		aBackgroundImg:SITE_URL+"core/admin/theme/jqueryui/img/progress-bg.gif"
-	});
+	this.oProgressBar = $("#uploadProgress", oUploadContent).progressbar({value:0});
 	this.oComment = $("#uploadComment",oUploadContent);
 	this.oWin = oMsgWindow;
 };	
@@ -211,7 +206,7 @@ winUpload.prototype.setComment = function(strComment){
 	this.oComment.html(strComment);
 };
 winUpload.prototype.setProgress = function (pourcent){
-	this. oProgressBar.progression({Current:pourcent});
+	this.oProgressBar.progressbar('value',pourcent);
 };
 winUpload.prototype.cancelUpload = function(){
 	if(this.oSWFUpload && this.oSWFUpload.getStats().files_queued)

@@ -4,7 +4,7 @@ var tabInitCallBack = new Array();
 var bBeingSort = false;			
 $(function(){
 	tabMyBack[tabMyBack.length]=new myUrl(window.location.href,"Panneau d'administration",true);
-	//On désactive le btn tout afficher si on est sur la page admin
+	//On dï¿½sactive le btn tout afficher si on est sur la page admin
 	setFormAdminAllStatus(window.location.href);
 	//sur la page d'accueil de l'admin
 	iniInfoBulles();
@@ -198,14 +198,11 @@ function myUrl(strUrl, strTitle,bUseEffect){
 }
 
 function confirmDisconnect(){
-	$('<div style="text-align:center">Voulez vous vraiment vous dÃ©connecter ?</div>').dialog({
-		title: 'Message de confirmation',
-		buttons: {
-			'Non': function() {$(this).dialog('close');},
-			'Oui': function() { if(window.top.oDialogAdmin) window.top.oDialogAdmin.dialog('fullscreen',false);$(this).dialog('close');window.location='admin.php?todo=disconnect'; }
-		},
-		resizable:false,modal:true, height: 140,position:'top'
-	}).parents('.ui-dialog:first').find('button:last').focus();;
+	confirmDlg(_('Do you really want to disconnect ?'),function() { 
+		if(window.top.oDialogAdmin) 
+			window.top.oDialogAdmin.dialog('fullscreen',false);$(this).dialog('close');
+		window.location='admin.php?todo=disconnect';
+	});
 	return false;
 }
 

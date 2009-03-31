@@ -63,7 +63,7 @@ function toggleactivatePlugin(strPlugin,strValue){
 	ajaxAction('toggleactivateplugin',{plugin:strPlugin,value:strValue},null,function(data){
 		notify(data);
 		myRelodPage(false, false, false,false,function(){
-			$("ul:first","div.tabConfigurator").tabs('select',2);
+			$("div.tabConfigurator").tabs('select',2);
 		});
 	});
 	return false;
