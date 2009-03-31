@@ -92,7 +92,10 @@ function initDialog(strFileEditorUrl){
 	.addClass('pcms')
 	.css({'overflow':'hidden','background':'#F5F5F5'})
 	.append(oIFrame)
-	.dialog({title:"Chargement en cours ....",width:iDialogWidth,height:100, position:Array('center',20),autoResize:false,resizable:false,modal:false,dragable:true,autoOpen:false,bgiframe:false})
+	.dialog({title:"Chargement en cours ....",width:iDialogWidth,minHeight:40, position:Array('center',20),autoResize:false,resizable:false,modal:false,dragable:true,autoOpen:false,bgiframe:false,
+		dragStop:function(event,ui){
+		}	
+	})
 	.bind('dialogclose',function(){
 	
 		$('embed, object').css('visibility','visible');	

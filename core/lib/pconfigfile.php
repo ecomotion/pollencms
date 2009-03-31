@@ -286,11 +286,8 @@ class PConfigFile extends PTextFile {
 			</div>
 			
 			<textarea name="srcParams"  id="srcParams" wrap="off" style="width:90%;height:280px;display:none;">'.(is_file($this->path)?file_get_contents($this->path):'').'</textarea>
-			<div style="text-align:right">'.
-				(isSuperAdmin()?'<!--<input type="button" class="pcmButton" value="'._('Source').'" onclick="toggleShowConfigEditor(this.form);return false" />-->':'').'
-				'.
+			<div style="text-align:right;padding-top:10px;">'.
 				(isSuperAdmin()?'<button class="ui-state-default ui-corner-all" type="button" onclick="toggleShowConfigEditor(this.form);return false">'._('Source').'</button>':'').'
-				<!--<input type="submit" class="pcmButton" style="margin-right:0px;" value="'._('save').'" />-->
 				<button class="ui-state-default ui-corner-all" type="submit">'._('save').'</button>
 			</div>
 			</form>
