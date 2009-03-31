@@ -3,7 +3,7 @@ addPollenPlugin('deletepage','se_on_delete_page');
 addPollenPlugin('savepage','se_on_save_page');
 addPollenPlugin('renamepage','se_on_rename_page');
 
-addPollenPlugin('addPluginsTabs','seConfig');
+addPollenPlugin('addPluginsTabs','seConfigTab');
 addPollenPlugin('adminHeader','seAdminHeader');
 
 function seChangeLocale(){
@@ -29,16 +29,16 @@ function seAdminHeader(){
 	return $strReturn;
 }
 
-function seConfig($tabExtraPlugins){
+function seConfigTab($tabExtraPlugins){
 	$oPlugin = new PPluginDir(dirname(__FILE__));
 	$oConfigFile = &$oPlugin->oConfig;
 
 	//change the local path for search engine translation
 	seChangeLocale();
 	
-		$strUrl=$oPlugin->getUrl().'include/ajax_action.php';
+	$strUrl=$oPlugin->getUrl().'include/ajax_action.php';
 	$strContent = '<h2>Actions</h2>
-	<div><a class="pcmButton" href="javascript:seInitBase(\''.$strUrl.'\');">'._('Populate Data Base').'</a></div>
+	<div><button class="ui-state-default ui-corner-all" type="button" onClick="seInitBase(\''.$strUrl.'\');">'._('Populate Data Base').'</button></div>
 	<h2>Configuration</h2>
 	'.$oConfigFile->DisplayEditor();
 	$tabExtraPlugins[]=array(
