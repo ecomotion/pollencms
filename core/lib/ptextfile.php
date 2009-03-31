@@ -70,7 +70,10 @@ class PTextFile extends PFile {
 			<textarea style="width:100%;height:220px;border:1px solid #000;" name="text" id="text">{VALUE}</textarea>
 			<input type="hidden" name="todo" value="savetextfile" />
 			<input type="hidden" name="filepath" value="{PATH}" />
-			<a href="javascript:actionClickOnSaveTxt(\''.$strId.'\',\''.urljsencode($this->getRelativePath()).'\');" style="float:right;margin-right:0px;" class="pcmButton">'._('Save').'</a>
+			<div  style="text-align:right">
+<!--			<a href="javascript:actionClickOnSaveTxt(\''.$strId.'\',\''.urljsencode($this->getRelativePath()).'\');" style="float:right;margin-right:0px;" class="pcmButton">'._('Save').'</a>-->
+				<button class="ui-state-default ui-corner-all" type="button" onClick="javascript:actionClickOnSaveTxt(\''.$strId.'\',\''.urljsencode($this->getRelativePath()).'\');">'._('Save').'</button>
+			</div>			
 		</form>
 		<div class="reset"></div>
 		';
