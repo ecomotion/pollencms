@@ -7,7 +7,6 @@ function initSePanel(){
 	var oPanel = $("#plugins_searchengine");
 	if(oPanel.length == 0)
 		return;
-	alert('ok');	
 }
 
 function seInitBase(strUrl){

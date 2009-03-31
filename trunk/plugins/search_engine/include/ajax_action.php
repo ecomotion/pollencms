@@ -31,6 +31,13 @@ die();
 function init(){
 	require('lib.searchengine.php');
 	
+	$oPlugin = new PPluginDir(dirname(__FILE__));
+	$oConfigFile = &$oPlugin->oConfig;
+	
+	$bActivate = $oConfigFile->getDirectParam('ACTIVATE');
+	if($bActivate !== "true")
+		return setError(_('Please check your configuration. You must activate it befor try to index the content'));
+
 	if(!createBase())
 		return false;
 			

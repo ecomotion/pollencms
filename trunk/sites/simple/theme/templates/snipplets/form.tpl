@@ -17,6 +17,7 @@
 	if( oForm.length > 0 ){ldelim}
 
 		var tab = new Array(
+			'{#SITE_URL#}core/jscripts/functions.js',
 			'{#SITE_URL#}vendors/jscripts/jqueryplugins/form/jquery.validate.js',
 			'{#SITE_URL#}vendors/jscripts/jqueryplugins/form/jquery.form.js',
 			'{#SITE_URL#}vendors/jscripts/jqueryplugins/form/jquery.maskedinput-1.0.js',
