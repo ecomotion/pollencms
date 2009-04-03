@@ -26,17 +26,16 @@ if(!defined("CONFIG")){
 	if(!defined('SITENAME')) define('SITENAME',false);
 	define("SITE",'sites'.(SITENAME?SLASH.SITENAME:''));
 	
-	require('lib/pconfigfile.php');
-	
+	//Config File
+	require('lib/psiteconfigfile.php');
 	define("CONFIG_DIR",SITE_PATH.SITE.SLASH.'config'.SLASH);
 	if(is_file(CONFIG_DIR.'myconfig.php')){
 		include(CONFIG_DIR.'myconfig.php');
-	}
-	
+	}	
 	define('CONFIG_FILE',CONFIG_DIR.'config.ini');
 	$configDescr = SITE_PATH.'core'.SLASH.'default_config.ini';
 	$configDescr = is_file($configDescr)?$configDescr:false;
-	$configFile = new PConfigFile(CONFIG_FILE, $configDescr);
+	$configFile = new PSiteConfigFile(CONFIG_FILE, $configDescr);
 	if(!$configFile->parse())
 		printFatalHtmlError();
 
@@ -46,6 +45,7 @@ if(!defined("CONFIG")){
 	define('PAGES','pages');
 	define('PAGES_PATH',SITE_PATH.SITE.SLASH.PAGES.SLASH.'languages');
 	
+	define('PAGES_MODELS_DIR',SITE_PATH.SITE.SLASH.PAGES.SLASH."models".SLASH);
 	define('CACHE_DIR',SITE_PATH.SITE.SLASH.PAGES.SLASH."cache".SLASH);
 	if(!defined('MEDIAS_PATH'))
 		define('MEDIAS_PATH',SITE_PATH.SITE.SLASH.PAGES.SLASH.'medias');
