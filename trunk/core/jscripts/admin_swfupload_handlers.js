@@ -86,7 +86,7 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 	try {
 		if (numFilesSelected > 0) {
 			/* I want auto start the upload and I can do that here */
-			oWinUpload = new winUpload('Initialise upload',this);
+			oWinUpload = new winUpload('Initialise upload',this,numFilesQueued);
 			this.startUpload();
 		}
 	} catch (ex)  {
@@ -96,8 +96,10 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 
 function uploadStart(file) {
 	try {
+		
 		//It is important to update UI becaus in Linux no uploadProgress events are called. The best we can do is say we are uploading
 		oWinUpload.setComment(_("Uploading file: ")+file.name);
+		oWinUpload.setSum(this.getStats().files_queued);
 	}
 	catch (ex) {}	
 	return true;
@@ -173,9 +175,10 @@ winSelector.prototype.Close = function(){
 	this.DlgSelector.dialog('destroy');
 };
 
-function winUpload(text,oSWFUpload){
+function winUpload(text,oSWFUpload,nbFiles){
 	var self=this;
 	this.oSWFUpload = oSWFUpload;
+	this.nbFiles=nbFiles;
 	var oUploadContent = $('<div id="uploadContent"></div>').css({'text-align':'left','padding':'10px 40px'});
 	var oMsgWindow=$('<div></div>');
 	
@@ -184,7 +187,7 @@ function winUpload(text,oSWFUpload){
 		title:_('upload progress'),
 		modal:true,
 		width:400,
-		height:160,
+		height:180,
 		position:['center',120],
 		resizable:false,
 		overlay: { 
@@ -197,9 +200,10 @@ function winUpload(text,oSWFUpload){
     	close:function(){self.cancelUpload();}
     });
     
-   	$(oUploadContent).prepend('<div id="uploadComment" style="margin-bottom:10px">'+text+'</div>');
+   	$(oUploadContent).prepend('<div id="uploadComment">'+text+'</div><div id="uploadSum"  style="margin-bottom:10px"></div>');
 	this.oProgressBar = $("#uploadProgress", oUploadContent).progressbar({value:0});
 	this.oComment = $("#uploadComment",oUploadContent);
+	this.oSum = $("#uploadSum",oUploadContent);
 	this.oWin = oMsgWindow;
 };	
 winUpload.prototype.setComment = function(strComment){
@@ -212,6 +216,10 @@ winUpload.prototype.cancelUpload = function(){
 	if(this.oSWFUpload && this.oSWFUpload.getStats().files_queued)
 		this. oSWFUpload.cancelUpload();
 	this.Close();
+};
+winUpload.prototype.setSum = function(iNbQueue){
+	var iCurrentFile = this.nbFiles - iNbQueue +1;
+	this.oSum.html(_('File:')+' '+iCurrentFile+' / '+this.nbFiles);
 };
 winUpload.prototype.Close =function(){
 	oWinSelector.Close();

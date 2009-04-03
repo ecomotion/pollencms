@@ -388,7 +388,7 @@ class PDirCategory extends PDir{
 		if(!$oPage->setVirtualName($strPageName))
 			return false;
 
-		return true;
+		return $oPage;
 	}
 
 	function createDir($strDirName){

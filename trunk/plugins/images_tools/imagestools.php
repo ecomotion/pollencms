@@ -149,7 +149,7 @@ function images_tools_addjs_fancyzoom_and_ifixpng($source, &$smarty)
 			$strFPNGParamFind ="$('img[src$=\".png\"]','#".$strFckId."')";
 		}
 		else if( $bFPNGEffect && !preg_match('/^\$/',$strFPNGParamFind))
-			$strFPNGParamFind = '$(\''.$strFPNGParamFind.'\')';
+			$strFPNGParamFind = '$("'.$strFPNGParamFind.'")';
 
 		//$strFPNGParamFind = str_replace("\'",'"',$strFPNGParamFind);	
 		$strImgBlankUrl= $strUrl.'js/ressources/blank.gif';

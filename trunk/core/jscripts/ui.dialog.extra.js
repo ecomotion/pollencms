@@ -63,7 +63,7 @@
 				}
 			});
 			self.uiDialog.animate({height:(frameHeight+28)}, 'fast',function(){
-				$(this).dialog('option','height',frameHeight+28);
+				$(this).dialog('option','height',frameHeight);
 			});
     	},
     	openAdmin: function(){

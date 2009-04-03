@@ -2,6 +2,9 @@
 addPollenPlugin('extrapage','extrapage_sitemap');
 addSmartyPlugin('insert','google_sitemap_fct','google_sitemap');
 
+
+
+
 /**
  * extrapage_sitemap
  * This is the extrapagesite map event function

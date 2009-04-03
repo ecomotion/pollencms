@@ -68,7 +68,7 @@ class PConfigFile extends PTextFile {
 		}
 		
 		//if is a page config file
-		if( preg_match('/pages.*languages.*/',$this->path) ){
+		if( preg_match('/pages.*(languages|models).*/',$this->path) ){
 			$tabTemp = $this->tabParams;
 			$this->tabParams = array();
 			//category
