@@ -123,11 +123,10 @@ if(eregi(TEXTEDIT_WYSWYG,$pfile->getname())){
 			</div><!-- end fckblock -->
 			<!-- buttons -->
 			<div style="text-align:right;clear:both;">
-				<div id="divInfoSaveHTML" style="float:left;display:none;">&nbsp;</div>
-				<input type="button" class="pcmButton" onClick="MyCancel();return false;" value="'._('cancel').'" />
-				<input type="button" class="pcmButton" onClick="$(\'.openTabs:first\').trigger(\'click\');return false;" value="'._('history').'" />
-				<input type="submit" class="pcmButton" onClick="this.form.elements[\'view\'].value=true;return true;" value="'._('save & see').'" />
-				<input type="submit" class="pcmButton" style="margin-right:0px;" value="'._('save').'" />
+				<button class="ui-state-default ui-corner-all" type="button" onClick="MyCancel();">'._('cancel').'</button>
+				<button class="ui-state-default ui-corner-all" type="button" onClick="$(\'.openTabs:first\').trigger(\'click\');">'._('history').'</button>
+				<button class="ui-state-default ui-corner-all" type="submit" onClick="this.form.elements[\'view\'].value=true;">'._('save & see').'</button>
+				<button class="ui-state-default ui-corner-all" type="submit">'._('save').'</button>
 			</div>
 			<input type="hidden" value="false" name="view" />
 			<input type="hidden" name="todo" value="save" />
