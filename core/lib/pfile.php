@@ -148,7 +148,14 @@ class PFile extends POFile {
 	function is_page(){
 		return preg_match('/htm$|html$|php$/',$this->getExtension());
 	}
-	
+	function is_page_model(){
+		if($this->is_page()){
+			if(strstr($this->path,PAGES_MODELS_DIR)){
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * Test the current object file path. If in the PAGES_PATH return true, else return false.
 	 *
@@ -385,6 +392,10 @@ class PFile extends POFile {
 		if($objFile->is_configfile()) return new PConfigFile($strFilePath,(basename($strFilePath)!=basename(CONFIG_FILE))?CONFIG_FILE:false);	
 		if($objFile->is_image()) return  new PImage($strFilePath);	
 		//if($objFile->is_video()) $objFile = new PVideo($file);
+		if($objFile->is_page_model()) {
+			require(SITE_PATH.'core/lib/ppagemodel.php');
+			return new PPageModel($strFilePath);
+		}
 		if($objFile->is_page()) return new PPage($strFilePath);
 		if($objFile->is_texteditable()) return new PTextFile($strFilePath);	
 		return $objFile;

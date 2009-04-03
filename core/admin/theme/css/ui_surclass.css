@@ -1,4 +1,6 @@
 @CHARSET "UTF-8";
 
 .ui-dialog .pcms{padding:0px;}
-.ui-widget {font-size:1em;
+.ui-widget {font-size:1em;}
+
+.ui-dialog-titlebar {font-size:0.9em;}

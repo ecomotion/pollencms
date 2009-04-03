@@ -230,7 +230,7 @@ class PImage extends PFile {
 		$this->DisplayMenu(($oRootDir?$oRootDir->getRelativePath():''));
 
 		echo "\t<dt>\n\t\t<a  href=$url title='".$this->getName().' ('.$this->getResolution().")'>";
-		echo "<img src='".$this->getMimeIconUrl($thumb_size)."' alt=\"".$this->getNameWithoutExt()."\""; 
+		echo "<img src='".$this->getMimeIconUrl($thumb_size)."'  width=\"".$thumb_size."\" alt=\"".$this->getNameWithoutExt()."\""; 
 //		if(defined("EDIT_FILE"))
 			echo " id=\"context_menu_".$this->getIdName()."\" ";
  		echo " />";

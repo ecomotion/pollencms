@@ -54,6 +54,15 @@ class PPluginDir extends PDir{
 	function toggleActivate($bSave=false){
 		global $configFile;
 		$strToggleActive = ($this->isActivated())?"false":"true";
+		
+		//check that the plugins conf dir exists, if not create it
+		$strParentPath = $this->oConfig->getParentPath();
+		if(!is_dir($strParentPath)){
+			$oParent = new PDir($strParentPath);
+			if(!$oParent->mkdir()){
+				return false;
+			}
+		}
 		return $configFile->setParam($this->getIdName(),$strToggleActive,'PLUGINS',$bSave);
 	}
 		
