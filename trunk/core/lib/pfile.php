@@ -150,7 +150,7 @@ class PFile extends POFile {
 	}
 	function is_page_model(){
 		if($this->is_page()){
-			if(strstr($this->path,PAGES_MODELS_DIR)){
+			if(strstr($this->path,PAGES_MODELS_PATH)){
 				return true;
 			}
 		}

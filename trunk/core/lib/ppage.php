@@ -44,7 +44,7 @@ class PPage extends PTextFile {
 		return true;
 	}
 	
-	function Display($thumb_size,$url=false,$oRootDir=false){
+	function Display($thumb_size=100,$url=false,$oRootDir=false){
 		if(!$url) $url=$this->getDisplayUrl();
 		echo '<dl class="file" id="filename='.str_replace(SLASH,'/',$this->getRelativePath()).'">'."\n"; 
 		$this->DisplayMenu(($oRootDir?$oRootDir->getRelativePath():''));

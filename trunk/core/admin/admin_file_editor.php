@@ -66,7 +66,7 @@ if( isConnected() ){
 		echo '<a href="'.$strUrlGuid['URL'].'">'.$strUrlGuid['NAME'].'</a> > ';
 
 ?>
-<?=$pfile->getShortName();?>
+<?php echo $pfile->getShortName();?>
 </div>
 <?php
 if(eregi(TEXTEDIT_WYSWYG,$pfile->getname())){

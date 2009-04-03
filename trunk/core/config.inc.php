@@ -45,7 +45,7 @@ if(!defined("CONFIG")){
 	define('PAGES','pages');
 	define('PAGES_PATH',SITE_PATH.SITE.SLASH.PAGES.SLASH.'languages');
 	
-	define('PAGES_MODELS_DIR',SITE_PATH.SITE.SLASH.PAGES.SLASH."models".SLASH);
+	define('PAGES_MODELS_PATH',SITE_PATH.SITE.SLASH.PAGES.SLASH."models");
 	define('CACHE_DIR',SITE_PATH.SITE.SLASH.PAGES.SLASH."cache".SLASH);
 	if(!defined('MEDIAS_PATH'))
 		define('MEDIAS_PATH',SITE_PATH.SITE.SLASH.PAGES.SLASH.'medias');
