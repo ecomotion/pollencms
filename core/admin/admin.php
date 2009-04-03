@@ -19,7 +19,7 @@ if( isConnected() ){
 				<p>Dans cette espace vous pouvez gérer la structure et les pages de votre site.</p>
 			</span>
 		</a>
-		<a href="admin_file_management.php?current_dir=<?php echo urlencode(POFile::getPathRelativePath(PAGES_MODELS_DIR));?>"  class="panel-link infobulles" id="pages">
+		<a href="admin_file_management.php?current_dir=<?php echo urlencode(POFile::getPathRelativePath(PAGES_MODELS_PATH));?>"  class="panel-link infobulles" id="pages">
 			<img src="<?=SITE_URL?>core/admin/theme/images/admin/icon-pages.jpg" />
 			<span>
 				<h3> Gestion des pages </h3>

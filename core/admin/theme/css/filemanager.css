@@ -4,6 +4,12 @@
 	overflow: auto;
 	height:340px;
 }
+#listTypes{
+	margin-top:10px;
+	border:0px solid #CCC;
+	overflow: auto;
+	height:200px;
+}
 #path{clear:both;border:0px solid red;background:url(../images/admin/guidage.jpg) no-repeat;padding:8px 4px;}
 #path A {text-decoration:none;color:#333;}
 #path A:Hover{color:#819713;}
@@ -19,8 +25,8 @@ dl{
 	-moz-border-radius:4px;
 	color:#737373;
 }
-dl.selected dt {
-		background: grey;
+dl.selected dd{
+		background: orange;
 	}
 dl.video{
 	background-image: url(images/movie_band.jpg);

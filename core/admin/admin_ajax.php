@@ -186,12 +186,11 @@ function createfile(){
 	 return setError(sprintf(_('Internal error, directory %s not exists.'),$strCurrDir)); 
 	 
 	$strNewFile = isset($_POST['NEW_FILE'])?stripslashes($_POST['NEW_FILE']):'';
-	
 	if( !($oPage = $oDir->createFile($strNewFile)) )
 		return false;
 
-	if($strPageModel != 'empty') {
-		$oPageModel = &getFileObject(PAGES_MODELS_DIR.$strPageModel);
+	if($strPageModel != 'empty' || strlen($strPageModel)==0 ) {
+		$oPageModel = &getFileObject(PAGES_MODELS_PATH.SLASH.$strPageModel);
 		if(!is_file($oPageModel->path))
 			return setError('Internal error, model '.$strPageModel.' not found');
 		
@@ -393,24 +392,15 @@ function sortpages(){
 	return true;
 }
 function getpagetypeslist(){
-	$strSelect = '
-		<select name="pagetype">
-			<option value="empty">'._('Empty').'</option>
-			{LIST}
-		</select>
-	';
-	$oDirModels = new PDirCategory(PAGES_MODELS_DIR);
+	$oDirModels = new PDirCategory(PAGES_MODELS_PATH);
 	$tabModels = $oDirModels->listDir($oDirModels->ONLY_FILES,$fullpath=true,'.htm(l)?');
 	$strList='';
 	foreach($tabModels as $aModelPath){
 		$oPageModel = &getFileObject($aModelPath);
-		$strList .= '
-		<option value="'.$oPageModel->getName().'">'.$oPageModel->getPrintedName().'</option>';
+		$strId = str_replace(SLASH,'/',$oPageModel->getRelativePath());
+		$strList.= $oPageModel->Display(70,$url='"javascript:setPageModel(\''.$oPageModel->getName().'\',\''.$strId.'\');"');
 	}
-	echo '
-		<label>'._('Coose a page type').'</label>
-	'
-	.str_replace('{LIST}',$strList,$strSelect);
+	echo $strList;
 	return true;
 }
 

@@ -15,8 +15,9 @@ class PDir extends POFile {
 	
 	function PDir($path) {
 		parent::POFile($path);
-		if(substr($path,-1)=="/")
+		if(substr($path,-1) == SLASH)
 			$path=substr($path,0,strlen($path)-1);
+		$this->path = $path;
 		if(is_dir($newpath=utf8_decode($this->path))) $this->path=$newpath;
 	}
 	/**

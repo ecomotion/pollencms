@@ -49,6 +49,7 @@ $proot_dir = new PDir($rootpath);
 //NOW WE HAVE OUR ROOT DIR AND CURR DIR
 if(!is_dir($rootpath)) die('root path not exists.');
 if(!$pcurrent_dir)  die('current directory not found');
+
 ?>
 
 <!-- FILE PATH -->
@@ -56,6 +57,9 @@ if(!$pcurrent_dir)  die('current directory not found');
 	<div style='float:right;margin-top:-10px'>
 		<a  id="btnNewFolderSmall" class="btnNewSmall" href="javascript:createDir('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');"  title="<?php echo _('create a directory')?>"></a>
 		<?php if(strpos($proot_dir->path,PAGES_PATH)!== FALSE){?>
+		<a id="btnNewFileSmall"   class="btnNewSmall" href="javascript:createFile('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');" title="<?php echo _('create a page')?>"></a>
+		<?php } ?>
+		<?php if(strpos($proot_dir->path,PAGES_MODELS_PATH)!== FALSE){?>
 		<a id="btnNewFileSmall"   class="btnNewSmall" href="javascript:createFile('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');" title="<?php echo _('create a page')?>"></a>
 		<?php } ?>
 		<?php if(strpos($proot_dir->path,MEDIAS_PATH)!== FALSE){?>

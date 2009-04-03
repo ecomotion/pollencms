@@ -101,16 +101,20 @@ function checkName($strName){
 }
 
 
-
+function setPageModel(strModel, strId){
+	var objPageModelInput = $("#pagemodelselected");
+	var objSelected=$('dl[id*="'+strId+'"]');
+	if(objSelected.hasClass('ui-state-highlight')){
+		objPageModelInput.val('');
+		objSelected.removeClass('ui-state-highlight');
+	}else{
+		$('dl',objSelected.parents('div:first')).removeClass('ui-state-highlight');
+		objPageModelInput.val(strModel)
+		objSelected.addClass('ui-state-highlight');
+	}
+}
 function createFile(strCurrDir){
-/*	inputDlg(_('Create a page'),_('Page name:'),function(value,dlg){
-		if( (msg= checkName(value))!==true) {msgBoxError(msg);}
-		else {
-			ajaxAction('createfile',{'CURRENT_DIR':strCurrDir,'NEW_FILE':value},dlg);
-		}
-	});
-	*/
-	var obj=$('<div><div style="padding:0px 10px">'+_('Page name:')+' <input type="text" value="" id="inputValue" size="'+20+'"/></div><div id="listTypes"></div>')
+	var obj=$('<div><div style="padding:0px 10px"><input type="hidden" id="pagemodelselected" value="empty" />'+_('Page name:')+' <input type="text" value="" id="pageName" size="'+20+'"/></div><div id="listTypes" ></div>')
 	ajaxAction('getpagetypeslist',{},null,function(data){
 		$("#listTypes",obj).html(data);
 			obj.dialog({
@@ -118,9 +122,8 @@ function createFile(strCurrDir){
 				label: _('Page name:'),
 				buttons: {
 					'Ok': function() {
-						var strPageName = $('input',this).val();
-						var strPageModel = $('select',this).val();
-//						alert(strPageType);
+						var strPageName = $('input#pageName',this).val();
+						var strPageModel = $("#pagemodelselected",this).val();
 						if( (msg= checkName(strPageName))!==true){
 							msgBoxError(msg);
 						}
@@ -129,7 +132,8 @@ function createFile(strCurrDir){
 						}
 					},
 					'Cancel':function(){
-						$(this).dialog('destroy');
+						
+						$(this).dialog('destroy').remove();
 					}
 				}
 			});
@@ -142,36 +146,9 @@ function createFile(strCurrDir){
 					if(key == 13) {
 						btnOk.trigger('click');
 					}
-			});
-		});*/
+			});*/
 	});
-	/*	.dialog({
-			title:strTitle,
-			label: strLabel,
-			buttons: {
-				'Ok': function() {
-					fctOk && fctOk.call(this,$('input',this).val(),$(this));
-					//$(this).dialog('destroy');
-				},
-				'Cancel':function(){
-					fctCancel && fctCancel.call(this);
-					$(this).dialog('destroy');
-				}
-			}
-		});
-	var objDlg = obj.parents('.ui-dialog:first');
-	var btnOk = $('button:first',objDlg).text(_('Ok'));
-	var btnCancel = $('button:last',objDlg).text(_('Cancel'));
-	$('input',objDlg).focus().keypress(function (e) {
-			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
-			//if user click on enter
-			if(key == 13) {
-				btnOk.trigger('click');
-			}
-		});
-	return false;*/
-	
-	
+	//return false;	
 }
 
 function createDir(strCurrDir){
