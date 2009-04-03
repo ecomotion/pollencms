@@ -174,7 +174,10 @@ function createdir(){
 }
 
 function createfile(){
-	
+	if( !isset($_POST['PAGE_MODEL']) )
+		return setError('Internal error, PAGE_MODEL is not set');
+	$strPageModel = $_POST['PAGE_MODEL'];
+
 	if( !isset($_POST['CURRENT_DIR']) )
 		return setError('Internal error, CURRENT_DIR is not set');
 	$strCurrDir = urljsdecode($_POST['CURRENT_DIR']);
@@ -183,10 +186,28 @@ function createfile(){
 	 return setError(sprintf(_('Internal error, directory %s not exists.'),$strCurrDir)); 
 	 
 	$strNewFile = isset($_POST['NEW_FILE'])?stripslashes($_POST['NEW_FILE']):'';
-
-	if(!$oDir->createFile($strNewFile))
-		return false;
 	
+	if( !($oPage = $oDir->createFile($strNewFile)) )
+		return false;
+
+	if($strPageModel != 'empty') {
+		$oPageModel = &getFileObject(PAGES_MODELS_DIR.$strPageModel);
+		if(!is_file($oPageModel->path))
+			return setError('Internal error, model '.$strPageModel.' not found');
+		
+		if(!$oPage->Save($oPageModel->getEditorFileContent()))
+			return false;
+		
+		$tabParamsModel = $oPageModel->oPConfigFile->getTabParams();
+		$tabParamsPage = $oPage->oPConfigFile->getTabParams();
+		$tabP = array_merge($tabParamsPage,$tabParamsModel);
+		$tabP['VIRTUAL_NAME']=$tabParamsPage['VIRTUAL_NAME'];
+		$tabP['MENU_ORDER']=$tabParamsPage['MENU_ORDER'];
+		$oPage->oPConfigFile->tabParams=$tabP;
+		if(!$oPage->oPConfigFile->Save())
+			return false;
+	}
+		
 	return true;
 }
 
@@ -369,6 +390,27 @@ function sortpages(){
 			}//end if filenumber is set
 		}//end if ofile not parent dir
 	}//end foreach
+	return true;
+}
+function getpagetypeslist(){
+	$strSelect = '
+		<select name="pagetype">
+			<option value="empty">'._('Empty').'</option>
+			{LIST}
+		</select>
+	';
+	$oDirModels = new PDirCategory(PAGES_MODELS_DIR);
+	$tabModels = $oDirModels->listDir($oDirModels->ONLY_FILES,$fullpath=true,'.htm(l)?');
+	$strList='';
+	foreach($tabModels as $aModelPath){
+		$oPageModel = &getFileObject($aModelPath);
+		$strList .= '
+		<option value="'.$oPageModel->getName().'">'.$oPageModel->getPrintedName().'</option>';
+	}
+	echo '
+		<label>'._('Coose a page type').'</label>
+	'
+	.str_replace('{LIST}',$strList,$strSelect);
 	return true;
 }
 

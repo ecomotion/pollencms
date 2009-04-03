@@ -1,5 +1,6 @@
 <?php include 'admin_top.php';?>
 <?php
+
 $oTextConfigFile = new PTextFile($configFile->path);
 $tabMainTabs = array();
 $tabMainTabs[]=	array(
@@ -10,6 +11,11 @@ $tabMainTabs[]=	array(
 			'FRAG_NAME'=>'site_config',
 			'TAB_NAME'=>_('Site Parameters'),
 			'TAB_CONTENT'=>$configFile->DisplayEditor('actionClickOnSaveSiteConfig')
+		),
+		array(
+			'FRAG_NAME'=>'users_management',
+			'TAB_NAME'=>_('Manage Users Accounts'),
+			'TAB_CONTENT'=>'<h2>Users Accounts</h2>'.$configFile->getHtmlUsersList()
 		),
 		array(
 			'FRAG_NAME'=>'site_cache',
