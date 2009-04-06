@@ -98,11 +98,12 @@ if(!isset($_GET["ajax"])){
 if(isConnected() ){
 ?>
 
-<a href="#" id="btnDeconnecter" class="btnDeconnecterEnable" onclick="return confirmDisconnect();"></a>
+<div class="btnDeconnecterEnableLeft"><a href="#" id="btnDeconnecter" class="btnDeconnecterEnable" onclick="return confirmDisconnect();"><?php echo _('Disconnect'); ?></a></div>
 <form id="formAdminAll">
+
 <a href="#" id="btnBack"	class="btnNav btnBackOff"	onClick="myGoBack();return false;"		style="float:left"></a>
 <a href="#" id="btnFow"		class="btnNav btnForwOff"	onClick="myGoForward();return false;"	style="float:left"></a>
-<a href="#" id="btnToutAfficher" style="float:left"></a>
+<div id="btnToutAfficherLeft" class="btnToutAfficherEnableLeft"><a href="#" id="btnToutAfficher" style="float:left"><?php echo _('Show home'); ?></a></div>
 
 </form>
 <div class="reset"></div>
