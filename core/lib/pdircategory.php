@@ -113,8 +113,7 @@ class PDirCategory extends PDir{
 	}
 	
 	function getId(){
-		return str_replace(SLASH,'slash',str_replace(SITE_URL,'',$this->getUrl(true)));
-		//return str_replace('.html','',str_replace('/','slash',preg_replace('/^'.preg_quote(SITE_URL,SLASH).'/','',$this->getUrl(true))));
+		return str_replace('/','slash',preg_replace('/^'.preg_quote(SITE_URL,'/').'/','',$this->getUrl(true)));
 	}
 	
 	function getUrl($bUseUrlRewriting = true){
