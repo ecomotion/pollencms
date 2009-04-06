@@ -43,19 +43,23 @@ function initButtons(){
 	$("#btnToutAfficher").mousedown(function(){
 		if(/Enable/i.test($(this).attr('class'))){
 			$(this).removeClass("btnToutAfficherEnable").addClass("btnToutAfficherEnableMouseDown");
+			$(this).parent("div").removeClass("btnToutAfficherEnableLeft").addClass("btnToutAfficherEnableMouseDownLeft");
 		}
 	})
 	.mouseup(function(){
 		if(/MouseDown/i.test($(this).attr('class'))){
 			//setTimeout(function(){$(this).removeClass("btnToutAfficherEnableMouseDown").addClass("btnToutAfficherEnable");},400);
+			$(this).parent("div").removeClass("btnToutAfficherEnableMouseDownLeft").addClass("btnToutAfficherEnableLeft");
 		}
 	});
 	$("#btnDeconnecter").mousedown(function(){
 		$(this).removeClass("btnDeconnecterEnable").addClass("btnDeconnecterMouseDown");
+		$(this).parent("div").removeClass("btnDeconnecterEnableLeft").addClass("btnDeconnecterMouseDownLeft");
 	})
 	.mouseup(function(){
 		if(/MouseDown/i.test($(this).attr('class'))){
 			$(this).removeClass("btnDeconnecterMouseDown").addClass("btnDeconnecterEnable");
+			$(this).parent("div").removeClass("btnDeconnecterMouseDownLeft").addClass("btnDeconnecterEnableLeft");
 		}
 	});
 	
