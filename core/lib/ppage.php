@@ -32,7 +32,8 @@ class PPage extends PTextFile {
 	 * @return string the id of the page, it is in fact the url without the /
 	 */
 	function getId(){
-		return str_replace('.html','',str_replace(SLASH,'slash',str_replace(SITE_URL,'',$this->getUrl(true))));
+		//return str_replace('.html','',str_replace(SLASH,'slash',str_replace(SITE_URL,'',$this->getUrl(true))));
+		return str_replace('.html','',str_replace('/','slash',preg_replace('/^'.preg_quote(SITE_URL,SLASH).'/','',$this->getUrl(true))));
 	}
 	
 	function checkName($strName=false){
