@@ -51,33 +51,86 @@ textarea.paramvalueTextArea{width:400px;border:1px solid #CCC;float:left;margin-
 
 #btnToutAfficher{
 	display:block;
-	width:132px;
-	height: 32px;
-	border:0px solid red;
+	padding:0 30px;
+	padding-right:20px;
+	height: 25px;
+	padding-top:7px;
 }
+
+#btnToutAfficherLeft{
+	float:left;
+	height: 32px;
+}
+
+a#btnToutAfficher,a#btnToutAfficher:hover{
+	text-decoration:none;
+	text-transform: uppercase;
+}
+
+.btnToutAfficherEnableMouseDownLeft{
+	background: url(../images/admin/afficher-off-left.gif) no-repeat top left;
+}
+
+.btnToutAfficherDisableLeft{
+	background: url(../images/admin/afficher-disabled-left.gif) no-repeat top left;
+}
+
+.btnToutAfficherEnableLeft{
+	background: url(../images/admin/afficher-on-left.gif) no-repeat top left;
+}
+
 .btnToutAfficherEnableMouseDown{
-	background: url(../images/admin/afficher-off.gif) no-repeat;
+	background: url(../images/admin/afficher-off-right.gif) no-repeat top right;
+}
+
+a.btnToutAfficherEnableMouseDown,a.btnToutAfficherEnableMouseDown:hover,a.btnToutAfficherEnable,a.btnToutAfficherEnable:hover{
+	color:black;
 }
 
 .btnToutAfficherDisable{
-	background: url(../images/admin/afficher-disabled.gif) no-repeat;
+	background: url(../images/admin/afficher-disabled-right.gif) no-repeat top right;
 }
+
+a.btnToutAfficherDisable,a.btnToutAfficherDisable:hover{
+	color:grey;
+}
+
 .btnToutAfficherEnable{
-	background: url(../images/admin/afficher-on.gif) no-repeat;
+	background: url(../images/admin/afficher-on-right.gif) no-repeat top right;
 }
 
 #btnDeconnecter{
 	display:block;
-	width:132px;
-	height: 32px;
+	padding:0 30px;
+	padding-right:20px;
+	height: 25px;
+	padding-top:7px;
+	text-decoration:none;
+}
+
+.btnDeconnecterEnableLeft{
 	float:right;
-	
+	height: 32px;
+	background: url(../images/admin/logout-left.gif) no-repeat top left;
 }
+
 .btnDeconnecterEnable{
-	background: url(../images/admin/logout.gif) no-repeat;
+	background: url(../images/admin/logout-right.gif) no-repeat top right;
 }
+
+a#btnDeconnecter,a#btnDeconnecter:hover{
+	color:black;
+	text-transform: uppercase;
+}
+
 .btnDeconnecterMouseDown{
-	background: url(../images/admin/logout-down.gif) no-repeat;
+	background: url(../images/admin/logout-down-right.gif) no-repeat top right;
+}
+
+.btnDeconnecterMouseDownLeft{
+	float:right;
+	height: 32px;
+	background: url(../images/admin/logout-down-left.gif) no-repeat top left;
 }
 
 .btnNav{
