@@ -3,7 +3,17 @@
 
 $oTextConfigFile = new PTextFile($configFile->path);
 $tabMainTabs = array();
-
+$strModelContent ='';
+$oDirModels = &getFileObject(PAGES_MODELS_PATH);
+$tabListModels = $oDirModels->listDir();
+foreach($tabListModels as $filePath){
+	if(is_file($filePath)){
+		$oTemp = &getFileObject($filePath);
+		//$strModelContent.=get_class($oTemp);
+		$strModelContent .= $oTemp->Display(70,$url=false,$oDirModels);
+	}
+}
+$strUrltabModels = 'admin_file_management.php?current_dir='.urlencode(POFile::getPathRelativePath(PAGES_MODELS_PATH));
 $tabMainTabs[]=	array(
 	'FRAG_NAME'=>'frag_config',
 	'TAB_NAME'=>_('Site Configuration'),
@@ -33,7 +43,17 @@ $tabMainTabs[]=	array(
 						<button onClick="clickOnClearCache(this,\''._('Clearing cache ....').'\',\'history\');" class="ui-state-default ui-corner-all" type="button">'._('clear history cache').'</button>
 					</div>
 				'
-		),array(
+		),
+		array(
+			'FRAG_NAME'=>'models_link',
+			'TAB_NAME'=>_('Models Management'),
+			'TAB_CONTENT'=>'
+			<form>
+				<button onClick="myRelodPage(\''.$strUrltabModels.'\')" class="ui-state-default ui-corner-all" type="button">'._('Manage').'</button>
+			</form>
+			<div id="listTypes">'.$strModelContent.'</div>'
+		),
+		array(
 			'FRAG_NAME'=>'site_file_config',
 			'TAB_NAME'=>_('Config File'),
 			'TAB_CONTENT'=>$oTextConfigFile->DisplayEditor()
