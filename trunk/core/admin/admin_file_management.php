@@ -47,7 +47,7 @@ $pcurrent_dir = &getFileObjectAndFind($current_dir);
 $proot_dir = new PDir($rootpath);
 
 //NOW WE HAVE OUR ROOT DIR AND CURR DIR
-if(!is_dir($rootpath)) die('root path not exists.');
+if(!is_dir($rootpath)) die('root path: '.$_GET["rootpath"].' not found.');
 if(!$pcurrent_dir)  die('current directory not found');
 
 ?>
@@ -57,12 +57,12 @@ if(!$pcurrent_dir)  die('current directory not found');
 	<div style='float:right;margin-top:-10px'>
 		<a  id="btnNewFolderSmall" class="btnNewSmall" href="javascript:createDir('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');"  title="<?php echo _('create a directory')?>"></a>
 		<?php if(strpos($proot_dir->path,PAGES_PATH)!== FALSE){?>
-		<a id="btnNewFileSmall"   class="btnNewSmall" href="javascript:createFile('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');" title="<?php echo _('create a page')?>"></a>
+		<a id="btnNewFileSmall"   class="btnNewSmall" href="javascript:createPage('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>',true);" title="<?php echo _('create a page')?>"></a>
 		<?php } ?>
 		<?php if(strpos($proot_dir->path,PAGES_MODELS_PATH)!== FALSE){?>
-		<a id="btnNewFileSmall"   class="btnNewSmall" href="javascript:createFile('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');" title="<?php echo _('create a page')?>"></a>
+		<a id="btnNewFileSmall"   class="btnNewSmall" href="javascript:createPage('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');" title="<?php echo _('create a page')?>"></a>
 		<?php } ?>
-		<?php if(strpos($proot_dir->path,MEDIAS_PATH)!== FALSE){?>
+		<?php if(strpos($proot_dir->path,MEDIAS_PATH)!== FALSE || strpos($pcurrent_dir->path,PAGES_MODELS_PATH.SLASH.'images')!== FALSE ){?>
 			<a  href="javascript:clickSWFUpload('<?php echo session_id().'\', \''.urljsencode($pcurrent_dir->getRelativePath()); ?>');" class="btnNewSmall" id="btnUploadFileSmall" title="<?php echo _('upload file') ?>"></a>
 		<?php } ?>
 	</div>
@@ -77,9 +77,9 @@ if(!$pcurrent_dir)  die('current directory not found');
 	<ul>
 		<li><a id="newdir" href="javascript:createDir('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');"  title="<?php echo _('create a directory')?>"><?php echo _('create a directory')?></a></li>
 		<?php if(strpos($proot_dir->path,PAGES_PATH)!== FALSE){?>
-		<li><a id="newfile" href="javascript:createFile('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>');" title="<?php echo _('create a page')?>"><?php echo _('create a page')?></a></li>
+		<li><a id="newfile" href="javascript:createPage('<?php echo urljsencode($pcurrent_dir->getRelativePath()); ?>',true);" title="<?php echo _('create a page')?>"><?php echo _('create a page')?></a></li>
 		<?php } ?>
-		<?php if(strpos($proot_dir->path,MEDIAS_PATH)!== FALSE){?>
+		<?php if(strpos($proot_dir->path,MEDIAS_PATH)!== FALSE || strpos($pcurrent_dir->path,PAGES_MODELS_PATH.SLASH.'images')!== FALSE){?>
 		<li><a href="javascript:clickSWFUpload('<?php echo session_id().'\', \''.urljsencode($pcurrent_dir->getRelativePath()); ?>');" id="uploadfile" title="<?php echo _('upload file') ?>"><?php echo _('upload file') ?></a></li>
 		<?php } ?>
 	</ul>

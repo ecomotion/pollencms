@@ -261,14 +261,20 @@ class PConfigFile extends PTextFile {
 			return getError();
 			
 		$idForm = 'form_editor_config_'.$this->getIdName();
+		if($strSection)
+			$idForm .='_section_'.$strSection; 
 		$strReturn='
-		<form action="'.$_SERVER["REQUEST_URI"].'" method="POST" id="'.$idForm.'" onSubmit="return '.$strJsAction.'(\''.$idForm.'\',\''.urljsencode($this->getRelativePath()).'\');">
+		<form action="'.$_SERVER["REQUEST_URI"].'" method="POST" id="'.$idForm.'" onSubmit="return '.$strJsAction.'(\''.$idForm.'\',\''.urljsencode($this->getRelativePath()).'\',\''.$strSection.'\');">
 			<div id="listParams">
 		';
-		foreach($this->tabParams as $strParam=>$strValue){
+		$tabToEdit = &$this->tabParams;
+		if($strSection && isset($this->tabParams[$strSection])){
+			$tabToEdit = &$this->tabParams[$strSection];
+		}
+		foreach($tabToEdit as $strParam=>$strValue){
 			if(!is_array($strValue))
 				$strReturn .= $this->__getEditorFormItem($strParam, $strValue, $idForm);
-			else if($strSection){//edition d'une section
+			/*else if($strSection){//edition d'une section
 				$strTpl = '<FIELDSET>
 					<LEGEND>'.$strParam.'</LEGEND>
 					{ITEMS}
@@ -279,7 +285,7 @@ class PConfigFile extends PTextFile {
 					$items .= $this->__getEditorFormItem($strParamSec, $strValueSec,$idForm);
 				}
 				$strReturn .= str_replace('{ITEMS}',$items,$strTpl);
-			}
+			}*/
 		}//end for each var
 
 		$strReturn .= '

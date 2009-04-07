@@ -4,3 +4,5 @@
 .ui-widget {font-size:1em;}
 
 .ui-dialog-titlebar {font-size:0.9em;}
+
+.ui-widget-overlay{opacity:0.9;background:#000;}

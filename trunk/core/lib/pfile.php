@@ -163,11 +163,11 @@ class PFile extends POFile {
 	 */
 	function is_dircategory(){
 		if(is_dir($this->path)){
-			if(strpos($this->path,PAGES_PATH)!==false)
+			if( strpos($this->path,PAGES_PATH)!==false || strpos($this->path,PAGES_MODELS_PATH)!==false )
 				return true;
 		}
 		if(is_dir($newpath=utf8_decode($this->path))){
-			if(strstr($this->path,PAGES_PATH)!==false) 
+			if(strstr($this->path,PAGES_PATH)!==false || strpos($this->path,PAGES_MODELS_PATH)!==false ) 
 				return true;
 		}
 		return false;

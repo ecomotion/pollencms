@@ -102,6 +102,34 @@ function savefile(){
 	return true;
 }
 
+function saveconfigfile(){
+	if(!isset($_REQUEST["file"]) || $_REQUEST["file"]=="" || eregi("\.\.",$_REQUEST["file"])) {
+		return setError(_("You should specified a file to save"));
+	}
+	if(!isset($_REQUEST["text"])) {
+		return setError('Internal error, text is not set');
+	}
+	if(!isset($_REQUEST["section"])) {
+		return setError('Internal error, section is not set');
+	}
+	if( !($pConfigFile = &getFileObject(SITE_PATH.urljsdecode($_REQUEST["file"]))) )
+		return setError('Internal Error, can not save file, file not found.');
+
+	$strSection = 	$_REQUEST["section"];
+	if($strSection){
+		$tabSection = &$pConfigFile->parseIniFromString(stripslashes($_REQUEST["text"]));
+		$tabParams = $pConfigFile->getTabParams();
+		$pConfigFile->tabParams = array_merge($tabParams,array($strSection=>$tabSection));
+		if(!$pConfigFile->Save())
+			return false;
+	}
+	else if(!$pConfigFile->Save($_REQUEST['text']))
+		return false;
+	
+	echo _('File saved successfully.');
+	return true;
+}
+
 function savesiteconfig(){
 	if(!isset($_REQUEST['text']))
 		return setError('Internal Error in savesiteconfig.text is not defined');
@@ -391,14 +419,16 @@ function sortpages(){
 	}//end foreach
 	return true;
 }
-function getpagetypeslist(){
+function getpagemodelslist(){
 	$oDirModels = new PDirCategory(PAGES_MODELS_PATH);
+	if(!is_dir($oDirModels->path))	
+		return true;
 	$tabModels = $oDirModels->listDir($oDirModels->ONLY_FILES,$fullpath=true,'.htm(l)?');
 	$strList='';
 	foreach($tabModels as $aModelPath){
 		$oPageModel = &getFileObject($aModelPath);
 		$strId = str_replace(SLASH,'/',$oPageModel->getRelativePath());
-		$strList.= $oPageModel->Display(70,$url='"javascript:setPageModel(\''.$oPageModel->getName().'\',\''.$strId.'\');"');
+		$strList.= $oPageModel->Display(70,$url='#'.$oPageModel->getName());
 	}
 	echo $strList;
 	return true;

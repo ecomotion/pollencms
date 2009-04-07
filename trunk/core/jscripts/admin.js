@@ -40,11 +40,12 @@ function loadScript(iIndex, tab, callBack){
 
 function initHotkeys (){
 	//ADMIN HOT KEYS ACTIONS
-	$.hotkeys.add('Ctrl+a', function(){
+	var htkeyadmin = (HOTKEY_OPENADMIN)?HOTKEY_OPENADMIN:"Ctrl+a";
+	$.hotkeys.add(htkeyadmin, function(){
 		if(oDialogAdmin == null){
 			loadJS($tabScriptsToLoadDialog, initDialog);return;
 		}
-		if(oDialogAdmin.parents(".ui-dialog").is(':visible')){
+		if( oDialogAdmin.dialog('isOpen') ){
 			oDialogAdmin.dialog('close');
 		}
 		else {
@@ -92,7 +93,7 @@ function initDialog(strFileEditorUrl){
 	.addClass('pcms')
 	.css({'overflow':'hidden','background':'#F5F5F5'})
 	.append(oIFrame)
-	.dialog({title:"Chargement en cours ....",width:iDialogWidth,minHeight:40, position:Array('center',20),autoResize:false,resizable:false,modal:false,dragable:true,autoOpen:false,bgiframe:false,
+	.dialog({title:"Chargement en cours ....",width:iDialogWidth,minHeight:40, position:Array('center',20),autoResize:false,resizable:false,modal:true,dragable:true,autoOpen:false,bgiframe:false,
 		dragStop:function(event,ui){
 		}	
 	})

@@ -19,7 +19,7 @@ function initTabConfigurator(){
 	});
 }
 
-function actionClickOnSaveSiteConfig(strFormId,strFile){
+function actionClickOnSaveSiteConfig(strFormId,strFile,strSection){
 	var oForm=$("#"+strFormId);
 	if(!$('textarea#srcParams', oForm).is(':visible'))
 		reloadFileConfigTextArea(strFormId);

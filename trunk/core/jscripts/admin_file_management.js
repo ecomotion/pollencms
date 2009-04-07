@@ -113,41 +113,63 @@ function setPageModel(strModel, strId){
 		objSelected.addClass('ui-state-highlight');
 	}
 }
-function createFile(strCurrDir){
-	var obj=$('<div><div style="padding:0px 10px"><input type="hidden" id="pagemodelselected" value="empty" />'+_('Page name:')+' <input type="text" value="" id="pageName" size="'+20+'"/></div><div id="listTypes" ></div>')
-	ajaxAction('getpagetypeslist',{},null,function(data){
-		$("#listTypes",obj).html(data);
-			obj.dialog({
-				title:_('Create a page'),
-				label: _('Page name:'),
-				buttons: {
-					'Ok': function() {
-						var strPageName = $('input#pageName',this).val();
-						var strPageModel = $("#pagemodelselected",this).val();
-						if( (msg= checkName(strPageName))!==true){
-							msgBoxError(msg);
-						}
-						else {
-							ajaxAction('createfile',{'CURRENT_DIR':strCurrDir,'NEW_FILE':strPageName,'PAGE_MODEL':strPageModel},$(this));
-						}
-					},
-					'Cancel':function(){
-						
-						$(this).dialog('destroy').remove();
+function createPage(strCurrDir,bUseModel){
+
+	var obj=$('<div><div style="padding:0px 10px"><input type="hidden" id="pagemodelselected" value="empty" />'+_('Page name:')+' <input type="text" value="" id="pageName" size="'+20+'"/></div><div id="listModels" ></div>')
+	var fctDialog = function(){
+		obj.dialog({
+			title:_('Create a page'),
+			label: _('Page name:'),
+			buttons: {
+				'Ok': function() {
+					var strPageName = $('input#pageName',this).val();
+					var strPageModel = $("#pagemodelselected",this).val();
+	
+					if( (msg= checkName(strPageName))!==true){
+						msgBoxError(msg);
+						return false;
 					}
+					ajaxAction('createfile',{'CURRENT_DIR':strCurrDir,'NEW_FILE':strPageName,'PAGE_MODEL':strPageModel},$(this));
+				},
+				'Cancel':function(){
+					
+					$(this).dialog('destroy').remove();
 				}
-			});
-			/*var objDlg = obj.parents('.ui-dialog:first');
-			var btnOk = $('button:first',objDlg).text(_('Ok'));
-			var btnCancel = $('button:last',objDlg).text(_('Cancel'));
-			$('input',objDlg).focus().keypress(function (e) {
-					var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
-					//if user click on enter
-					if(key == 13) {
-						btnOk.trigger('click');
-					}
-			});*/
-	});
+			}
+		});
+		var objDlg = obj.parents('.ui-dialog:first');
+		var btnOk = $('button:first',objDlg).text(_('Ok'));
+		var btnCancel = $('button:last',objDlg).text(_('Cancel'));
+		$('input',objDlg).focus().keypress(function (e) {
+				var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+				(key == 13) && btnOk.trigger('click');
+		});
+	}
+	if(bUseModel){
+		ajaxAction('getpagemodelslist',{},null,function(data){
+			var oListModels = $("#listModels",obj);
+			if(data){
+				var oData = $(data);
+				$('a',oData).click(function(){
+					var oDl = $(this).parents('dl:first');
+					var bSelect = (oDl.hasClass('ui-state-highlight'))?false:true;
+		
+					//unselect all
+					$('dl',oListModels).removeClass('ui-state-highlight');
+					oDl.addClass('ui-state-highlight');
+		
+					bSelect && $("#pagemodelselected",obj).val($(this).attr('href').replace(/^#/,''));
+					
+					return false;
+				});
+				oListModels.html(oData);
+				$('a.fileLink:first',oListModels).trigger('click');
+			}
+			fctDialog();
+		});
+	}else{
+		fctDialog();
+	}
 	//return false;	
 }
 

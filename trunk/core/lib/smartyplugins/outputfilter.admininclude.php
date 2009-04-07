@@ -14,7 +14,7 @@ function smarty_outputfilter_admininclude($source, &$smarty)
 	global $configFile;
 	$strNewHead = '
 	<!--begin scriptsadmin -->
-		<script type="text/javascript" src="'.SITE_URL.'?page=config.js" ></script>
+		<script type="text/javascript" src="'.SITE_URL.'index.php?page=config.js" ></script>
 		<script type="text/javascript" src="'.SITE_URL.'vendors/jscripts/jquery.js" ></script>
 		<script src="'.SITE_URL.'vendors/jscripts/jqueryplugins/jquery.hotkeys.js"></script>
 		<script src="'.SITE_URL.'core/jscripts/admin.js"></script>
