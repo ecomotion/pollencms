@@ -17,8 +17,8 @@ $tabMainTabs[]=	array(
 			'FRAG_NAME'=>'hotkeys_management',
 			'TAB_NAME'=>_('Manage Hot Keys'),
 			'TAB_CONTENT'=>$configFile->DisplayEditor('actionClickOnSaveConfig','HOTKEYS')
-		),/*
-		array(
+		),
+		/*array(
 			'FRAG_NAME'=>'users_management',
 			'TAB_NAME'=>_('Manage Users Accounts'),
 			'TAB_CONTENT'=>'<h2>Users Accounts</h2>'.$configFile->getHtmlUsersList()
