@@ -348,4 +348,10 @@ fieldset legend{
 	padding:5px;
 	width:100%;
 	height:150px;
-	}
+}
+
+#listModels{
+	margin-top:20px;
+	overflow:auto;
+	height:240px;
+}
