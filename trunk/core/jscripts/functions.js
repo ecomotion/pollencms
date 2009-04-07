@@ -4,12 +4,13 @@ $(function() {
 });
 
 
-function doAjaxAction(strUrl,strActionName, params, callback){
+function doAjaxAction(strUrl,strActionName, params, callback,strType){
+	if(!strType) strType='POST';
 	oData = $.extend({},{'action':strActionName},params);
 	msgStatus(_('Loading ...'));
 	$.ajax({
 		url:strUrl,
-		type:'POST',
+		type:strType,
 		data:oData,
 		success:function(data, textStatus){
 			callback && callback.call(this,data);

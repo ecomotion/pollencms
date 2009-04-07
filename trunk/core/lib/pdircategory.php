@@ -55,8 +55,8 @@ class PDirCategory extends PDir{
 	function Display($thumb_size,$print=false,$url=false,$proot_dir=false){
 		echo "<dl class=\"folder file\" id=\"filename=".str_replace(SLASH,'/',$this->getRelativePath())."\">\n";
 		$this->DisplayMenu((($proot_dir)?$proot_dir->getRelativePath():''));
-		if(!$url) $url=$this->getDisplayUrl($proot_dir);
-
+		if(!$url) $url= $this->getDisplayUrl($proot_dir);
+		
 		$strSpanClass = (!$this->isShowInMenu())?' class="notvisible"':' class="pagevisible"';
 		$strSpanClass = (!$this->isPublished())?' class="draft"':$strSpanClass;
 		
@@ -73,7 +73,7 @@ class PDirCategory extends PDir{
 	}
 	
 	function getDisplayUrl($proot_dir){
-		return $_SERVER["PHP_SELF"]."?current_dir=".urlencode($this->getRelativePath((($proot_dir)?$proot_dir->path:SITE_PATH))).(($proot_dir)?"&rootpath=".urlencode($proot_dir->getRelativePath()):'');
+		return 'admin_file_management.php'."?current_dir=".urlencode($this->getRelativePath((($proot_dir)?$proot_dir->path:SITE_PATH))).(($proot_dir)?"&rootpath=".urlencode($proot_dir->getRelativePath()):'');
 	}
 	
 	function listDir($options=0,$fullpath=true,$filter=".*",$filterFalse=false,$nofilter=false){

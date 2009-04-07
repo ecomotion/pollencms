@@ -68,7 +68,7 @@ class POFile extends Directory {
 	 * @return PDir object the parent directory
 	 */
 	function getParentDir(){
-		return new PDir($this->getParentPath());
+		return getFileObject($this->getParentPath());
 	}
 	
 	/**
