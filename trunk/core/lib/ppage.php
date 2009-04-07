@@ -46,20 +46,22 @@ class PPage extends PTextFile {
 	
 	function Display($thumb_size=100,$url=false,$oRootDir=false){
 		if(!$url) $url=$this->getDisplayUrl();
-		echo '<dl class="file" id="filename='.str_replace(SLASH,'/',$this->getRelativePath()).'">'."\n"; 
+		$strReturn='';
+		$strReturn.= '<dl class="file" id="filename='.str_replace(SLASH,'/',$this->getRelativePath()).'">'."\n"; 
 		$this->DisplayMenu(($oRootDir?$oRootDir->getRelativePath():''));
 		
 		$strSpanClass = (!$this->isShowInMenu())?' class="notvisible"':' class="pagevisible"';
 		$strSpanClass = (!$this->isCached())?' class="nocache"':$strSpanClass;
 		$strSpanClass = (!$this->isPublished())?' class="draft"':$strSpanClass;
 		
-		echo "\t<dt>\n\t\t<a class=\"fileLink\" href=$url>";
-		echo "<img src='".$this->getMimeIconUrl($thumb_size)."'"; 
-		echo " id=\"context_menu_".$this->getIdName()."\" ";
- 		echo " />";
- 		echo "</a>\n\t</dt>\n";
-		echo "\t<dd><span $strSpanClass>".$this->getPrintedName()."</span></dd>\n";
-		echo "</dl>\n";
+		$strReturn.= "\t<dt>\n\t\t<a class=\"fileLink\" href=$url>";
+		$strReturn.= "<img src='".$this->getMimeIconUrl($thumb_size)."'"; 
+		$strReturn.= " id=\"context_menu_".$this->getIdName()."\" ";
+ 		$strReturn.= " />";
+ 		$strReturn.= "</a>\n\t</dt>\n";
+		$strReturn.= "\t<dd><span $strSpanClass>".$this->getPrintedName()."</span></dd>\n";
+		$strReturn.= "</dl>\n";
+		return $strReturn;
 	}
 	
 	function menuDelete(){
