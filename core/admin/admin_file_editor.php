@@ -1,17 +1,15 @@
 <?php
-include("admin_top.php");
-?>
+include('admin_top.php');
 
-<?php
 if( isConnected() && !isset($_GET['ajax']) ){
-?>
-<script language='JavaScript'>
-	$(function(){
-		if(window.top != window)
-			window.top.oDialogAdmin.dialog('fullscreen',true);
-	});
-</script>
-<?php
+	echo '
+		<script language="JavaScript">
+			$(function(){
+				if(window.top != window)
+					window.top.oDialogAdmin.dialog("fullscreen",true);
+			});
+		</script>
+	';
 }
 
 require "../config.inc.php";
@@ -23,25 +21,25 @@ require SITE_PATH.'core/lib/lib_functions.php';
 define("EDIT_FILE",true);
 
 /*Security, can't browse .. directory*/
-if(!isset($_GET["file"]) || $_GET["file"]=="" || eregi("\.\.",$_GET["file"])) {
-	printFatalError(_("You should specified a file to edit"));
+if(!isset($_GET["file"]) || $_GET["file"]== '' || eregi("\.\.",$_GET["file"])) {
+	printFatalError(_('You should specified a file to edit'));
 }
-else{
-	$pFileTemp = &getFileObject(SITE_PATH.urldecode($_GET["file"]));
-	$pfile=&getFileObjectAndFind($pFileTemp->path,'file');
-	if($pfile === false){
-		if($pFileTemp->is_configfile()){
-			//must create it
-			$pfile=&$pFileTemp;;
-		}else if( preg_match('/index\.htm[l]?$/',basename($pFileTemp->path))!==false ){
-			//if index file create it
-			$pfile = &$pFileTemp;
-		} else
-			printFatalError();
-	}
-	//url back
-	$pdirparent = &getFileObject($pfile->getParentPath());
+
+$pFileTemp = &getFileObject(SITE_PATH.urldecode($_GET["file"]));
+$pfile=&getFileObjectAndFind($pFileTemp->path,'file');
+if($pfile === false){
+	if($pFileTemp->is_configfile()){
+		//must create it
+		$pfile=&$pFileTemp;;
+	}else if( preg_match('/index\.htm[l]?$/',basename($pFileTemp->path))!==false ){
+		//if index file create it
+		$pfile = &$pFileTemp;
+	} else
+		printFatalError();
 }
+
+//url back
+$pdirparent = &getFileObject($pfile->getParentPath());
 
 if( isConnected() ){
 	
@@ -49,24 +47,25 @@ if( isConnected() ){
 <div id="path">
 <div id="imgHome"></div>
 <?php
-	//ghyslain request, add the path to the file
 	$strPath = $pfile->path;
+	$oRoot = new PDir( (strstr($pfile->path,PAGES_PATH)!==false)?PAGES_PATH:((strpos($pfile->path,PAGES_MODELS_PATH)!==false)?PAGES_MODELS_PATH:SITE_PATH));
+	
 	$tabGuid=array();
-	while(PAGES_PATH != $strPath  && strlen($strPath)>1){
+	while( $oRoot->path != $strPath  && strlen($strPath)>1 ){
 		$o = &getFileObject($strPath);
 		if(is_dir($o->path)){
 			$fileMangementUrl='admin_file_management.php?rootpath='.rawurlencode(str_replace(SITE_PATH,'',PAGES_PATH)).'&current_dir='.rawurlencode($o->getRelativePath(PAGES_PATH));
-			$tabGuid[]=array('NAME'=> preg_replace('/^[0-9]*_/','',$o->getName()),'URL'=>$fileMangementUrl);
+			$tabGuid[]=array('NAME'=>$o->getName(),'URL'=>$fileMangementUrl);
 		}
 		$strPath=$o->getParentPath();
 	}
-	$tabGuid[]=array('NAME'=>_('home'),'URL'=>'admin_file_management.php?rootpath='.rawurlencode(str_replace(SITE_PATH,'',PAGES_PATH)));
+	$tabGuid[]=array('NAME'=>str_replace('languages',_('Site Pages'),$oRoot->getName()),'URL'=>'admin_file_management.php?rootpath='.rawurlencode(str_replace(SITE_PATH,'',PAGES_PATH)));
 	$tabGuid = array_reverse($tabGuid);
-	foreach($tabGuid as $strUrlGuid)
+	foreach($tabGuid as $strUrlGuid){
 		echo '<a href="'.$strUrlGuid['URL'].'">'.$strUrlGuid['NAME'].'</a> > ';
-
+	}
+	echo $pfile->getShortName();
 ?>
-<?php echo $pfile->getShortName();?>
 </div>
 <?php
 if(eregi(TEXTEDIT_WYSWYG,$pfile->getname())){
