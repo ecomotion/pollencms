@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pollen CMS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-01 16:06+0100\n"
+"POT-Creation-Date: 2009-04-07 12:10+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Vilaplana Mathieu <mvilaplana@dfc-e.com>\n"
 "Language-Team:  <mvilaplana@dfc-e.com>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Page not found"
 msgstr "Page non trouvée"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin.php:33
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin.php:40
 msgid "Configuration du site"
 msgstr "Configuration du site"
 
@@ -41,6 +41,7 @@ msgstr "Le plugin %s est maintenant innactif"
 
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:74
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:93
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:107
 msgid "You should specified a file to save"
 msgstr "Vous devez sélectionner un fichier à  éditer"
 
@@ -49,32 +50,33 @@ msgid "Page has been saved."
 msgstr "La page a été sauvegardée ."
 
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:101
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:129
 msgid "File saved successfully."
 msgstr "La sauvegarde du fichier a réussi."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:126
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:154
 msgid "Site configuration has been saved !"
 msgstr "La configuration du site a été sauvegardée"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:141
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:165
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:183
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:169
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:193
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:214
 #, php-format
 msgid "Internal error, directory %s not exists."
 msgstr "Erreur interne, le réperoire %s n'existe pas."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:213
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:227
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:243
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:261
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:275
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:291
 #, php-format
 msgid "Internal error, file object %s not exists."
 msgstr "Erreur interne, l'objet fichier %s n'existe pas."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:303
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:351
 msgid "Size value is not valid."
 msgstr "La taille n'est pas valide"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:396
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_ajax.php:458
 msgid "cache is now empty"
 msgstr "Le cache est maintenant vide"
 
@@ -87,81 +89,80 @@ msgid "Site Parameters"
 msgstr "Paramétres du site"
 
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:17
-msgid "Manage Users Accounts"
-msgstr "Gestion des comptes"
+msgid "Manage Hot Keys"
+msgstr "Raccourcis claviers"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:22
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:27
 msgid "Cache Management"
 msgstr "Gestion du Cache"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:25
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:26
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:27
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:30
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:31
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:32
 msgid "Clearing cache ...."
 msgstr "Suppression du cache ...."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:25
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:30
 msgid "clear site cache"
 msgstr "Vider le cache du site"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:26
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:31
 msgid "clear thumbs cache"
 msgstr "Vider le cache des vignettes"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:27
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:32
 msgid "clear history cache"
 msgstr "vider le cache de l'historique"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:32
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:37
 msgid "Config File"
 msgstr "Fichier de configuration"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:48
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:53
 msgid "FCK Editor"
 msgstr "Editeur fck"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:76
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:81
 msgid "Activated Plugins list"
 msgstr "Liste des plugins activés"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:79
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:90
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:84
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:95
 msgid "Name"
 msgstr "Nom"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:80
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:91
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:85
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:96
 msgid "Author"
 msgstr "Auteur"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:81
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:92
-#, fuzzy
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:86
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:97
 msgid "Version"
-msgstr "Dernière version"
+msgstr "Version"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:82
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:93
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:87
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:98
 msgid "Action"
 msgstr "Action"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:87
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:92
 msgid "Available Plugins list"
 msgstr "Liste des plugins disponibles"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:109
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:114
 msgid "UnActivate"
 msgstr "Désactiver"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:109
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:114
 msgid "Activate"
 msgstr "Activer"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:129
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:134
 msgid "Plugins List"
 msgstr "Liste des plugins"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:139
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_configurator.php:144
 msgid "Plugins"
 msgstr "Plugins"
 
@@ -178,48 +179,49 @@ msgstr "Accueil"
 msgid "History"
 msgstr "Historique"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:127
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:126
 msgid "cancel"
 msgstr "Annuler"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:128
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:127
 msgid "history"
 msgstr "Historique"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:129
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:128
 msgid "save & see"
 msgstr "Sauver et Voir"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:130
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pconfigfile.php:291
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:129
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pconfigfile.php:297
 msgid "save"
 msgstr "Sauver"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:143
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_editor.php:142
 msgid "History empty !"
 msgstr "Pas de fichier d'historique !"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:57
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:74
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:58
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:78
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_selector.php:144
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_selector.php:155
 msgid "create a directory"
 msgstr "Nouveau  dossier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:59
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:76
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:60
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:63
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:80
 msgid "create a page"
 msgstr "Céer une page"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:62
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:79
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:66
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:83
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_selector.php:146
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_selector.php:157
 #, fuzzy
 msgid "upload file"
 msgstr "Envoyer un fichier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:67
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_management.php:71
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_selector.php:131
 msgid "Site Pages"
 msgstr "Pages du site"
@@ -241,19 +243,27 @@ msgid "Select"
 msgstr "Sélectionner"
 
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_file_selector.php:200
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:132
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:133
 msgid "Cancel"
 msgstr "Annuler"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:117
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:101
+msgid "Disconnect"
+msgstr "Se déconnecter"
+
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:106
+msgid "Show home"
+msgstr "Tout afficher"
+
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:118
 msgid "Login"
 msgstr "Identifiant"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:118
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:119
 msgid "Password"
 msgstr "Mot de passe"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:133
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/admin/admin_top.php:134
 #, fuzzy
 msgid "Connection"
 msgstr "connection"
@@ -266,58 +276,58 @@ msgstr "Mauvais identifiant / mot de passe de connexion"
 msgid "Error deleting cache."
 msgstr "Une erreur c'est produite lors de la suppression du cache."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pconfigfile.php:290
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pconfigfile.php:296
 msgid "Source"
 msgstr "Source"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:113
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:114
 msgid "Can not create directory (check permissions): "
 msgstr "Impossible de créer le répertoire (vérifiez les droits d'accés)"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:162
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:163
 msgid "the directory"
 msgstr "le répertoire"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:164
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:247
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:165
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:254
 msgid "Delete"
 msgstr "Supprimer"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:168
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:252
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:169
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:259
 msgid "Rename"
 msgstr "Renommer"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:173
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:257
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:174
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:264
 msgid "Copy"
 msgstr "Copier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:179
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:264
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:180
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:271
 msgid "Move"
 msgstr "Déplacer"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:247
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:248
 #, php-format
 msgid "can not erase dir %s Check permissions."
 msgstr "Impossible de supprimer le répertoire %s. Vérifiez les permissions."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:254
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:255
 #, php-format
 msgid "Error while erasing dir %s. Check permissions."
 msgstr "Impossible de supprimer le répertoire %s. Vérifiez les permissions."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:278
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:279
 #, php-format
 msgid "Can not move %s. The target directory not exists !"
 msgstr "Impossible de déplacer %s. Le répertoire cible n'existe pas."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:283
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:284
 msgid "Can not copy directory with empty name"
 msgstr "Impossible de copier un répertoire avec un nom vide."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:286
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pdir.php:287
 msgid "Directory or File exists"
 msgstr "Le fichier / répertoire existe déjà "
 
@@ -413,11 +423,11 @@ msgstr "Tentative d'ajouter l'évènement %s mais la fonction %s n'existe pas."
 msgid "Event %s not exists"
 msgstr "L'événement %s existe déjà ."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:245
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:252
 msgid "the file"
 msgstr "le fichier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:282
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:289
 #, php-format
 msgid ""
 "Can not erase file %s .\n"
@@ -426,20 +436,20 @@ msgstr ""
 "Impossible de supprimer le répertoire %s. \n"
 "Vérifiez les permissions."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:283
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:290
 msgid "Can not erase file"
 msgstr "Impossible de supprimer le fichier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:326
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:333
 #, php-format
 msgid "File: %s exists."
 msgstr "Le fichier %s existe déjà ."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:329
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:336
 msgid "An error occured while renaming file"
 msgstr "Une erreure est survenue lors du renommage du fichier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:358
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:365
 msgid ""
 "can not copy. Directory not writable.\n"
 " Check file permissions."
@@ -447,19 +457,19 @@ msgstr ""
 "Impossible de supprimer le répertoire %s. \n"
 "Vérifiez les permissions."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:361
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:368
 msgid "File exists"
 msgstr "Le fichier existe déjà "
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:362
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:369
 msgid "Error occured while copying file"
 msgstr "Une erreure est survenue lors de la copie du fichier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:362
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:369
 msgid "Check file permissions"
 msgstr "Vérifiez les droits d'accés"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:428
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/lib/pfile.php:439
 #, php-format
 msgid "Fatal Error, can not find the file %s"
 msgstr "Erreur fatale, impossible de trouver le fichier %s"
@@ -569,7 +579,7 @@ msgid "Save"
 msgstr "Sauver"
 
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:38
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_page.js:145
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_page.js:125
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/functions.js:9
 msgid "Loading ..."
 msgstr "Chargement en cours ...."
@@ -578,44 +588,50 @@ msgstr "Chargement en cours ...."
 msgid "Name can not be empty."
 msgstr "Le nom ne peut pas être vide."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:106
-msgid "Create a page"
-msgstr "Créer une page"
-
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:106
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:118
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:122
 msgid "Page name:"
 msgstr "Nom de la page:"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:115
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:121
+msgid "Create a page"
+msgstr "Créer une page"
+
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:141
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/functions.js:122
+msgid "Ok"
+msgstr ""
+
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:177
 msgid "Create a directory"
 msgstr "Créer un dossier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:115
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:177
 msgid "Directory name:"
 msgstr "Nom du dossier:"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:134
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:196
 msgid "Copy name :"
 msgstr "Nom de la copie:"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:139
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:201
 #, fuzzy
 msgid "copy"
 msgstr "Copier"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:152
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:214
 msgid "Image Resize"
 msgstr "Redimentionner l'image"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:152
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:214
 msgid "New Size (in px):"
 msgstr "Nouvelle taille (en px):"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:160
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_file_management.js:222
 msgid "Do you really want to delete "
 msgstr "Voulez vous vraiment supprimer "
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_page.js:201
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_page.js:181
 msgid "Do you really want to disconnect ?"
 msgstr "Voulez vous vraiment vous déconnecter ?"
 
@@ -623,21 +639,25 @@ msgstr "Voulez vous vraiment vous déconnecter ?"
 msgid "Select Files"
 msgstr "Séclectionner ...."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:100
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:101
 msgid "Uploading file: "
 msgstr "Envoyer un fichier: "
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:151
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:153
 msgid "Click on the select button to upload files. You can choose futher files."
 msgstr "Cliquez sur le boutton sélectionner pour envoyer vos fichiers."
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:156
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:158
 msgid "upload selector"
 msgstr "Selection d'un fichier à envoyer"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:184
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:187
 msgid "upload progress"
 msgstr "Envoie en cours"
+
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/admin_swfupload_handlers.js:222
+msgid "File:"
+msgstr ""
 
 #: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/functions.js:86
 msgid "Confirm message"
@@ -651,14 +671,12 @@ msgstr "Non"
 msgid "Yes"
 msgstr "Oui"
 
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/functions.js:121
-msgid "Ok"
-msgstr ""
-
-#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/functions.js:160
+#: /Users/mathieuvilaplana/Sites/pollencms_googlecode/core/jscripts/functions.js:159
 msgid "Erreur"
 msgstr ""
 
+#~ msgid "Manage Users Accounts"
+#~ msgstr "Gestion des comptes"
 #~ msgid "New name :"
 #~ msgstr "Nouveau nom :"
 #~ msgid "Plugins Activated list"

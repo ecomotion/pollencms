@@ -3,6 +3,7 @@
 
 $oTextConfigFile = new PTextFile($configFile->path);
 $tabMainTabs = array();
+
 $tabMainTabs[]=	array(
 	'FRAG_NAME'=>'frag_config',
 	'TAB_NAME'=>_('Site Configuration'),
@@ -13,10 +14,15 @@ $tabMainTabs[]=	array(
 			'TAB_CONTENT'=>$configFile->DisplayEditor('actionClickOnSaveSiteConfig')
 		),
 		array(
+			'FRAG_NAME'=>'hotkeys_management',
+			'TAB_NAME'=>_('Manage Hot Keys'),
+			'TAB_CONTENT'=>$configFile->DisplayEditor('actionClickOnSaveConfig','HOTKEYS')
+		),/*
+		array(
 			'FRAG_NAME'=>'users_management',
 			'TAB_NAME'=>_('Manage Users Accounts'),
 			'TAB_CONTENT'=>'<h2>Users Accounts</h2>'.$configFile->getHtmlUsersList()
-		),
+		),*/
 		array(
 			'FRAG_NAME'=>'site_cache',
 			'TAB_NAME'=>_('Cache Management'),

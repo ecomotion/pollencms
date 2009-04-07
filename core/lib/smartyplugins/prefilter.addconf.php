@@ -15,8 +15,12 @@ function smarty_prefilter_addconf($source, &$smarty)
 
 {if isset($DEFAULT_CONFIG_FILE_SITE)}
 	{config_load file=$DEFAULT_CONFIG_FILE_SITE}
+	{config_load file=$DEFAULT_CONFIG_FILE_SITE section=\'HOTKEYS\'}
 {/if}
-{config_load file=$CONFIG_FILE_SITE}
+
+	{config_load file=$CONFIG_FILE_SITE}
+	{config_load file=$CONFIG_FILE_SITE section=\'HOTKEYS\'}
+
 {if isset($CONFIG_FILE_CATEGORY)}
 	{if isset($DEFAULT_CONFIG_FILE_SITE)}
 		{config_load file=$DEFAULT_CONFIG_FILE_SITE section=\'CATEGORY\'}
@@ -31,6 +35,7 @@ function smarty_prefilter_addconf($source, &$smarty)
 	{config_load file=$CONFIG_FILE_SITE section=\'PAGE\'}
 	{config_load file=$CONFIG_FILE_PAGE}
 {/if}
+
 	'.$source;
 }
 ?>

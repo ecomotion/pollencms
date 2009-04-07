@@ -4,7 +4,7 @@ var tabInitCallBack = new Array();
 var bBeingSort = false;			
 $(function(){
 	tabMyBack[tabMyBack.length]=new myUrl(window.location.href,"Panneau d'administration",true);
-	//On d�sactive le btn tout afficher si on est sur la page admin
+	//On désactive le btn tout afficher si on est sur la page admin
 	setFormAdminAllStatus(window.location.href);
 	//sur la page d'accueil de l'admin
 	iniInfoBulles();
@@ -89,31 +89,8 @@ function setFormAdminAllStatus(strCurrUrl){
 
 //If ajax is set to true, modify all url except url whose href="#"
 function resetLinks(){
-/*	$('dl.file','#browser').find('a.fileLink').each(function(){
-		var myUrl=$(this).attr("href");
-		if(/\.php.*|\.html/i.test(myUrl) && !/javascript:/i.test(myUrl) && !/#/i.test(myUrl)){
-			var oBlockFile = $(this).parents('dl.file');
-			$(this).unbind('click').attr("href","#");
-			oBlockFile.dblclick(function(){
-					myRelodPage(myUrl, 'EDIT');
-					$(this).blur();
-					return false;
-				})
-				.click(function(){
-					var self = $(this);
-					if(!self.hasClass('selected'))
-						self.addClass('selected');
-					else
-						self.removeClass('selected');
-					return false;
-				})
-			;
-		}
-	});
-*/
 	if(bLoadAjax){
 		$("a").each(function(iIndex){
-//			if($(this).parents('.sortable').length==0){
 				var myUrl=$(this).attr("href");
 				if(/\.php.*|\.html/i.test(myUrl) && !/javascript:/i.test(myUrl) && !/#/i.test(myUrl)){
 					var myTitle=$(this).find("h3").html();
@@ -125,7 +102,6 @@ function resetLinks(){
 						.attr("href","#")
 					;
 				}
-//			}
 		});
 	}
 }

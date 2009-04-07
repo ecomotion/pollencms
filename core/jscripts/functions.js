@@ -85,13 +85,13 @@ function notify(strMessage){
 function confirmDlg(strMessage,fctYes,fctNo){
 	var dlg = $('<div style="text-align:center">'+strMessage+'</div>').dialog({
 		title: _('Confirm message'),
+		resizable:true,modal:true, position:'center',
 		buttons: {
 			'Yes': fctYes ,
 			'No': function() {$(this).dialog('destroy'); fctNo && fctNo.call(this);}
-		},
-		resizable:false,modal:true, height: 140,position:'top'
+		}
 	});
-	var btnNo = dlg.parents('.ui-dialog:first').find('button:last');
+	var btnNo = dlg.parent('.ui-dialog:first').find('button:last');
 	btnNo.text(_('No'));
 	var btnYes = dlg.parents('.ui-dialog:first').find('button:first');
 	btnYes.text(_('Yes')).focus();
@@ -107,6 +107,7 @@ function inputDlg(strTitle,strLabel,fctOk,fctCancel,value){
 		.dialog({
 			title:strTitle,
 			label: strLabel,
+			position:'center',
 			buttons: {
 				'Ok': function() {
 					fctOk && fctOk.call(this,$('input',this).val(),$(this));
@@ -122,11 +123,9 @@ function inputDlg(strTitle,strLabel,fctOk,fctCancel,value){
 	var btnOk = $('button:first',objDlg).text(_('Ok'));
 	var btnCancel = $('button:last',objDlg).text(_('Cancel'));
 	$('input',objDlg).focus().keypress(function (e) {
-			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
 			//if user click on enter
-			if(key == 13) {
-				btnOk.trigger('click');
-			}
+			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			(key == 13) &&  btnOk.trigger('click');
 		});
 	return false;
 }

@@ -97,14 +97,14 @@ function toggleShowConfigEditor(myForm){
 		oTextArea.slideUp('fast');
 	}
 }
-function actionClickOnSaveConfig(formId, strFile){
+function actionClickOnSaveConfig(formId, strFile, strSection){
 	
 	var oForm=$("#"+formId);
 	if(!$('textarea#srcParams', oForm).is(':visible'))
 		reloadFileConfigTextArea(formId);
 	
 	var strTextValue = $('textarea#srcParams', oForm).attr("value");
-	ajaxAction('savefile',{file:strFile,text:strTextValue},null,function(data){
+	ajaxAction('saveconfigfile',{file:strFile,text:strTextValue,section:strSection},null,function(data){
 		notify(data);
 	});
 	return false;
