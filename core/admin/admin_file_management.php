@@ -101,7 +101,7 @@ foreach($listDir as $file){
 			$obj->Display(70,$print=false,$url=false,$proot_dir);
 	} else {
 		if( $obj =& getFileObject($file) )
-			$obj->Display(70,$url=false,$proot_dir);
+			echo $obj->Display(70,$url=false,$proot_dir);
 	}	
 }
 ?>

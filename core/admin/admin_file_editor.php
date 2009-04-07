@@ -59,7 +59,10 @@ if( isConnected() ){
 		}
 		$strPath=$o->getParentPath();
 	}
-	$tabGuid[]=array('NAME'=>str_replace('languages',_('Site Pages'),$oRoot->getName()),'URL'=>'admin_file_management.php?rootpath='.rawurlencode(str_replace(SITE_PATH,'',PAGES_PATH)));
+	$tabGuid[]=array(
+		'NAME'=>str_replace('languages',_('Site Pages'),$oRoot->getName()),
+		'URL'=>'admin_file_management.php?rootpath='.rawurlencode(str_replace(SITE_PATH,'',$oRoot->path))
+	);
 	$tabGuid = array_reverse($tabGuid);
 	foreach($tabGuid as $strUrlGuid){
 		echo '<a href="'.$strUrlGuid['URL'].'">'.$strUrlGuid['NAME'].'</a> > ';
