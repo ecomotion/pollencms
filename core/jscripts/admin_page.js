@@ -141,16 +141,20 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 	}
 	
 	stopInfoBulles();
-	if(!bFadeEffect) bFadeEffect=(new RegExp("\admin\.php$", "gi").test(tabMyBack[tabMyBack.length-1].strUrl))?true:false;
+	if(!bFadeEffect)  bFadeEffect=(new RegExp("\admin\.php$", "gi").test(tabMyBack[tabMyBack.length-1].strUrl))?true:false;
 	if(bFadeEffect)	$("#contentAdmin").css({opacity:0.6});//hide();//css({display:"none"});
 	
 	if(bFadeEffect && window.top!=window) window.top.oDialogAdmin.dialog("option","title","Chargement en cours ....");
 	
-	msgStatus(_('Loading ...'));
-	$("#contentAdmin").load(strUrl+" #contentAdmin",function(){
-		if(bAddHistory) tabMyBack[tabMyBack.length] = new myUrl(strUrl,strTitle,bFadeEffect);
+	
+	doAjaxAction(strUrl,'', {}, function(data){
+		var oContent = jQuery("<div/>")
+						.append(data.replace(/<script(.|\s)*?\/script>/g, ""))
+						.find('#contentAdmin');
+		oContent = $("#contentAdmin").replaceWith(oContent);
 		
-		if(bFadeEffect) $(this).show().css({opacity:0.6}).animate({opacity:1},200);
+		if(bAddHistory) tabMyBack[tabMyBack.length] = new myUrl(strUrl,strTitle,bFadeEffect);
+		if(bFadeEffect) oContent.show().css({opacity:0.6}).animate({opacity:1},200);
 		
 		for(i=0; i<tabInitCallBack.length;i++){
 			tabInitCallBack[i].apply();
@@ -158,18 +162,15 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 
 		setFormAdminAllStatus(strUrl);
 		if(window.top != window){
-			if(/editor\.php/.test(strUrl)){
-				window.top.oDialogAdmin.dialog('fullscreen',true);
-			}else {
-				window.top.oDialogAdmin.dialog('fullscreen',false);			
-			}
+			if(/editor\.php/.test(strUrl)){window.top.oDialogAdmin.dialog('fullscreen',true);}
+			else {window.top.oDialogAdmin.dialog('fullscreen',false);}
 			window.top.oDialogAdmin.dialog('resizeAuto');
 		}
 		if(window.top != window && strTitle) window.top.oDialogAdmin.dialog('option',"title",strTitle);
-		
+
 		callback && callback.call(this);
-		msgStatus();
-	});
+	},'GET');
+	
 	return false;
 }
 

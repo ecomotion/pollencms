@@ -45,7 +45,7 @@ class PConfigFile extends PTextFile {
 	}
 	
 	function parse(){
-		
+
 		if($this->bParsed === true) return true;
 		$this->bParsed=true;
 		
