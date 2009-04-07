@@ -81,7 +81,7 @@ function initSortable(){
 
 function initContextMenu(){
 	var strIdentifier="context_menu_"
-	$("dl.folder, dl.file").each(function(){
+	$("dl.folder, dl.file",$("#browser")).each(function(){
 		var objImg = $(this).find("img[id^='"+strIdentifier+"']");
 		if(objImg.size()==1){
 			strMenuId = "menu_"+objImg.attr("id").substring(strIdentifier.length);
@@ -101,18 +101,6 @@ function checkName($strName){
 }
 
 
-function setPageModel(strModel, strId){
-	var objPageModelInput = $("#pagemodelselected");
-	var objSelected=$('dl[id*="'+strId+'"]');
-	if(objSelected.hasClass('ui-state-highlight')){
-		objPageModelInput.val('');
-		objSelected.removeClass('ui-state-highlight');
-	}else{
-		$('dl',objSelected.parents('div:first')).removeClass('ui-state-highlight');
-		objPageModelInput.val(strModel)
-		objSelected.addClass('ui-state-highlight');
-	}
-}
 function createPage(strCurrDir,bUseModel){
 
 	var obj=$('<div><div style="padding:0px 10px"><input type="hidden" id="pagemodelselected" value="empty" />'+_('Page name:')+' <input type="text" value="" id="pageName" size="'+20+'"/></div><div id="listModels" ></div>')
