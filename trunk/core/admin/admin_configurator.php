@@ -134,14 +134,27 @@ if(!doEventAction('addPluginsTabs',array(&$tabExtraPlugins)))
 else{
 	$tabPlugins = array_merge($tabPlugins,$tabExtraPlugins);
 }
+
 $tabMainTabs[] = array(
 	'FRAG_NAME'=>'plugins',
 	'TAB_NAME'=>_('Plugins'),
 	'TAB_CONTENT'=>array_to_tabs($tabPlugins,'tabConfiguratorLevel2')
 );
 
-echo '<div style="height:20px"></div>'.array_to_tabs($tabMainTabs,'tabConfigurator');
+/**
+	TAB ABOUT
+*/
 
+//$version = $configFile->getDirectParam("");
+
+
+$tabMainTabs[] = array(
+	'FRAG_NAME'=>'about',
+	'TAB_NAME'=>_('About'),
+	'TAB_CONTENT'=>array_to_about()
+);
+
+echo '<div style="height:20px"></div>'.array_to_tabs($tabMainTabs,'tabConfigurator');
 
 function array_to_tabs($aArray,$strWrapperClass){
 	$strTpl = '
@@ -163,6 +176,19 @@ function array_to_tabs($aArray,$strWrapperClass){
 		</div>
 		';
 }
+
+function array_to_about(){
+	
+	$strReturn = '<div><strong>Pollen CMS version :</strong> '.POLLEN_CMS_VERSION.'</div>';
+	
+	$strReturn .= '<div class="blockLicence"><strong>Licence:</strong><br /><textarea readonly>';
+	$strReturn .= file_get_contents(SITE_PATH."Licence.txt");
+	$strReturn .= "</textarea></div>";
+	
+	return $strReturn;
+	
+}
+
 ?>
 
 
