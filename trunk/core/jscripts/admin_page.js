@@ -49,7 +49,7 @@ function initButtons(){
 	.mouseup(function(){
 		if(/MouseDown/i.test($(this).attr('class'))){
 			//setTimeout(function(){$(this).removeClass("btnToutAfficherEnableMouseDown").addClass("btnToutAfficherEnable");},400);
-			$(this).parent("div").removeClass("btnToutAfficherEnableMouseDownLeft").addClass("btnToutAfficherEnableLeft");
+			//$(this).parent("div").removeClass("btnToutAfficherEnableMouseDownLeft").addClass("btnToutAfficherDisableLeft");
 		}
 	});
 	$("#btnDeconnecter").mousedown(function(){
@@ -58,8 +58,8 @@ function initButtons(){
 	})
 	.mouseup(function(){
 		if(/MouseDown/i.test($(this).attr('class'))){
-			$(this).removeClass("btnDeconnecterMouseDown").addClass("btnDeconnecterEnable");
-			$(this).parent("div").removeClass("btnDeconnecterMouseDownLeft").addClass("btnDeconnecterEnableLeft");
+			//$(this).removeClass("btnDeconnecterMouseDown").addClass("btnDeconnecterEnable");
+			//$(this).parent("div").removeClass("btnDeconnecterMouseDownLeft").addClass("btnDeconnecterEnableLeft");
 		}
 	});
 	
@@ -67,11 +67,13 @@ function initButtons(){
 function setFormAdminAllStatus(strCurrUrl){
 	//si on est sur la page admin.php (index de l'admin), on block  le bouton, sinon on l'active
 	if(new RegExp("\admin\.php$", "gi").test(strCurrUrl)){
+		$("#btnToutAfficherLeft").removeClass("btnToutAfficherEnableLeft").addClass("btnToutAfficherDisableLeft");
 		$("#btnToutAfficher").removeClass("btnToutAfficherEnable").addClass("btnToutAfficherDisable").unbind("click").click(function(){return false;});
 		//reset tab myback
 		tabMyBack.splice(1,tabMyBack.length);
 	}
 	else{
+		$("#btnToutAfficherLeft").removeClass("btnToutAfficherDisableLeft").addClass("btnToutAfficherEnableLeft");
 		$("#btnToutAfficher").removeClass("btnToutAfficherDisable").addClass("btnToutAfficherEnable").unbind("click").click(function(){
 			myRelodPage('admin.php','Panneau d\'Administration',true);return false;
 		});
@@ -82,8 +84,7 @@ function setFormAdminAllStatus(strCurrUrl){
 	
 	if(tabMyFow.length < 1) $("#btnFow").removeClass("btnForwOn").addClass("btnForwOff").css("background","url(theme/images/admin/btnForward-off.png) no-repeat").attr("disabled",true);
 	else $("#btnFow").removeClass("btnForwOff").addClass("btnForwOn").css("background","url(theme/images/admin/btnForward.png) no-repeat").attr("disabled",false);
-
-
+	
 }
 
 
