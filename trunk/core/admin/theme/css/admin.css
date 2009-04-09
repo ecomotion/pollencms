@@ -12,8 +12,6 @@ body{
 	margin:0;	
 }
 .reset{
-	height: 1px;
-	font-size: 1px;
 	clear: both;
 }
 
@@ -58,45 +56,48 @@ textarea.paramvalueTextArea{width:400px;border:1px solid #CCC;float:left;margin-
 }
 
 #btnToutAfficherLeft{
-	float:left;
+	float: left;
 	height: 32px;
 }
 
-a#btnToutAfficher,a#btnToutAfficher:hover{
-	text-decoration:none;
+a#btnToutAfficher, a#btnToutAfficher:hover{
+	text-decoration: none;
 	text-transform: uppercase;
 }
 
+/* clic souris */
 .btnToutAfficherEnableMouseDownLeft{
 	background: url(../images/admin/afficher-off-left.gif) no-repeat top left;
-}
-
-.btnToutAfficherDisableLeft{
-	background: url(../images/admin/afficher-disabled-left.gif) no-repeat top left;
-}
-
-.btnToutAfficherEnableLeft{
-	background: url(../images/admin/afficher-on-left.gif) no-repeat top left;
 }
 
 .btnToutAfficherEnableMouseDown{
 	background: url(../images/admin/afficher-off-right.gif) no-repeat top right;
 }
 
-a.btnToutAfficherEnableMouseDown,a.btnToutAfficherEnableMouseDown:hover,a.btnToutAfficherEnable,a.btnToutAfficherEnable:hover{
-	color:black;
+/* bouton desactive */
+.btnToutAfficherEnableLeft{
+	background: url(../images/admin/afficher-on-left.gif) no-repeat top left;
+}
+
+.btnToutAfficherEnable{
+	background: url(../images/admin/afficher-on-right.gif) no-repeat top right;
+}
+
+/* bouton desactive */
+.btnToutAfficherDisableLeft{
+	background: url(../images/admin/afficher-disabled-left.gif) no-repeat top left;
 }
 
 .btnToutAfficherDisable{
 	background: url(../images/admin/afficher-disabled-right.gif) no-repeat top right;
 }
 
-a.btnToutAfficherDisable,a.btnToutAfficherDisable:hover{
-	color:grey;
+a.btnToutAfficherEnableMouseDown,a.btnToutAfficherEnableMouseDown:hover,a.btnToutAfficherEnable,a.btnToutAfficherEnable:hover{
+	color:black;
 }
 
-.btnToutAfficherEnable{
-	background: url(../images/admin/afficher-on-right.gif) no-repeat top right;
+a.btnToutAfficherDisable, a.btnToutAfficherDisable:hover{
+	color:#888;
 }
 
 #btnDeconnecter{
@@ -106,6 +107,10 @@ a.btnToutAfficherDisable,a.btnToutAfficherDisable:hover{
 	height: 25px;
 	padding-top:7px;
 	text-decoration:none;
+}
+
+* html #btnDeconnecter{
+	width:100px;
 }
 
 .btnDeconnecterEnableLeft{
@@ -292,19 +297,52 @@ fieldset legend{
 .infobulles span{
 	display:none;
 }
+
 #panel-links{
-	text-align: center;
-	margin:100px 10px 40px 10px;
-	border:0px solid red;
+	width:auto;
+
+	margin-top: 100px;
+	margin-bottom:40px;
 }
+
 #panel-links A{
-	padding-top:100px;
-	margin-right: 20px;
+	display:block;
+	float:left;
+	height:123px;
+	padding:20px;
 	text-decoration: none;
 }
+
+#panel-links .block-icon{
+	float: left;
+	height:123px;
+	background: url(../images/admin/icon-home-right.jpg) no-repeat top right;
+}
+
+#panel-links .img-icon{
+	float:left;
+	height:110px;
+	padding:5px 10px;
+	background: url(../images/admin/icon-home-left.jpg) no-repeat top left;
+}
+
+#panel-links .title-icon{
+	float:left;
+	padding:0 10px;
+	line-height:60px;
+	font-weight:bold;
+	text-transform:uppercase;
+	color:white;
+}
+
 #panel-links A span{
 	display:none;
 }
+
+#panel-links A .block-icon span{
+	display:inline;
+}
+
 #tooltip{
 	background: url(../images/admin/tooltip.gif) no-repeat top left;
 	width: 204px;
