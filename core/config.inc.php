@@ -4,7 +4,7 @@
  */
 if(!defined("CONFIG")){
 	define("CONFIG",1);
-	define("POLLEN_CMS_VERSION","0.41");
+	define("POLLEN_CMS_VERSION","0.42");
 	
 	define("SLASH",strstr( PHP_OS, "WIN") ?"\\" : "/");
 	
