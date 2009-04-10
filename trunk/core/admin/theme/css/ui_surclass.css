@@ -5,4 +5,17 @@
 
 .ui-dialog-titlebar {font-size:0.9em;}
 
-.ui-widget-overlay{opacity:0.9;background:#000;}
+/*.ui-widget-overlay{opacity:0.9;background:#000;}*/
+
+
+#msgStatus{
+	position:absolute;
+	top:0px;
+	left:200px;
+	background:red url('../images/admin/spinner.gif') no-repeat 4px 0px;
+	color:#FFF;
+	display:'inline';
+	visibility:hidden;
+	text-align:center;
+	padding:2px 2px 2px 18px;
+}
