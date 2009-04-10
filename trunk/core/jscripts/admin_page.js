@@ -128,14 +128,15 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 		var oContent = jQuery("<div/>")
 						.append(data.replace(/<script(.|\s)*?\/script>/g, ""))
 						.find('#contentAdmin');
-		oContent = $("#contentAdmin").replaceWith(oContent);
+		
+		$("#contentAdmin").replaceWith(oContent);
 		
 		if(bAddHistory) tabMyBack[tabMyBack.length] = new myUrl(strUrl,strTitle,bFadeEffect);
-		if(bFadeEffect) oContent.show().css({opacity:0.6}).animate({opacity:1},200);
 		
 		for(i=0; i<tabInitCallBack.length;i++){
 			tabInitCallBack[i].apply();
 		}
+		if(bFadeEffect) oContent.show().css({opacity:0.6}).animate({opacity:1},200);
 
 		setFormAdminAllStatus(strUrl);
 		if(window.top != window){
@@ -146,6 +147,7 @@ function myRelodPage(strUrl, strTitle, bFadeEffect,bAddHistory,callback){
 		if(window.top != window && strTitle) window.top.oDialogAdmin.dialog('option',"title",strTitle);
 
 		callback && callback.call(this);
+		
 	},'GET');
 	
 	return false;
