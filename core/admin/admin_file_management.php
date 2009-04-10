@@ -90,17 +90,17 @@ if(!$pcurrent_dir)  die('current directory not found');
 // parrent Dir, only print if not on root directory
 if($current_dir != SITE_PATH && $current_dir!=$rootpath && $current_dir ){
 	$pdirParent = $pcurrent_dir->getParent();
-	$pdirParent->Display(70,'../',$url=false,$proot_dir);
+	echo $pdirParent->Display(70,'../',$url=false,$proot_dir);
 }
 
 //On affice les fichiers
 $listDir = $pcurrent_dir->listDir();
 foreach($listDir as $file){
 	if(is_dir($file)){
-		if( $obj =& getFileObject($file) )
-			$obj->Display(70,$print=false,$url=false,$proot_dir);
+		if( $obj = &getFileObject($file) )
+			echo $obj->Display(70,$print=false,$url=false,$proot_dir);
 	} else {
-		if( $obj =& getFileObject($file) )
+		if( $obj = &getFileObject($file) )
 			echo $obj->Display(70,$url=false,$proot_dir);
 	}	
 }

@@ -1,19 +1,8 @@
 <?php include 'admin_top.php';?>
 <?php
+$tabMainTabs = array();
 
 $oTextConfigFile = new PTextFile($configFile->path);
-$tabMainTabs = array();
-$strModelContent ='';
-$oDirModels = &getFileObject(PAGES_MODELS_PATH);
-$tabListModels = $oDirModels->listDir();
-foreach($tabListModels as $filePath){
-	if(is_file($filePath)){
-		$oTemp = &getFileObject($filePath);
-		//$strModelContent.=get_class($oTemp);
-		$strModelContent .= $oTemp->Display(70,$url=false,$oDirModels);
-	}
-}
-$strUrltabModels = 'admin_file_management.php?current_dir='.urlencode(POFile::getPathRelativePath(PAGES_MODELS_PATH));
 $tabMainTabs[]=	array(
 	'FRAG_NAME'=>'frag_config',
 	'TAB_NAME'=>_('Site Configuration'),
@@ -51,7 +40,27 @@ $tabMainTabs[]=	array(
 		)
 	),'tabConfiguratorLevel2')
 );
+
 /**Models **/
+$strModelContent ='';
+$strUrltabModels = 'admin_file_management.php?current_dir='.urlencode(POFile::getPathRelativePath(PAGES_MODELS_PATH));
+if(!is_dir(PAGES_MODELS_PATH)){
+	$oDirModels = new PDir(PAGES_MODELS_PATH);
+	if(!$oDirModels->mkdir())
+		$strModelContent .= getError();
+}
+if(is_dir(PAGES_MODELS_PATH)){
+	$oDirModels = &getFileObject(PAGES_MODELS_PATH);
+	$tabListModels = $oDirModels->listDir($oDirModels->ONLY_FILES);
+	foreach($tabListModels as $filePath){
+		if(is_file($filePath)){
+			$oTemp = &getFileObject($filePath);
+			//$strModelContent.=get_class($oTemp);
+			$strModelContent .= $oTemp->Display(70,$url=false,$oDirModels);
+		}
+	}
+}
+
 $tabMainTabs[]=	array(
 			'FRAG_NAME'=>'models_link',
 			'TAB_NAME'=>_('Models Management'),
@@ -171,14 +180,13 @@ $tabMainTabs[] = array(
 /**
 	TAB ABOUT
 */
-
-//$version = $configFile->getDirectParam("");
-
-
 $tabMainTabs[] = array(
 	'FRAG_NAME'=>'about',
 	'TAB_NAME'=>_('About'),
-	'TAB_CONTENT'=>array_to_about()
+	'TAB_CONTENT'=>'<div><strong>Pollen CMS version :</strong> '.POLLEN_CMS_VERSION.'</div>'.
+	'<div class="blockLicence"><strong>Licence:</strong><br /><textarea readonly>'.
+	file_get_contents(SITE_PATH."Licence.txt").
+	'</textarea></div>'
 );
 
 echo '<div style="height:20px"></div>'.array_to_tabs($tabMainTabs,'tabConfigurator');
@@ -204,20 +212,7 @@ function array_to_tabs($aArray,$strWrapperClass){
 		';
 }
 
-function array_to_about(){
-	
-	$strReturn = '<div><strong>Pollen CMS version :</strong> '.POLLEN_CMS_VERSION.'</div>';
-	
-	$strReturn .= '<div class="blockLicence"><strong>Licence:</strong><br /><textarea readonly>';
-	$strReturn .= file_get_contents(SITE_PATH."Licence.txt");
-	$strReturn .= "</textarea></div>";
-	
-	return $strReturn;
-	
-}
 
+include 'admin_bottom.php';
 ?>
-
-
-<?php include 'admin_bottom.php';?>
 
