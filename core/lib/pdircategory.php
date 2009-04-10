@@ -53,27 +53,31 @@ class PDirCategory extends PDir{
 	}
 
 	function Display($thumb_size,$print=false,$url=false,$proot_dir=false){
-		echo "<dl class=\"folder file\" id=\"filename=".str_replace(SLASH,'/',$this->getRelativePath())."\">\n";
+		$strReturn = '';
+		
+		$strReturn .= "<dl class=\"folder file\" id=\"filename=".str_replace(SLASH,'/',$this->getRelativePath())."\">\n";
 		$this->DisplayMenu((($proot_dir)?$proot_dir->getRelativePath():''));
 		if(!$url) $url= $this->getDisplayUrl($proot_dir);
 		
 		$strSpanClass = (!$this->isShowInMenu())?' class="notvisible"':' class="pagevisible"';
 		$strSpanClass = (!$this->isPublished())?' class="draft"':$strSpanClass;
 		
-		echo "\t<dt><a href='$url'>";
-		echo "<img align=\"top\"  src='".$this->getMimeIconUrl($print)."' alt=''  ";
+		$strReturn .= "\t<dt><a href='$url'>";
+		$strReturn .= "<img align=\"top\"  src='".$this->getMimeIconUrl($print)."' alt=''  ";
 		if(defined("EDIT_FILE"))
-			echo " id=\"context_menu_".$this->getIdName()."\" ";
+			$strReturn .= " id=\"context_menu_".$this->getIdName()."\" ";
 	
-		echo "/></a></dt>\n";
-		echo "\t<dd>";
-			echo '<span '.$strSpanClass.'>'.((!$print)?$this->getPrintedName():$print).'</span>';
-		echo "</dd>\n";
-		echo "</dl>\n";
+		$strReturn .= "/></a></dt>\n";
+		$strReturn .= "\t<dd>";
+			$strReturn .= '<span '.$strSpanClass.'>'.((!$print)?$this->getPrintedName():$print).'</span>';
+		$strReturn .= "</dd>\n";
+		$strReturn .= "</dl>\n";
+		
+		return $strReturn;
 	}
 	
 	function getDisplayUrl($proot_dir){
-		return 'admin_file_management.php'."?current_dir=".urlencode($this->getRelativePath((($proot_dir)?$proot_dir->path:SITE_PATH))).(($proot_dir)?"&rootpath=".urlencode($proot_dir->getRelativePath()):'');
+		return $_SERVER['PHP_SELF']."?current_dir=".urlencode($this->getRelativePath((($proot_dir)?$proot_dir->path:SITE_PATH))).(($proot_dir)?"&rootpath=".urlencode($proot_dir->getRelativePath()):'');
 	}
 	
 	function listDir($options=0,$fullpath=true,$filter=".*",$filterFalse=false,$nofilter=false){
