@@ -7,14 +7,9 @@ function initConfigurator(){
 }
 
 function initTabConfigurator(){
-	$("div.tabConfigurator").tabs({
+	$("div[class^='tabConfigurator']").tabs({
 		show:function(ui){
 			window.top.oDialogAdmin && window.top.oDialogAdmin.dialog('resizeAuto',false);
-		}
-	});
-	$("div.tabConfiguratorLevel2").tabs({
-		show:function(ui){
-			window.top.oDialogAdmin && window.top.oDialogAdmin.dialog('resizeAuto', false);
 		}
 	});
 }
@@ -63,7 +58,7 @@ function toggleactivatePlugin(strPlugin,strValue){
 	ajaxAction('toggleactivateplugin',{plugin:strPlugin,value:strValue},null,function(data){
 		notify(data);
 		myRelodPage(false, false, false,false,function(){
-			$("div.tabConfigurator").tabs('select',2);
+			$("div.tabConfigurator").tabs('select',3);
 		});
 	});
 	return false;

@@ -4,6 +4,8 @@ $(function() {
 });
 
 
+
+
 function doAjaxAction(strUrl,strActionName, params, callback,strType){
 	if(!strType) strType='POST';
 	oData = $.extend({},{'action':strActionName},params);
@@ -15,13 +17,13 @@ function doAjaxAction(strUrl,strActionName, params, callback,strType){
 		success:function(data, textStatus){
 			callback && callback.call(this,data);
 		},
-		error:function(HTTPRequest, textStatus, errorThrown){msgBoxError($(HTTPRequest.responseText).html());},
+		error:function(HTTPRequest, textStatus, errorThrown){msgStatus();msgBoxError($(HTTPRequest.responseText).html());},
 		complete:function(){msgStatus();}
 	});
 }
 
 function ajaxAction(strActionName, params, dlgToClose, callback){
-	doAjaxAction('admin_ajax.php',strActionName, params, function(data){
+	doAjaxAction(SITE_URL+'core/admin/admin_ajax.php',strActionName, params, function(data){
 			dlgToClose && dlgToClose.dialog('destroy');
 			!callback && myRelodPage();
 			callback && callback.call(this,data);			
@@ -77,18 +79,27 @@ function PopupCentrer(page,largeur,hauteur,options) {
 	myPop = window.open(page,"Gestion","top="+top+",left="+left+",width="+largeur+",height="+hauteur+","+options);
 }
 
-function notify(strMessage){
-	$.jGrowl(strMessage,{life:1000});
+function notify(strMessage,iTime){
+	if(!iTime) iTime=1000;
+	if(!$.jGrowl){
+		var tabLoad = new Array(SITE_URL+'vendors/jscripts/jqueryplugins/jgrowl/jquery.jgrowl-1.1.2_compressed.js');
+		loadJS(tabLoad,function(){
+			$.jGrowl(strMessage,{life:iTime});
+		});
+	}else{
+		$.jGrowl(strMessage,{life:iTime});
+	}
 }
 
 
 function confirmDlg(strMessage,fctYes,fctNo){
 	var dlg = $('<div style="text-align:center">'+strMessage+'</div>').dialog({
 		title: _('Confirm message'),
+		modal:true,
 		resizable:true,modal:true, position:'center',
 		buttons: {
 			'Yes': fctYes ,
-			'No': function() {$(this).dialog('destroy'); fctNo && fctNo.call(this);}
+			'No': function() {$(this).dialog('destroy'); fctNo && fctNo.call(this);$(this).remove();}
 		}
 	});
 	var btnNo = dlg.parent('.ui-dialog:first').find('button:last');
@@ -108,6 +119,7 @@ function inputDlg(strTitle,strLabel,fctOk,fctCancel,value){
 			title:strTitle,
 			label: strLabel,
 			position:'center',
+			modal:true,
 			buttons: {
 				'Ok': function() {
 					fctOk && fctOk.call(this,$('input',this).val(),$(this));
@@ -115,7 +127,7 @@ function inputDlg(strTitle,strLabel,fctOk,fctCancel,value){
 				},
 				'Cancel':function(){
 					fctCancel && fctCancel.call(this);
-					$(this).dialog('destroy');
+					$(this).dialog('destroy').remove();
 				}
 			}
 		});
