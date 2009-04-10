@@ -18,9 +18,10 @@ function smarty_outputfilter_admininclude($source, &$smarty)
 		<script type="text/javascript" src="'.SITE_URL.'vendors/jscripts/jquery.js" ></script>
 		<script src="'.SITE_URL.'vendors/jscripts/jqueryplugins/jquery.hotkeys.js"></script>
 		<script src="'.SITE_URL.'core/jscripts/admin.js"></script>
-	
 	';	
 
+	
+	
 	$strUiTheme = $configFile->getDirectParam('UI_THEME');
 	$strNewHead.= '<link rel="stylesheet" href="'.SITE_URL.'vendors/jscripts/jqueryui/themes/'.$strUiTheme.'/jquery-ui-1.7.1.css" />';
 	
@@ -41,6 +42,8 @@ function smarty_outputfilter_admininclude($source, &$smarty)
 			});
 		';
 	}
+	
+	
 	$strNewHead .= '
 	</script>
 	<!--end scriptsadmin-->
