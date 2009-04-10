@@ -15,7 +15,7 @@ if( isConnected() ){
 	<table align="center" border="0">
 	<tr><td>
 		<a href="admin_file_management.php?current_dir=<?php echo urlencode(POFile::getPathRelativePath(PAGES_PATH));?>"  class="panel-link infobulles" id="pages">
-			<div class="block-icon"><div class="img-icon"><img src="<?=SITE_URL?>core/admin/theme/images/admin/icon-pages.gif" /></div><div class="title-icon"><?php echo _('Pages'); ?></div><div class="reset"></div></div>
+			<div class="block-icon"><div class="img-icon"><img src="<?=SITE_URL?>core/admin/theme/images/admin/icon-pages.gif" /></div><div class="title-icon"><?php echo _('Very long title Pages'); ?></div><div class="reset"></div></div>
 			<span>
 				<h3> Gestion des pages </h3>
 				<p>Dans cette espace vous pouvez gérer la structure et les pages de votre site.</p>
@@ -48,34 +48,12 @@ if( isConnected() ){
 			</span>
 		</a>
 		</td>
-		<?php } 
+		<?php }
 		
 		if(!doEventAction('adminmainmenu',array()))
 			printError();
 		?>
 		
-<!--		<a href="admin_file_editor.php?file=<?=urlencode("site/config/config.ini")?>" class="panel-link infobulles" id="rss">
-			<img src="<?=SITE_URL?>core/admin/theme/images/admin/icon-rss.jpg" />
-			<span>
-				<h3>Gestion des news rss</h3>
-				<p>Cette section vous permet de modifier l'agrégateur de news.</p>
-			</span>
-		</a>
-		<a href="admin_file_management.php?current_dir=<?=urlencode(PAGES."/fr/Actualites/Agenda")?>" class="panel-link infobulles" id="agenda">
-			<img src="<?=SITE_URL?>core/admin/theme/images/admin/icon-agenda.jpg" />
-			<span>
-				<h3>Gestion de l'agenda</h3>
-				<p>Dans ce module vous pouvez gérer l'agenda du site.<br /> Un fichier = une rubrique</p>
-			</span>
-		</a>
-		<a href="admin_file_management.php?current_dir=<?=urlencode(PAGES."/fr/Actualites/Actualites")?>" class="panel-link infobulles" id="news" style="margin-right:0px">
-			<img src="<?=SITE_URL?>core/admin/theme/images/admin/icon-news.jpg" />
-			<span>
-				<h3>Gestion des Actualités</h3>
-				<p>Dans ce module vous pouvez gérer l'actualité du site.<br />Un fichier = Une Actualité</p>
-			</span>
-		</a>
--->	
 	<div class="reset"></div>
 	
 	</tr></table>
