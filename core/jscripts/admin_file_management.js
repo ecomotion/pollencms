@@ -108,6 +108,7 @@ function createPage(strCurrDir,bUseModel){
 		obj.dialog({
 			title:_('Create a page'),
 			label: _('Page name:'),
+			modal:true,
 			buttons: {
 				'Ok': function() {
 					var strPageName = $('input#pageName',this).val();
