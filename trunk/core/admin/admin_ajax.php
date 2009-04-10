@@ -7,8 +7,11 @@ include '../config.inc.php';
 require(SITE_PATH.'core/lib/lib_functions.php');
 require (SITE_PATH.'core/lib/lib_error.php');
 
-
-if( isConnected() ){
+if(isset($_REQUEST['action']) && $_REQUEST['action']=="ajaxgettext"){
+	require SITE_PATH.'core/lib/pollencms.php';
+	ajaxgettext();
+}
+else { if( isConnected() ){
 	
 	if(isset($_GET['action']) || isset($_POST['action'])){
 		
@@ -40,7 +43,7 @@ if( isConnected() ){
 }//must be connected;
 else{printFatalHtmlError('You are not connected',505);}
 die();
-
+}
 
 function toggleactivateplugin(){
 	global $configFile;

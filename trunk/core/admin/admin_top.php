@@ -65,7 +65,7 @@ if(!isset($_GET["ajax"])){
 <script type="text/javascript" src="<?php echo SITE_URL;?>vendors/jscripts/jqueryplugins/jgrowl/jquery.jgrowl-1.1.2_compressed.js" ></script>
 <link   rel="stylesheet"      href="<?php echo SITE_URL;?>vendors/jscripts/jqueryplugins/jgrowl/jquery.jgrowl.css" />
 
-<script language="JavaScript" src="<?php echo SITE_URL;?>?page=config.js" ></script>
+<script language="JavaScript" src="<?php echo SITE_URL;?>index.php?page=config.js" ></script>
 <script language="JavaScript" src="<?php echo SITE_URL;?>core/jscripts/functions.js" ></script>
 <script language="JavaScript" src="<?php echo SITE_URL;?>core/jscripts/admin_page.js" ></script>
 <script language="JavaScript" src="<?php echo SITE_URL;?>core/jscripts/admin_file_management.js" ></script>
@@ -92,7 +92,7 @@ if(!isset($_GET["ajax"])){
 	}};
 </script>
 </head>
-<body>
+<body class="pollenadmin">
 
 <?php
 if(isConnected() ){

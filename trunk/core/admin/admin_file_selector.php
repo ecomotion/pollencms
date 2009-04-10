@@ -34,7 +34,7 @@ if( !isset($_GET["current_dir"])  || $_GET["current_dir"] == '' || preg_match("/
 	$current_dir=$rootpath.SLASH.urljsdecode($_GET["current_dir"]);
 }
 
-$pcurrent_dir = &getFileObjectAndFind($current_dir);
+$pcurrent_dir = &getFileObject($current_dir);
 $proot_dir = new PDir($rootpath);
 
 if(!is_dir($rootpath)) die('root path not exists.');
@@ -61,7 +61,7 @@ $rootpathdir = $proot_dir->getRelativePath();
 </style>
 
 <script type="text/javascript" src="<?=SITE_URL?>vendors/jscripts/jquery.js"></script>
-<script type="text/javascript" src="<?=SITE_URL?>config.js"></script>
+<script type="text/javascript" src="<?=SITE_URL?>index.php?page=config.js"></script>
 
 <script language="JavaScript" src="../jscripts/functions.js"></script>
 <script type="text/javascript" src="<?=SITE_URL?>vendors/jscripts/jqueryui/jquery-ui-1.7.1.js"></script> 
@@ -74,7 +74,7 @@ $rootpathdir = $proot_dir->getRelativePath();
 
 <script language="JavaScript">
 function myRelodPage(){
-	window.location = '<?echo $_SERVER['REQUEST_URI']; ?>';
+	window.location = '<?php echo $_SERVER['REQUEST_URI']; ?>';
 }
 function setUrl(url){
 	<?php
@@ -121,17 +121,17 @@ function cancel(){
 }
 </script>
 </head>
-<body>
+<body class="pollenadmin">
 <div id="contentAdmin">
 <h2><?php echo _('Links');?></h2>
 <div id="links">
 	<div class="folderLinks">
 		<?php 
-		$oPdirPages = new PDir(PAGES_PATH);
-		$oPdirPages->Display(70,_('Site Pages'));
+		$oPdirPages = &getFileObject(PAGES_PATH);
+		echo $oPdirPages->Display(70,_('Site Pages'));
 		
-		$oPdirUpload = new PDir(MEDIAS_PATH);
-		$oPdirUpload->Display(70,_('Media'));
+		$oPdirUpload = &getFileObject(MEDIAS_PATH);
+		echo $oPdirUpload->Display(70,_('Media'));
 		?>
 	</div>
 </div><!-- end div links -->
@@ -166,14 +166,14 @@ List Files
 // parrent Dir, only print if not on root directory
 if($current_dir != SITE_PATH && $current_dir!=$rootpath && $current_dir ){
 	$pdirParent = $pcurrent_dir->getParent();
-	$pdirParent->Display(100,"../",$url=false,$proot_dir);
+	echo $pdirParent->Display(100,"../",$url=false,$proot_dir);
 }
 
 //Faire la liste des répertoires
 $listDir = $pcurrent_dir->listDir($pcurrent_dir->ONLY_DIR,true);
 foreach($listDir as $dir){
 	$objDir = &getFileObject($dir);
-	$objDir->Display(70,$print=false,$url=false,$proot_dir);
+	echo $objDir->Display(70,$print=false,$url=false,$proot_dir);
 }
 
 /* files list */
@@ -184,7 +184,8 @@ foreach($listFiles as $file){
 	if(SLASH != '/' ) $strRelativeUrl = str_replace(SLASH,'/',$strRelativeUrl);
 	$url='"javascript:setUrlFileChoice(\''.$strRelativeUrl.'\')"';
 	//if(eregi(TEXTEDIT_WYSWYG."|\.php",$file)){$url="\"javascript:setUrl('".urlencode(ereg_replace("[0-9]*_","",substr($objFile->getRelativePath(),strlen($rootpath)+1)))."')\"";}
-	$objFile->Display(70,$url,$proot_dir);
+	
+	echo $objFile->Display(70,$url,$proot_dir);
 	
 }
 
@@ -193,8 +194,8 @@ foreach($listFiles as $file){
 
 <form onSubmit="javascript: return setUrl(this.elements['real_path_selected'].value);" id="form_select_path" >
 
-	<input type="text" id="path_selected" value="<?=preg_replace('/[0-9]*_/','',$pcurrent_dir->getRelativePath($rootpath));?>" />
-	<input type="hidden" id="real_path_selected" value="<?=$pcurrent_dir->getRelativePath($rootpath);?>" />
+	<input type="text" id="path_selected" value="<?php echo preg_replace('/[0-9]*_/','',$pcurrent_dir->getRelativePath($rootpath));?>" />
+	<input type="hidden" id="real_path_selected" value="<?php echo $pcurrent_dir->getRelativePath($rootpath);?>" />
 
 	<button type="submit" class="ui-state-default ui-corner-all"><?php echo _('Select'); ?></button>
 	<button type="button" class="ui-state-default ui-corner-all" onClick="cancel();return false;"><?php echo _('Cancel'); ?></button>
