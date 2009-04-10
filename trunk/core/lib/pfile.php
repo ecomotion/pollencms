@@ -192,17 +192,20 @@ class PFile extends POFile {
 	* return: echo the html code to display the file.
 	*/
 	function Display($thumb_size,$url=false,$oRootDir=false){
+		$strReturn='';
 		if(!$url) $url=$this->getDisplayUrl();
-		echo '<dl class="file" id="filename='.str_replace(SLASH,'/',$this->getRelativePath()).'">'."\n"; 
+		$strReturn .= '<dl class="file" id="filename='.str_replace(SLASH,'/',$this->getRelativePath()).'">'."\n"; 
 		$this->DisplayMenu(($oRootDir?$oRootDir->getRelativePath():''));
 
-		echo "\t<dt>\n\t\t<a class=\"fileLink\" href=$url>";
-		echo "<img src='".$this->getMimeIconUrl($thumb_size)."'"; 
-		echo " id=\"context_menu_".$this->getIdName()."\" ";
- 		echo " />";
- 		echo "</a>\n\t</dt>\n";
-		echo "\t<dd><span>".$this->getPrintedName()."</span></dd>\n";
-		echo "</dl>\n";
+		$strReturn .= "\t<dt>\n\t\t<a class=\"fileLink\" href=$url>";
+		$strReturn .= "<img src='".$this->getMimeIconUrl($thumb_size)."'"; 
+		$strReturn .= " id=\"context_menu_".$this->getIdName()."\" ";
+ 		$strReturn .= " />";
+ 		$strReturn .= "</a>\n\t</dt>\n";
+		$strReturn .= "\t<dd><span>".$this->getPrintedName()."</span></dd>\n";
+		$strReturn .= "</dl>\n";
+
+		return $strReturn;
 	}
 	
 	/**

@@ -116,22 +116,23 @@ class PDir extends POFile {
 	}
 
 	function Display($thumb_size,$print=false,$url=false,$proot_dir=false){
-		echo "<dl class=\"folder file\" id=\"filename=".$this->getRelativePath()."\">\n";
-		$this->DisplayMenu((($proot_dir)?$proot_dir->getRelativePath():''));
+		$strReturn = '';
+		
+		$strReturn .= "<dl class=\"folder file\" id=\"filename=".$this->getRelativePath()."\">\n";
+		echo $this->DisplayMenu((($proot_dir)?$proot_dir->getRelativePath():''));
 		if(!$url) $url=$_SERVER["PHP_SELF"]."?current_dir=".urlencode($this->getRelativePath((($proot_dir)?$proot_dir->path:SITE_PATH))).(($proot_dir)?"&rootpath=".urlencode($proot_dir->getRelativePath()):'');
-		echo "\t<dt><a href='$url'>";
-		echo "<img align=\"top\"  src='".$this->getMimeIconUrl($print)."' alt=''  ";
+		$strReturn .= "\t<dt><a href='$url'>";
+		$strReturn .= "<img align=\"top\"  src='".$this->getMimeIconUrl($print)."' alt=''  ";
 		if(!$print)
-			echo ' id="context_menu_'.$this->getIdName().'" ';
+			$strReturn .= ' id="context_menu_'.$this->getIdName().'" ';
 	
-		echo "/></a></dt>\n";
-		echo "\t<dd>";
-		if(!$print)
-			echo '<span>'.$this->getPrintedName().'</span>';
-		else
-			echo $print;//use in .. display
-		echo "</dd>\n";
-		echo "</dl>\n";
+		$strReturn .= "/></a></dt>\n";
+		$strReturn .= "\t<dd>";
+		$strReturn .= (!$print)?'<span>'.$this->getPrintedName().'</span>':$print;
+		$strReturn .= "</dd>\n";
+		$strReturn .= "</dl>\n";
+		
+		return $strReturn;
 	
 	}
 	
@@ -139,7 +140,7 @@ class PDir extends POFile {
 		$url=$_SERVER["REQUEST_URI"];;
 		if(!eregi("\?",$url))
 			$url.="?t=1";
-			
+		$strReturn = '';	
 		echo "\t<div class=\"contextMenu\" id=\"menu_".$this->getIdName()."\">\n<ul>\n";
 			echo $this->menuDelete($url);
 			echo $this->menuRename($url);

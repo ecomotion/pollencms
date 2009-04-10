@@ -59,6 +59,7 @@ class PPollenCMS extends Smarty {
 	function loadDefaultFilters(){
 		$this->load_filter('pre', 'addconf');
 		$this->load_filter('output','trimwhitespace');		
+		$this->load_filter('output','copyleft');		
 		$this->loadExtraFilters();
 	}
 	
@@ -120,6 +121,7 @@ class PPollenCMS extends Smarty {
 		$strTemplateName=$oPage->getTemplateName();
 		
 		$strCompiledId= $this->getCompiledId();
+
 		$this->oPageCurrent=&$oPage;
 		$this->register_object('oPageCurrent',$oPage);
 		

@@ -72,11 +72,11 @@ class PImage extends PFile {
 				return false;
 		
 		//create the directory
-		$oDir = $objThumb->getParentDir();
-		if( !is_dir($oDir->path) && !$oDir->mkdir())
+		$oDirParent = new PDir($objThumb->getParentPath());
+		if( !is_dir($oDirParent->path) && !$oDirParent->mkdir())
 			return false;
 		
-		if( !($this->Copy($this->getName(), $objThumb->getParentPath())) )
+		if( !($this->Copy($this->getName(), $oDirParent->path)) )
 			return false;
 		
 		if ( !$objThumb->ResizeMax($iTSize, $bSquare) ){
@@ -225,18 +225,20 @@ class PImage extends PFile {
 	}
 	
 	function Display($thumb_size,$url=false,$oRootDir=false){
+		$strReturn = '';
 		if(!$url) $url=$this->getDisplayUrl();
-		echo '<dl class="file image" id="filename='.str_replace(SLASH,'/',$this->getRelativePath()).'">'."\n"; 
+		$strReturn .= '<dl class="file image" id="filename='.str_replace(SLASH,'/',$this->getRelativePath()).'">'."\n"; 
 		$this->DisplayMenu(($oRootDir?$oRootDir->getRelativePath():''));
 
-		echo "\t<dt>\n\t\t<a  href=$url title='".$this->getName().' ('.$this->getResolution().")'>";
-		echo "<img src='".$this->getMimeIconUrl($thumb_size)."'  width=\"".$thumb_size."\" alt=\"".$this->getNameWithoutExt()."\""; 
-//		if(defined("EDIT_FILE"))
-			echo " id=\"context_menu_".$this->getIdName()."\" ";
- 		echo " />";
- 		echo "</a>\n\t</dt>\n";
-		echo "\t<dd><span>".$this->getPrintedName()."</span></dd>\n";
-		echo "</dl>\n";	
+		$strReturn .= "\t<dt>\n\t\t<a  href=$url title='".$this->getName().' ('.$this->getResolution().")'>";
+		$strReturn .= "<img src='".$this->getMimeIconUrl($thumb_size)."'  width=\"".$thumb_size."\" alt=\"".$this->getNameWithoutExt()."\""; 
+		$strReturn .= " id=\"context_menu_".$this->getIdName()."\" ";
+ 		$strReturn .= " />";
+ 		$strReturn .= "</a>\n\t</dt>\n";
+		$strReturn .= "\t<dd><span>".$this->getPrintedName()."</span></dd>\n";
+		$strReturn .= "</dl>\n";
+		
+		return $strReturn;
 	}
 
 	
