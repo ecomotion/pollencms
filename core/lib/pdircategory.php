@@ -189,7 +189,7 @@ class PDirCategory extends PDir{
 	function getMenuName(){
 		$this->oPConfigFile->getParam("MENU_TITLE",$strConfigName);
 		if( $strConfigName!="" && $strConfigName != false ) return $strConfigName;
-		return $this->getName();	
+		return $this->getVirtualName();	
 	}
 	
 	/**
